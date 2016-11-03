@@ -113,6 +113,7 @@
 		</form>
 
 	</div>
+    <script src="../../Scripts/tools/formValidation.js"></script>
 	<!-- 
     <script src="../Scripts/library/jquery/jquery-2.2.3.js"></script>
     <script src="../Scripts/library/bootstrap/bootstrap.js"></script>
@@ -126,7 +127,6 @@
     <script src="../Scripts/library/inputMask/MaskedInputPlugin.js"></script>
 
     <script src="../Scripts/tools/input-mask.js"></script>
-    <script src="../Scripts/tools/formValidation.js"></script>
  -->
 </body>
 </html>
