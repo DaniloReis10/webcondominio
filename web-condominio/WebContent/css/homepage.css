@@ -1,0 +1,9 @@
+#page {	
+	width: 900px;
+	margin: 0px auto;
+	margin-top: 10px;
+}
+
+.jumbotron {
+	border-radius: 2%;
+}

@@ -1,0 +1,43 @@
+#lista-lancamentos {
+	width: 900px;
+	margin: 0px auto;
+	margin-top: 10px;
+}
+
+#data-lancamento {
+	margin: 6px 6px 6px 6px;
+}
+
+#col-label {
+	width: 160px;
+}
+
+.first-col {
+	width: 750px;
+}
+
+#calcula-lancamento {
+	display: flex;
+	font-size: 30px;
+}
+
+#calucla-lancamento div{	
+	border: solid red;
+	position: relative;
+	left: 10px;
+}
+
+#calcula-lancamento button {
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+#lancamento button {
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
+
+.alert-danger {
+	display: none;
+}

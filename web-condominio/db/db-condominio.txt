@@ -1,0 +1,196 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema db_condominio
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema db_condominio
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `db_condominio` DEFAULT CHARACTER SET utf8 ;
+USE `db_condominio` ;
+
+-- -----------------------------------------------------
+-- Table `db_condominio`.`tbl_endereco`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `db_condominio`.`tbl_endereco` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `logradouro` VARCHAR(120) NOT NULL,
+  `numero` VARCHAR(6) NULL,
+  `bairro` VARCHAR(45) NOT NULL,
+  `complemento` VARCHAR(80) NOT NULL,
+  `cidade` VARCHAR(45) NOT NULL,
+  `estado` VARCHAR(45) NOT NULL,
+  `cep` VARCHAR(8) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db_condominio`.`tbl_fornecedor`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `db_condominio`.`tbl_fornecedor` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(60) NOT NULL,
+  `descricao` VARCHAR(60) NULL,
+  `email` VARCHAR(60) NULL,
+  `senha` VARCHAR(100) NULL,
+  `tbl_endereco_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_tbl_fornecedor_tbl_endereco1_idx` (`tbl_endereco_id` ASC),
+  CONSTRAINT `fk_tbl_fornecedor_tbl_endereco1`
+    FOREIGN KEY (`tbl_endereco_id`)
+    REFERENCES `db_condominio`.`tbl_endereco` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db_condominio`.`tbl_tipo_despesa`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `db_condominio`.`tbl_tipo_despesa` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `descricao` VARCHAR(60) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db_condominio`.`tbl_despesa`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `db_condominio`.`tbl_despesa` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(60) NOT NULL,
+  `tbl_fornecedor_id` INT NOT NULL,
+  `tbl_tipo_despesa_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_tbl_despesa_tbl_fornecedor1_idx` (`tbl_fornecedor_id` ASC),
+  INDEX `fk_tbl_despesa_tbl_tipo_despesa1_idx` (`tbl_tipo_despesa_id` ASC),
+  CONSTRAINT `fk_tbl_despesa_tbl_fornecedor1`
+    FOREIGN KEY (`tbl_fornecedor_id`)
+    REFERENCES `db_condominio`.`tbl_fornecedor` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tbl_despesa_tbl_tipo_despesa1`
+    FOREIGN KEY (`tbl_tipo_despesa_id`)
+    REFERENCES `db_condominio`.`tbl_tipo_despesa` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db_condominio`.`tbl_lancamento_despesa`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `db_condominio`.`tbl_lancamento_despesa` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `data` DATE NOT NULL,
+  `valor` VARCHAR(45) NOT NULL,
+  `tbl_despesa_id` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_item_despesa1_idx` (`tbl_despesa_id` ASC),
+  CONSTRAINT `fk_item_despesa1`
+    FOREIGN KEY (`tbl_despesa_id`)
+    REFERENCES `db_condominio`.`tbl_despesa` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db_condominio`.`tbl_condonimo`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `db_condominio`.`tbl_condonimo` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(45) NULL,
+  `cpf` VARCHAR(45) NOT NULL,
+  `data_nascimento` DATE NOT NULL,
+  `data_cadastro` DATE NOT NULL,
+  `ativo` TINYINT(1) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `senha` VARCHAR(100) NOT NULL,
+  `fone_celular` VARCHAR(45) NOT NULL,
+  `fone_residencial` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db_condominio`.`tbl_funcionario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `db_condominio`.`tbl_funcionario` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(45) NOT NULL,
+  `cpf` VARCHAR(14) NOT NULL,
+  `funcao` VARCHAR(45) NULL,
+  `rg` VARCHAR(45) NULL,
+  `data_nascimento` DATE NOT NULL,
+  `data_admissao` DATE NOT NULL,
+  `data_demissao` DATE NULL,
+  `email` VARCHAR(60) NULL,
+  `fone_celular` VARCHAR(45) NOT NULL,
+  `fone_residencial` VARCHAR(45) NULL,
+  `tbl_endereco_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `cpf_UNIQUE` (`cpf` ASC),
+  INDEX `fk_tbl_funcionario_tbl_endereco1_idx` (`tbl_endereco_id` ASC),
+  CONSTRAINT `fk_tbl_funcionario_tbl_endereco1`
+    FOREIGN KEY (`tbl_endereco_id`)
+    REFERENCES `db_condominio`.`tbl_endereco` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db_condominio`.`tbl_receita`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `db_condominio`.`tbl_receita` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `valor_boleto` FLOAT NOT NULL,
+  `valor_pago` FLOAT NOT NULL,
+  `data` DATE NOT NULL,
+  `tbl_condonimo_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_tbl_receita_tbl_condonimo1_idx` (`tbl_condonimo_id` ASC),
+  CONSTRAINT `fk_tbl_receita_tbl_condonimo1`
+    FOREIGN KEY (`tbl_condonimo_id`)
+    REFERENCES `db_condominio`.`tbl_condonimo` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db_condominio`.`tbl_fundo_caixa`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `db_condominio`.`tbl_fundo_caixa` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `fundo` DOUBLE NOT NULL,
+  `data` DATE NOT NULL,
+  `tbl_receita_id` INT NOT NULL,
+  `tbl_lancamento_despesa_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_tbl_fundo_caixa_tbl_receita1_idx` (`tbl_receita_id` ASC),
+  INDEX `fk_tbl_fundo_caixa_tbl_lancamento_despesa1_idx` (`tbl_lancamento_despesa_id` ASC),
+  CONSTRAINT `fk_tbl_fundo_caixa_tbl_receita1`
+    FOREIGN KEY (`tbl_receita_id`)
+    REFERENCES `db_condominio`.`tbl_receita` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tbl_fundo_caixa_tbl_lancamento_despesa1`
+    FOREIGN KEY (`tbl_lancamento_despesa_id`)
+    REFERENCES `db_condominio`.`tbl_lancamento_despesa` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

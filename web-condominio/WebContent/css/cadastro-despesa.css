@@ -1,0 +1,52 @@
+/*********************************************************************************/
+/* Cadastro Despesa: Página 1 (lista)                                            */
+/*********************************************************************************/
+
+#page-cad-despesa {	
+	width: 900px;
+	margin: 0px auto;
+	margin-top: 10px;
+}
+
+.option-list-table-icons {
+	list-style: none;
+	text-align: right;
+}
+
+.option-list-table-icons li {
+	display: inline-block;
+}
+
+#botao-novo {
+	margin-bottom: 20px;
+}
+
+/*********************************************************************************/
+/* Nova Despesa                                                                  */
+/*********************************************************************************/
+
+#page-cad-nova-despesa {	
+	width: 900px;
+	margin: 0px auto;
+	margin-top: 10px;
+}
+
+#page-cad-nova-despesa input, button, select, label {	
+	margin-top: 8px;
+}
+
+.column-labels {
+	width: 150px;
+}
+
+.column-inputs {
+	width: 200px;	
+}
+
+#table-inputs select {
+	width: 250px;
+}
+
+#nome-despesa {
+	width: 250px;
+}
