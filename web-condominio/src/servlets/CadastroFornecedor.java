@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Endereco;
+import model.Fornecedor;
+
 /**
  * Servlet implementation class CadastroFornecedor
  */
@@ -38,6 +41,29 @@ public class CadastroFornecedor extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		System.out.println("Opa!");
+		String senha = request.getParameter("Senha");
+		String confirmSenha = request.getParameter("ConfirmarSenha");
+		
+		if (!senha.equals(confirmSenha)) {
+			System.out.println("Senhas diferentes!");
+		}
+		
+		Fornecedor fornecedor = new Fornecedor();
+		fornecedor.setNome(request.getParameter("NomeFornecedor"));
+		fornecedor.setEmail(request.getParameter("Email"));
+		fornecedor.setSenha(senha);
+		
+		Endereco endereco = new Endereco();
+		endereco.setLogradouro(request.getParameter("Logradouro"));
+		endereco.setNumero(request.getParameter("Numero"));
+		endereco.setCep(request.getParameter("Cep"));
+		
+		fornecedor.setEndereco(endereco);
+		
+		this.doGet(request, response);
+		
 	}
 
 }
