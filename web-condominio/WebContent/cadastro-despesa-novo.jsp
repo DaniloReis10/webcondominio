@@ -39,7 +39,9 @@
 	  					<tbody>
 	  						<tr>
 	  							<td class="column-labels"><label>Nome da Despesa: </label></td>				  						
-	  							<td class="column-inputs"><input name="nome" class="form-control" id="nome-despesa"></td>
+	  							<td class="column-inputs">
+	  								<input type="text" name="nomeDespesa" class="form-control" id="nome-despesa">
+	  							</td>
 	  						</tr>
 	  						<tr>
 	  							<td class="column-labels"><label>Fornecedor: </label></td>
@@ -75,7 +77,7 @@
 	  					</tbody>		  					
 	  				</table>
 
-					<a id="cadastrar-button" type="submit" class="btn btn-success" href="cadastrar-despesa">Cadastrar</a>
+					<button id="cadastrar-button" type="submit" class="btn btn-success">Cadastrar</button>
 
   				</div>
   			</div>

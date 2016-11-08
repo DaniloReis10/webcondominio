@@ -23,7 +23,7 @@ public class CadastraDespesaServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-			String nome = request.getParameter("nome");
+			String nome = request.getParameter("nomeDespesa");
 			Integer idFornecedor = Integer.parseInt(request.getParameter("idFornecedor"));
 			Integer idTipo = Integer.parseInt(request.getParameter("idTipo"));
 			Integer idPeriodicidade = Integer.parseInt(request.getParameter("idPeriodicidade"));

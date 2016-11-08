@@ -7,9 +7,9 @@ var $mensagemSucesso = $("#mensagem-sucesso");
 // Validação
 var validaNovaDespesa = function() {
 
-	if($nomeDespesa[0].value == ""){
+	if($nomeDespesa.val() == ""){
 		return false;
-	} else if( $.isNumeric($nomeDespesa[0].value)) {
+	} else if( $.isNumeric($nomeDespesa.val())) {
 		return false;
 	}
 
@@ -17,16 +17,22 @@ var validaNovaDespesa = function() {
 }
 
 // Cadastrar
-var onCadastrarClick = function() {
+var onCadastrarClick = function(e) {
+	
+	console.log("clicou");
 
+	e.preventDefault();
+	
 	var ok = validaNovaDespesa();
 
 	$mensagemSucesso.css("display", "none");
 	$mensagemErro.css("display", "none");
 
 	if(ok) {
+		console.log("passou");
 		$mensagemSucesso.css("display", "flex");
-		$nomeDespesa.val("");
+		location.href = "cadastrar-despesa";
+		
 	} else {
 		$mensagemErro.css("display", "flex");
 	}
