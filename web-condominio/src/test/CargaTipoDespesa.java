@@ -11,7 +11,7 @@ import model.TipoDespesa;
 
 public class CargaTipoDespesa {
 
-	@Ignore
+	@Test
 	public void carga() throws SQLException {
 		
 		String[] lista = {
@@ -31,7 +31,7 @@ public class CargaTipoDespesa {
 		}
 	}
 	
-	@Test
+	@Ignore
 	public void excluirTudo() throws SQLException {
 		
 		TipoDespesaDao dao = new TipoDespesaDao();

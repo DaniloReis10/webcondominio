@@ -9,23 +9,27 @@ import org.junit.Test;
 import dao.DespesaDao;
 import model.Despesa;
 import model.Fornecedor;
+import model.Periodicidade;
 import model.TipoDespesa;
 
 public class DespesaDaoTest {
 	
-	@Ignore
+	@Test
 	public void salvarDespesa() throws SQLException{
 		
 		Despesa despesa = new Despesa();
 		TipoDespesa tipo = new TipoDespesa();
 		Fornecedor fornecedor = new Fornecedor();
+		Periodicidade periodicidade = new Periodicidade();
 		
-		tipo.setId(3);
-		fornecedor.setId(3);
+		tipo.setId(9);
+		fornecedor.setId(8);
+		periodicidade.setId(1);
 		
-		despesa.setNome("Energia Eletrica");
+		despesa.setNome("Internet/Telefone");
 		despesa.setTipo(tipo);
 		despesa.setFornecedor(fornecedor);
+		despesa.setPeriodicidade(periodicidade);
 		
 		DespesaDao dao = new DespesaDao();
 		dao.salvar(despesa);
@@ -69,7 +73,7 @@ public class DespesaDaoTest {
 		System.out.println("Despesa excluida com sucesso!");
 	}
 	
-	@Test
+	@Ignore
 	public void listarDespesa() throws SQLException {
 		DespesaDao dao = new DespesaDao();
 		List<Despesa> lista = dao.listar();

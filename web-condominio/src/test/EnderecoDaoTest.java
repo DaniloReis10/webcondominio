@@ -11,17 +11,17 @@ import model.Endereco;
 
 public class EnderecoDaoTest {
 	
-	@Ignore
+	@Test
 	public void salvarEndereco() throws SQLException{
 		
 		Endereco endereco = new Endereco();
 		
-		endereco.setLogradouro("Rua Barbosa de Freitas");
-		endereco.setNumero("229");
-		endereco.setBairro("Meireles");
+		endereco.setLogradouro("Rua Tibúrcio Cavalcante");
+		endereco.setNumero("2289");
+		endereco.setBairro("Aldeota");
 		endereco.setCidade("Fortaleza");
 		endereco.setEstado("Ceará");
-		endereco.setCep("60170020");
+		endereco.setCep("60125001");
 		
 		EnderecoDao dao = new EnderecoDao();
 		dao.salvar(endereco);
@@ -73,7 +73,7 @@ public class EnderecoDaoTest {
 		}
 	}
 	
-	@Test
+	@Ignore
 	public void enderecoPorId() throws SQLException{
 		EnderecoDao dao = new EnderecoDao();
 		Endereco endereco = dao.enderecoPorId(4);

@@ -12,20 +12,20 @@ import model.Fornecedor;
 
 public class FornecedorDaoTest {
 	
-	@Ignore
+	@Test
 	public void salvarFornecedor() throws SQLException{
 		
 		Endereco endereco = new Endereco();		
-		endereco.setLogradouro("Rua Barbosa de Freitas");
-		endereco.setNumero("229");
-		endereco.setBairro("Meireles");
-		endereco.setCidade("Fortaleza");
-		endereco.setEstado("Ceará");
-		endereco.setCep("60170020");
+		endereco.setLogradouro("");
+		endereco.setNumero("");
+		endereco.setBairro("");
+		endereco.setCidade("");
+		endereco.setEstado("");
+		endereco.setCep("");
 		
 		Fornecedor fornecedor = new Fornecedor();
-		fornecedor.setNome("Coelce");
-		fornecedor.setDescricao("Distribuidora de Energia do Ceará");
+		fornecedor.setNome("S/F");
+		fornecedor.setDescricao("S/F");
 		fornecedor.setEndereco(endereco);
 		
 		FornecedorDao dao = new FornecedorDao();
@@ -75,7 +75,7 @@ public class FornecedorDaoTest {
 		System.out.println("Fornecedor excluido com sucesso!");
 	}
 	
-	@Test
+	@Ignore
 	public void listarFornecedor() throws SQLException {
 		FornecedorDao dao = new FornecedorDao();
 		List<Fornecedor> lista = dao.listar();

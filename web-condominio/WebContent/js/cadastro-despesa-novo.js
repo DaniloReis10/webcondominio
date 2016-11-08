@@ -7,8 +7,6 @@ var $mensagemSucesso = $("#mensagem-sucesso");
 // Validação
 var validaNovaDespesa = function() {
 
-	console.log("teste");
-
 	if($nomeDespesa[0].value == ""){
 		return false;
 	} else if( $.isNumeric($nomeDespesa[0].value)) {

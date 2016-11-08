@@ -10,6 +10,7 @@ import java.util.List;
 
 import model.Despesa;
 import model.Fornecedor;
+import model.Periodicidade;
 import model.TipoDespesa;
 
 public class DespesaDao {
@@ -21,7 +22,7 @@ private Connection conexao;
 	
 	public Integer salvar(Despesa despesa) throws SQLException{		
 		PreparedStatement ps = null;		
-		String sql = "INSERT INTO tbl_despesa(nome,tbl_tipo_despesa_id,tbl_fornecedor_id) values (?,?,?)";		
+		String sql = "INSERT INTO tbl_despesa(nome,tbl_tipo_despesa_id,tbl_fornecedor_id,tbl_periodicidade_id) values (?,?,?,?)";		
 		try {			
 			this.conexao.setAutoCommit(false); // iniciar transação			
 			ps = this.conexao.prepareStatement(sql);
@@ -29,6 +30,7 @@ private Connection conexao;
 			ps.setString(1, despesa.getNome());
 			ps.setInt(2, despesa.getTipo().getId());
 			ps.setInt(3, despesa.getFornecedor().getId());
+			ps.setInt(4, despesa.getPeriodicidade().getId());
 			
 			ps.execute();
 			
@@ -53,7 +55,7 @@ private Connection conexao;
 	
 	public void alterar(Despesa despesa) throws SQLException {		
 		PreparedStatement ps = null;		
-		String sql = "UPDATE tbl_despesa SET nome=?,tbl_tipo_despesa_id=?,tbl_fornecedor_id=? WHERE id=?";		
+		String sql = "UPDATE tbl_despesa SET nome=?,tbl_tipo_despesa_id=?,tbl_fornecedor_id=?,tbl_periodicidade_id=? WHERE id=?";		
 		try {			
 			this.conexao.setAutoCommit(false); // iniciar transação			
 			ps = this.conexao.prepareStatement(sql);
@@ -61,7 +63,8 @@ private Connection conexao;
 			ps.setString(1, despesa.getNome());
 			ps.setInt(2, despesa.getTipo().getId());
 			ps.setInt(3, despesa.getFornecedor().getId());
-			ps.setInt(4, despesa.getId());
+			ps.setInt(4, despesa.getPeriodicidade().getId());
+			ps.setInt(5, despesa.getId());
 			
 			ps.execute();
 			
@@ -131,8 +134,13 @@ private Connection conexao;
 			FornecedorDao fDao = new FornecedorDao();
 			Fornecedor fornecedor = fDao.fornecedorPorId(idFornecedor);
 			
+			Integer idPeriodicidade = rs.getInt("tbl_periodicidade_id");
+			PeriodicidadeDao pDao = new PeriodicidadeDao();
+			Periodicidade periodicidade = pDao.periodicidadePorId(idPeriodicidade);
+			
 			despesa.setTipo(tipo);
 			despesa.setFornecedor(fornecedor);
+			despesa.setPeriodicidade(periodicidade);
 			
 			lista.add(despesa);
 		}
