@@ -21,20 +21,14 @@ var onCadastrarClick = function(e) {
 	
 	console.log("clicou");
 
-	e.preventDefault();
-	
 	var ok = validaNovaDespesa();
 
 	$mensagemSucesso.css("display", "none");
 	$mensagemErro.css("display", "none");
 
-	if(ok) {
-		console.log("passou");
-		$mensagemSucesso.css("display", "flex");
-		location.href = "cadastrar-despesa";
-		
-	} else {
-		$mensagemErro.css("display", "flex");
+	if(!ok) {
+		e.preventDefault();
+		$mensagemErro.css("display", "flex");		
 	}
 }
 

@@ -30,7 +30,7 @@
   			<span class="sr-only">Error:</span> Digite um nome válido para a despesa!
 		</div>
 
-		<form method="get" action="cadastrar-despesa" class="form-inline">
+		<form method="get" action="cadastrar-despesa" class="form-inline" id="form-despesa">
 			<div class="panel panel-info">
   				<div class="panel-heading">Nova Despesa</div>
   				<div class="panel-body">
@@ -77,8 +77,9 @@
 	  					</tbody>		  					
 	  				</table>
 
-					<button id="cadastrar-button" type="submit" class="btn btn-success">Cadastrar</button>
-
+					<input id="cadastrar-button" type="submit" class="btn btn-success" value="Cadastrar" />
+					<!-- <button id="cadastrar-button" type="submit" class="btn btn-success">Cadastrar</button> -->
+					
   				</div>
   			</div>
 		</form>
