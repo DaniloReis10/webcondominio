@@ -1,21 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>WebCondominio - Cadastro Fornecedor</title>
 
-<link rel="stylesheet" href="../libs/bootstrap-3.3.7-dist/css/bootstrap.css">
-<link rel="stylesheet" href="../libs/jquery.dataTables.min.css">
-<!-- <link rel="stylesheet" href="../Styles/toastr/toastr.min.css"> --> 
+<link rel="stylesheet"
+	href="libs/bootstrap-3.3.7-dist/css/bootstrap.css">
+<link rel="stylesheet" href="libs/jquery.dataTables.min.css">
+<!-- <link rel="stylesheet" href="../Styles/toastr/toastr.min.css"> -->
 
 </head>
 <body>
 
 	<div class="container">
 
-		<form class="" data-valid="false">
+		<form class="" data-valid="false" method="POST">
 
 			<div class="panel panel-primary">
 
@@ -25,7 +27,9 @@
 
 				<div class="panel-body">
 
-					<div id="mensagemCadastro" class="" style="display: none;"></div>
+					<c:if test="${mensagem != null && mensagem.length() > 0}">
+						<div id="mensagemCadastro" class="alert alert-danger">${mensagem}</div>
+					</c:if>
 
 					<div class="row">
 						<!-- Nome Fornecedor -->
@@ -119,23 +123,23 @@
 		</form>
 
 	</div>
-	
-	<script src="../libs/jquery-3.1.1.js"></script>
-	<script src="../libs/jquery.dataTables.min.js"></script>
-	
-    <script src="../libs/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
-    <!-- 
+
+	<script src="libs/jquery-3.1.1.js"></script>
+	<script src="libs/jquery.dataTables.min.js"></script>
+
+	<script src="libs/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+	<!-- 
     <script src="../Scripts/library/toastr/toastr.min.js"></script>
     <script src="../Scripts/tools/toastrOptions.js"></script>
     <script src="../Scripts/app/dataAccess/login.js"></script>
     <script src="../Scripts/app/dataAccess/fornecedorRepository.js"></script>
  	-->
-    <script src="../js/cadastroFornecedor/cadastroFornecedor.js"></script>
+	<script src="js/cadastroFornecedor/cadastroFornecedor.js"></script>
 
-    <script src="../js/MaskedInputPlugin.js"></script>
+	<script src="js/MaskedInputPlugin.js"></script>
 
-    <script src="../js/input-mask.js"></script>
-    <script src="../js/formValidation.js"></script>
+	<script src="js/input-mask.js"></script>
+	<script src="js/formValidation.js"></script>
 
 </body>
 </html>

@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.FornecedorDao;
 import model.Endereco;
 import model.Fornecedor;
 
@@ -31,7 +33,6 @@ public class CadastroFornecedor extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		RequestDispatcher rd = request.getRequestDispatcher("views/cadastroFornecedor.jsp");
 		rd.forward(request, response);
 	}
@@ -47,7 +48,8 @@ public class CadastroFornecedor extends HttpServlet {
 		String confirmSenha = request.getParameter("ConfirmarSenha");
 		
 		if (!senha.equals(confirmSenha)) {
-			System.out.println("Senhas diferentes!");
+			request.setAttribute("mensagem", "Senhas são diferentes");
+			this.doGet(request, response);
 		}
 		
 		Fornecedor fornecedor = new Fornecedor();
@@ -62,7 +64,18 @@ public class CadastroFornecedor extends HttpServlet {
 		
 		fornecedor.setEndereco(endereco);
 		
-		this.doGet(request, response);
+		FornecedorDao fornecedorDao = new FornecedorDao();
+		/*try {
+			fornecedorDao.salvar(fornecedor);
+		} catch (SQLException e) {
+			request.setAttribute("mensagem", e.getMessage());
+			this.doGet(request, response);
+			e.printStackTrace();
+		}*/
+		
+		RequestDispatcher rd = request.getRequestDispatcher("views/loginFornecedor.jsp");
+		rd.forward(request, response);
+		
 		
 	}
 
