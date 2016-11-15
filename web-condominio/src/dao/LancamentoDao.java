@@ -23,7 +23,7 @@ public class LancamentoDao {
 	
 	public Integer salvar(Lancamento lancamento) throws SQLException{		
 		PreparedStatement ps = null;		
-		String sql = "INSERT INTO tbl_lancamento_despesa(data,valor,tbl_tipo_despesa_id) values (?,?,?)";		
+		String sql = "INSERT INTO tbl_lancamento_despesa(data,valor,tbl_despesa_id) values (?,?,?)";		
 		try {			
 			this.conexao.setAutoCommit(false); // iniciar transação			
 			ps = this.conexao.prepareStatement(sql);
@@ -111,31 +111,39 @@ public class LancamentoDao {
 	
 	public List<Lancamento> listar() throws SQLException {
 		
-		List<Lancamento> lista = new ArrayList<Lancamento>();
+		Statement myStmt = null;
 		
-		Statement myStmt = this.conexao.createStatement();
-		
-		String sql = "SELECT * FROM tbl_lancamento_despesa";
-		ResultSet rs = myStmt.executeQuery(sql);
-		
-		while(rs.next()) {
-			
-			Lancamento lancamento = new Lancamento();
-			
-			lancamento.setId(rs.getInt("id"));
-			lancamento.setData(rs.getDate("data"));
-			lancamento.setValor(rs.getFloat("valor"));
-			
-			Integer idDespesa = rs.getInt("tbl_despesa_id");
-			DespesaDao dDao = new DespesaDao();
-			Despesa despesa = dDao.despesaPorId(idDespesa);
-			
-			lancamento.setDespesa(despesa);
-			
-			lista.add(lancamento);
+		try {
+			List<Lancamento> lista = new ArrayList<Lancamento>();
+
+			myStmt = this.conexao.createStatement();
+
+			String sql = "SELECT * FROM tbl_lancamento_despesa";
+			ResultSet rs = myStmt.executeQuery(sql);
+
+			while (rs.next()) {
+
+				Lancamento lancamento = new Lancamento();
+
+				lancamento.setId(rs.getInt("id"));
+				lancamento.setData(rs.getDate("data"));
+				lancamento.setValor(rs.getFloat("valor"));
+
+				Integer idDespesa = rs.getInt("tbl_despesa_id");
+				DespesaDao dDao = new DespesaDao();
+				Despesa despesa = dDao.despesaPorId(idDespesa);
+
+				lancamento.setDespesa(despesa);
+
+				lista.add(lancamento);
+			}
+
+			return lista;
+		} finally {
+			if(myStmt != null){
+				 myStmt.close();
+			 }
 		}
-		
-		return lista;
 	}
 	
 public Lancamento lancamentoPorId(Integer id) throws SQLException {

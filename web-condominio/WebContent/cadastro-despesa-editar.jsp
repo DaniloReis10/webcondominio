@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ 
+<!DOCTYPE html>
 <html>
 <head>
 	
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	
 	<title>Web Condominio - Editar Despesas</title>
 	
@@ -30,46 +31,85 @@
   			<span class="sr-only">Error:</span> Digite um novo nome válido para a despesa!
 		</div>
 
-		<form class="form-inline">
+		<form class="form-inline" method="post" action="editar-despesa">
+		
+			<input name="idDespesa" type="hidden" class="form-control" id="id" value="${despesa.id}">
+			
 			<div class="panel panel-info">
   				<div class="panel-heading">Editar Despesa</div>
   				<div class="panel-body">
   					
 	  				<table id="table-inputs">
 	  					<tbody>
+	  						
 	  						<tr>
 	  							<td class="column-labels"><label>Nome da Despesa: </label></td>				  						
-	  							<td class="column-inputs"><input type="text" class="form-control" id="nome-despesa"></td>
+	  							<td class="column-inputs"><input name="nomeDespesa" type="text" class="form-control" id="nome-despesa" value="${despesa.nome}"></td>
 	  						</tr>
 	  						<tr>
 	  							<td class="column-labels"><label>Fornecedor: </label></td>
 	  							<td class="column-inputs">
-	  								<select class="form-control" id="sel-fornecedor">
-										<option value="S/F">S/F</option>
-										<option value="Coelce">Coelce</option>
-										<option value="Cagece">Cagece</option>
-										<option value="Vivo">Vivo</option>
-										<option value="Dedetizadora-X">Dedetizadora X</option>
-										<option value="Segurança-Z">Segurança Z</option>
+	  								<select name="idFornecedor" class="form-control" id="sel-fornecedor">
+	  								
+	  									
+	  									<c:forEach items="${fornecedores}" var="fornecedor">
+	  										<c:choose>
+	  										<c:when test="${fornecedor.id eq despesa.fornecedor.id}">
+	  											<option selected="selected" value="${fornecedor.id}">${fornecedor.nome}</option>
+	  										</c:when>
+	  										<c:otherwise>
+	  											<option value="${fornecedor.id}">${fornecedor.nome}</option>
+	  										</c:otherwise>
+	  										</c:choose>
+		  								</c:forEach>
+		  								
+		  								
 									</select>
 	  							</td>
 	  						</tr>
 	  						<tr>
 	  							<td class="column-labels"><label>Tipo de Despesa: </label></td>
 	  							<td class="column-inputs">
-	  								<select class="form-control" id="sel-tipo">
-										<option value="Básico">Básico</option>
-										<option value="Manutenção">Manutenção</option>
-										<option value="Segurança">Segurança</option>
-										<option value="Funcionário">Funcionário</option>
-										<option value="Imposto">Imposto</option>
+	  								<select name="idTipo" class="form-control" id="sel-tipo">
+	  								
+										<c:forEach items="${tipos}" var="tipo">
+	  										<c:choose>
+	  										<c:when test="${tipo.id eq despesa.tipo.id}">
+	  											<option selected="selected" value="${tipo.id}">${tipo.descricao}</option>
+	  										</c:when>
+	  										<c:otherwise>
+	  											<option value="${tipo.id}">${tipo.descricao}</option>
+	  										</c:otherwise>
+	  										</c:choose>
+		  								</c:forEach>
+		  								
+									</select>
+	  							</td>
+	  						</tr>
+	  						<tr>
+	  							<td class="column-labels"><label>Periodicidade: </label></td>
+	  							<td class="column-inputs">
+	  								<select name="idPeriodicidade" class="form-control" id="sel-tipo">
+	  									
+	  									<c:forEach items="${periodicidades}" var="periodicidade">
+	  										<c:choose>
+	  										<c:when test="${periodicidade.id eq despesa.periodicidade.id}">
+	  											<option selected="selected" value="${periodicidade.id}">${periodicidade.descricao}</option>
+	  										</c:when>
+	  										<c:otherwise>
+	  											<option value="${periodicidade.id}">${periodicidade.descricao}</option>
+	  										</c:otherwise>
+	  										</c:choose>
+		  								</c:forEach>
+	  									
 									</select>
 	  							</td>
 	  						</tr>
 	  					</tbody>		  					
 	  				</table>
 
-					<button id="cadastrar-button" type="button" class="btn btn-success">Editar</button>
+					<!-- <button id="cadastrar-button" type="button" class="btn btn-success">Editar</button> -->
+					<input id="cadastrar-button" type="submit" class="btn btn-success" value="Editar" />
 
   				</div>
   			</div>

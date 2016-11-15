@@ -129,33 +129,41 @@ public class FornecedorDao {
 	
 	public List<Fornecedor> listar() throws SQLException {
 		
-		List<Fornecedor> lista = new ArrayList<Fornecedor>();
+		Statement myStmt = null;
 		
-		Statement myStmt = this.conexao.createStatement();
-		
-		String sql = "SELECT * FROM tbl_fornecedor";
-		ResultSet rs = myStmt.executeQuery(sql);
-		
-		while(rs.next()) {
-			
-			Fornecedor fornecedor = new Fornecedor();
-			
-			fornecedor.setId(rs.getInt("id"));
-			fornecedor.setNome(rs.getString("nome"));
-			fornecedor.setDescricao(rs.getString("descricao"));
-			fornecedor.setEmail(rs.getString("email"));
-			fornecedor.setSenha(rs.getString("senha"));
-			
-			Integer idEndereco = rs.getInt("tbl_endereco_id");
-			EnderecoDao dao = new EnderecoDao();
-			Endereco endereco = dao.enderecoPorId(idEndereco);
-			
-			fornecedor.setEndereco(endereco);
-			
-			lista.add(fornecedor);
+		try {
+			List<Fornecedor> lista = new ArrayList<Fornecedor>();
+
+			myStmt = this.conexao.createStatement();
+
+			String sql = "SELECT * FROM tbl_fornecedor";
+			ResultSet rs = myStmt.executeQuery(sql);
+
+			while (rs.next()) {
+
+				Fornecedor fornecedor = new Fornecedor();
+
+				fornecedor.setId(rs.getInt("id"));
+				fornecedor.setNome(rs.getString("nome"));
+				fornecedor.setDescricao(rs.getString("descricao"));
+				fornecedor.setEmail(rs.getString("email"));
+				fornecedor.setSenha(rs.getString("senha"));
+
+				Integer idEndereco = rs.getInt("tbl_endereco_id");
+				EnderecoDao dao = new EnderecoDao();
+				Endereco endereco = dao.enderecoPorId(idEndereco);
+
+				fornecedor.setEndereco(endereco);
+
+				lista.add(fornecedor);
+			}
+
+			return lista;
+		} finally {
+			if(myStmt != null){
+				 myStmt.close();
+			 }
 		}
-		
-		return lista;
 	}
 	
 	public Fornecedor fornecedorPorId(Integer id) throws SQLException {

@@ -99,27 +99,35 @@ public class PeriodicidadeDao {
 	
 	public List<Periodicidade> listar() throws SQLException {
 		
-		List<Periodicidade> lista = new ArrayList<Periodicidade>();
+		Statement myStmt = null;
 		
-		Statement myStmt = this.conexao.createStatement();
-		
-		String sql = "SELECT * FROM tbl_periodicidade";
-		ResultSet resultSet = myStmt.executeQuery(sql);
-		
-		while(resultSet.next()) {
-			
-			Periodicidade periodicidade = new Periodicidade();
-			
-			Integer id = resultSet.getInt("id");
-			String descricao = resultSet.getString("descricao");
-			
-			periodicidade.setId(id);
-			periodicidade.setDescricao(descricao);
-			
-			lista.add(periodicidade);
+		try {
+			List<Periodicidade> lista = new ArrayList<Periodicidade>();
+
+			myStmt = this.conexao.createStatement();
+
+			String sql = "SELECT * FROM tbl_periodicidade";
+			ResultSet resultSet = myStmt.executeQuery(sql);
+
+			while (resultSet.next()) {
+
+				Periodicidade periodicidade = new Periodicidade();
+
+				Integer id = resultSet.getInt("id");
+				String descricao = resultSet.getString("descricao");
+
+				periodicidade.setId(id);
+				periodicidade.setDescricao(descricao);
+
+				lista.add(periodicidade);
+			}
+
+			return lista;
+		} finally {
+			if(myStmt != null){
+				 myStmt.close();
+			 }
 		}
-		
-		return lista;
 	}
 	
 	public Periodicidade periodicidadePorId(Integer id) throws SQLException {

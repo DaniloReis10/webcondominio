@@ -40,50 +40,47 @@
   					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"> </span> Entre com uma data.
 				</div>
 
-		  		<table id="data-lancamento">
-		  			<tbody>
-		  				<tr>
-		  					<td id="col-label"><label>Data de Lançamento:</label></td>
-		  					<td><input type="month" class="form-control" id="input-data-lancamento"></td>
-		  				</tr>
-		  			</tbody>
-		  		</table>
+		  		<form action="realizar-lancamento" method="post" >
 		  		
-
-		  		<ul class="list-group" id="lista-lancamento">
-				 	
-				 	<c:forEach items="${despesas}" var="despesa">
-					 	<li class="list-group-item list-group-item-warning">
-					 		<table>
-					 			<tbody>
-					 				<tr>
-					 					<td class="first-col">${despesa.nome}</td>
-					 					<td><input type="number" class="form-control last-col" placeholder="R$"></td>
-					 				</tr>
-					 			</tbody>
-					 		</table>
-					 	</li>				 	
-				 	</c:forEach>
-				 	
-				 	
-				</ul>
-
-				<div id="calcula-lancamento">
-					<button class="btn btn-default btn-lg">
-  						<span class="glyphicon glyphicon-euro" aria-hidden="true"></span> Calcular
-					</button>
-					<div id="total-input"></div>
-				</div>
-
-				<div id="lancamento">
-					<button class="btn btn-default btn-lg">
-  						<span class="glyphicon glyphicon-check" aria-hidden="true"></span> Realizar Lançamento
-					</button>
-				</div>
-				</div>
-
-		  	</div>
-			
+		  			<table id="data-lancamento">
+			  			<tbody>
+			  				<tr>
+			  					<td id="col-label"><label>Data de Lançamento:</label></td>
+			  					<td><input name="data-lancamento" type="month" class="form-control" id="input-data-lancamento"></td>
+			  				</tr>
+			  			</tbody>
+		  			</table>
+		  		
+			  		<ul class="list-group" id="lista-lancamento">
+					 	<c:forEach items="${despesas}" var="despesa">
+						 	<li class="list-group-item list-group-item-warning">
+						 		<table>
+						 			<tbody>
+						 				<tr>
+						 					<td class="first-col">${despesa.id} - ${despesa.nome}</td>
+						 					<td><input name="despesa-${despesa.id}" type="number" class="form-control last-col" placeholder="R$"></td>
+						 				</tr>
+						 			</tbody>
+						 		</table>
+						 	</li>				 	
+					 	</c:forEach>
+					</ul>
+					
+					<div id="calcula-lancamento">
+						<button class="btn btn-default btn-lg">
+	  						<span class="glyphicon glyphicon-euro" aria-hidden="true"></span> Calcular
+						</button>
+						<div id="total-input"></div>
+					</div>
+	
+					<div id="lancamento">
+						<button class="btn btn-default btn-lg" type="submit">
+	  						<span class="glyphicon glyphicon-check" aria-hidden="true"></span> Realizar Lançamento
+						</button>
+					</div>				
+				</form>				
+			</div>
+		</div>
 		</div>
 		
 		<script type="text/javascript" src="libs/jquery.dataTables.min.js"></script>

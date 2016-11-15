@@ -10,11 +10,18 @@ public class ConnectionFactory {
 	private static String dbUser = "root";
 	private static String dbPass = "root";
 	
-	public static Connection getConnection() {		
+	private static Connection myConn = null;
+
+	public static Connection getConnection() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection myConn = DriverManager.getConnection(dbUrl, dbUser, dbPass);
+			
+			if(myConn == null) {
+				myConn = DriverManager.getConnection(dbUrl, dbUser, dbPass);
+			}
+			
 			return myConn;
+			
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new RuntimeException(e);
 		}

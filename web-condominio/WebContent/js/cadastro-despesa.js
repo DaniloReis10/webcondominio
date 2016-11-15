@@ -1,23 +1,56 @@
-var onEditClick = function(event) {	
+function post(path, params) {
+    
+    var form = document.createElement("form");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", path);
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+         }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+}
+
+var onEditClick = function(e) {	
 	
-	var nomeDespesa;
-	
-	var list = event.originalEvent.path;
-	for (var i = 0; i < list.length; i++) {
-		var tagName = list[i].tagName;
-		if(tagName == "TR"){
-			nomeDespesa = list[i].children[1].innerText;
-		}
+	var idDespesa = e.currentTarget.id;
+    idDespesa = idDespesa.split("-")[1];
+    
+    var set = {
+    	id: idDespesa	
+    };
+    
+    post("tela-edicao-despesa", set);
+}
+
+var onDeleteClick = function(e) {
+	var result = confirm("Want to delete?");
+	if (result) {
+		
+	    var idDespesa = e.currentTarget.id;
+	    idDespesa = idDespesa.split("-")[1];
+	    console.log(idDespesa);
+	    
+	    var set = {
+	    	id: idDespesa	
+	    };
+	    
+	    post("excluir-despesa", set);
 	}
-
-	setTimeout(function(){
-		console.log("teste");
-		$("#nome-despesa").text(nomeDespesa);
-	},1000);
-
-	
 }
 
 $(".editar").each( function(i, element) {
 	$(element).on("click", onEditClick);
+});
+
+$(".excluir").each( function(i, element) {
+	$(element).on("click", onDeleteClick);
 });

@@ -112,40 +112,50 @@ private Connection conexao;
 	
 	public List<Despesa> listar() throws SQLException {
 		
-		List<Despesa> lista = new ArrayList<Despesa>();
+		Statement myStmt = null;
 		
-		Statement myStmt = this.conexao.createStatement();
-		
-		String sql = "SELECT * FROM tbl_despesa";
-		ResultSet rs = myStmt.executeQuery(sql);
-		
-		while(rs.next()) {
-			
-			Despesa despesa = new Despesa();
-			
-			despesa.setId(rs.getInt("id"));
-			despesa.setNome(rs.getString("nome"));
-			
-			Integer idTipo = rs.getInt("tbl_tipo_despesa_id");
-			TipoDespesaDao tdDao = new TipoDespesaDao();
-			TipoDespesa tipo = tdDao.tipoDespesaPorId(idTipo);
-			
-			Integer idFornecedor = rs.getInt("tbl_fornecedor_id");
-			FornecedorDao fDao = new FornecedorDao();
-			Fornecedor fornecedor = fDao.fornecedorPorId(idFornecedor);
-			
-			Integer idPeriodicidade = rs.getInt("tbl_periodicidade_id");
-			PeriodicidadeDao pDao = new PeriodicidadeDao();
-			Periodicidade periodicidade = pDao.periodicidadePorId(idPeriodicidade);
-			
-			despesa.setTipo(tipo);
-			despesa.setFornecedor(fornecedor);
-			despesa.setPeriodicidade(periodicidade);
-			
-			lista.add(despesa);
+		try {
+			List<Despesa> lista = new ArrayList<Despesa>();
+
+			myStmt = this.conexao.createStatement();
+
+			String sql = "SELECT * FROM tbl_despesa";
+			ResultSet rs = myStmt.executeQuery(sql);
+
+			while (rs.next()) {
+
+				Despesa despesa = new Despesa();
+
+				despesa.setId(rs.getInt("id"));
+				despesa.setNome(rs.getString("nome"));
+
+				Integer idTipo = rs.getInt("tbl_tipo_despesa_id");
+				TipoDespesaDao tdDao = new TipoDespesaDao();
+				TipoDespesa tipo = tdDao.tipoDespesaPorId(idTipo);
+
+				Integer idFornecedor = rs.getInt("tbl_fornecedor_id");
+				FornecedorDao fDao = new FornecedorDao();
+				Fornecedor fornecedor = fDao.fornecedorPorId(idFornecedor);
+
+				Integer idPeriodicidade = rs.getInt("tbl_periodicidade_id");
+				PeriodicidadeDao pDao = new PeriodicidadeDao();
+				Periodicidade periodicidade = pDao.periodicidadePorId(idPeriodicidade);
+
+				despesa.setTipo(tipo);
+				despesa.setFornecedor(fornecedor);
+				despesa.setPeriodicidade(periodicidade);
+
+				lista.add(despesa);
+			}
+
+			return lista;
+		} finally {
+			 if(myStmt != null){
+				 myStmt.close();
+			 }
 		}
 		
-		return lista;
+		
 	}
 	
 	public Despesa despesaPorId(Integer id) throws SQLException {

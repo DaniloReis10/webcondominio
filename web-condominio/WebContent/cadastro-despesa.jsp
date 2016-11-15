@@ -42,19 +42,19 @@
 					 	
 					 	<tr>
 					 		<td>${despesa.id}</td>
-					  		<td>${despesa.tipo.descricao}</td>
 					  		<td>${despesa.nome}</td>
+					  		<td>${despesa.tipo.descricao}</td>
 					  		<td>${despesa.fornecedor.nome}</td>
-					  		<td>Mensal</td>
+					  		<td>${despesa.periodicidade.descricao}</td>
 					  		<td>
 					  			<ul class="option-list-table-icons">
 					  				<li>
-					  					<a href="cadastro-despesa-editar.html" type="button" class="btn btn-info btn-xs editar">
+					  					<a type="button" class="btn btn-info btn-xs editar" id="editar-${despesa.id}">
 					  						<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 					  					</a>
 					  				</li>
 					  				<li>
-					  					<a type="button" class="btn btn-danger btn-xs">
+					  					<a type="button" class="btn btn-danger btn-xs excluir" id="excluir-${despesa.id}">
 					  						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 					  					</a>
 					  				</li>

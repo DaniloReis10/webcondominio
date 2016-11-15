@@ -20,17 +20,12 @@
 	
 	<div id="page-cad-nova-despesa">
 
-		<div class="alert alert-success" role="alert" style="display: none" id="mensagem-sucesso">
-  				<span class="glyphicon glyphicon-ok" aria-hidden="true"> </span>
-  				<span>Nova despesa cadastrada com sucesso!</span>
-  		</div>
-
 		<div class="alert alert-danger" role="alert" style="display: none" id="mensagem-erro">
   			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
   			<span class="sr-only">Error:</span> Digite um nome válido para a despesa!
 		</div>
 
-		<form method="get" action="cadastrar-despesa" class="form-inline" id="form-despesa">
+		<form method="post" action="cadastrar-despesa" class="form-inline" id="form-despesa">
 			<div class="panel panel-info">
   				<div class="panel-heading">Nova Despesa</div>
   				<div class="panel-body">

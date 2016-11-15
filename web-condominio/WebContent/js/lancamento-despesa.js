@@ -1,6 +1,5 @@
 var valores = $(".last-col");
 var $date = $("#input-data-lancamento");
-var $lancar = $("#lancamento");
 
 var $alertAntigo = $("#alerta-data-antigo");
 var $alertFrente = $("#alerta-data-frente");
@@ -68,8 +67,10 @@ var calculaLancamento = function() {
 }
 
 //Callback functions
-var onCalcularClick = function() {
+var onCalcularClick = function(e) {
 
+	e.preventDefault();
+	
 	$alertAntigo.css("display", "none");
 	$alertFrente.css("display", "none");
 	$alertNegativo.css("display", "none");
@@ -81,7 +82,7 @@ var onCalcularClick = function() {
 	}
 }
 
-var onLancarClick = function() {
+var onLancarClick = function(e) {
 	
 	$alertAntigo.css("display", "none");
 	$alertFrente.css("display", "none");
@@ -93,14 +94,8 @@ var onLancarClick = function() {
 
 	ok = okValores && okData;
 	
-	if(ok) {
-		var total = calculaLancamento();
-		var data = getDataLancamento();
-
-		var msg = "Lançamento de " + data + " com valor de R$ " + total + " foi lançado com sucesso!";
-		var html = "<div class='alert alert-success' role='alert' style='margin: 10px 10px 10px 10px'>" + msg +" </div>";
-
-		$("#wrapper-lancamento").html(html);
+	if(!ok) {
+		e.preventDefault();
 	}
 }
 

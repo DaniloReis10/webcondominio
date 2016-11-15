@@ -23,7 +23,6 @@ var onCadastrarClick = function(e) {
 
 	var ok = validaNovaDespesa();
 
-	$mensagemSucesso.css("display", "none");
 	$mensagemErro.css("display", "none");
 
 	if(!ok) {

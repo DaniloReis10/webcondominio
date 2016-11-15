@@ -116,39 +116,48 @@ private Connection conexao;
 	
 	public List<Endereco> listar() throws SQLException {
 		
-		List<Endereco> lista = new ArrayList<Endereco>();
+		Statement myStmt = null;
 		
-		Statement myStmt = this.conexao.createStatement();
-		
-		String sql = "SELECT * FROM tbl_endereco";
-		ResultSet resultSet = myStmt.executeQuery(sql);
-		
-		while(resultSet.next()) {
+		try {
+			List<Endereco> lista = new ArrayList<Endereco>();
 			
-			Endereco endereco = new Endereco();
+			myStmt = this.conexao.createStatement();
 			
-			Integer id = resultSet.getInt("id");
-			String logradouro = resultSet.getString("logradouro");
-			String numero = resultSet.getString("numero");
-			String bairro = resultSet.getString("bairro");
-			String complemento = resultSet.getString("complemento");
-			String cidade = resultSet.getString("cidade");
-			String estado = resultSet.getString("estado");
-			String cep = resultSet.getString("cep");
+			String sql = "SELECT * FROM tbl_endereco";
+			ResultSet resultSet = myStmt.executeQuery(sql);
 			
-			endereco.setId(id);
-			endereco.setLogradouro(logradouro);
-			endereco.setNumero(numero);
-			endereco.setBairro(bairro);
-			endereco.setComplemento(complemento);
-			endereco.setCidade(cidade);
-			endereco.setEstado(estado);
-			endereco.setCep(cep);
+			while(resultSet.next()) {
+				
+				Endereco endereco = new Endereco();
+				
+				Integer id = resultSet.getInt("id");
+				String logradouro = resultSet.getString("logradouro");
+				String numero = resultSet.getString("numero");
+				String bairro = resultSet.getString("bairro");
+				String complemento = resultSet.getString("complemento");
+				String cidade = resultSet.getString("cidade");
+				String estado = resultSet.getString("estado");
+				String cep = resultSet.getString("cep");
+				
+				endereco.setId(id);
+				endereco.setLogradouro(logradouro);
+				endereco.setNumero(numero);
+				endereco.setBairro(bairro);
+				endereco.setComplemento(complemento);
+				endereco.setCidade(cidade);
+				endereco.setEstado(estado);
+				endereco.setCep(cep);
+				
+				lista.add(endereco);
+			}
 			
-			lista.add(endereco);
+			return lista;
+			
+		} finally {
+			 if(myStmt != null){
+				 myStmt.close();
+			 }
 		}
-		
-		return lista;
 	}
 	
 	public Endereco enderecoPorId(Integer id) throws SQLException {

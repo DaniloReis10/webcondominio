@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +22,7 @@ public class CadastraDespesaServlet extends HttpServlet {
 	private static final long serialVersionUID = -3628344266397227030L;
 	
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 			String nome = request.getParameter("nomeDespesa");
 			Integer idFornecedor = Integer.parseInt(request.getParameter("idFornecedor"));
@@ -55,6 +56,11 @@ public class CadastraDespesaServlet extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			
+			request.setAttribute("despesa", despesa);
+			
+			RequestDispatcher rd = request.getRequestDispatcher("nova-despesa-sucesso.jsp");
+			rd.forward(request, response);
 	}
 	
 }

@@ -99,27 +99,35 @@ public class TipoDespesaDao {
 	
 	public List<TipoDespesa> listar() throws SQLException {
 		
-		List<TipoDespesa> lista = new ArrayList<TipoDespesa>();
+		Statement myStmt = null;
 		
-		Statement myStmt = this.conexao.createStatement();
-		
-		String sql = "SELECT * FROM tbl_tipo_despesa";
-		ResultSet resultSet = myStmt.executeQuery(sql);
-		
-		while(resultSet.next()) {
-			
-			TipoDespesa tipo = new TipoDespesa();
-			
-			Integer id = resultSet.getInt("id");
-			String descricao = resultSet.getString("descricao");
-			
-			tipo.setId(id);
-			tipo.setDescricao(descricao);
-			
-			lista.add(tipo);
+		try {
+			List<TipoDespesa> lista = new ArrayList<TipoDespesa>();
+
+			myStmt = this.conexao.createStatement();
+
+			String sql = "SELECT * FROM tbl_tipo_despesa";
+			ResultSet resultSet = myStmt.executeQuery(sql);
+
+			while (resultSet.next()) {
+
+				TipoDespesa tipo = new TipoDespesa();
+
+				Integer id = resultSet.getInt("id");
+				String descricao = resultSet.getString("descricao");
+
+				tipo.setId(id);
+				tipo.setDescricao(descricao);
+
+				lista.add(tipo);
+			}
+
+			return lista;
+		} finally {
+			if(myStmt != null){
+				 myStmt.close();
+			 }
 		}
-		
-		return lista;
 	}
 	
 	public TipoDespesa tipoDespesaPorId(Integer id) throws SQLException {
