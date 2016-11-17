@@ -8,7 +8,7 @@ import dao.PeriodicidadeDao;
 import model.Periodicidade;
 
 public class CargaPeriodicidade {
-
+//t
 	@Test
 	public void carga() throws SQLException {
 		
