@@ -14,7 +14,7 @@ import model.Fornecedor;
 
 /**
  * Servlet implementation class CadastroFornecedor
- */
+ a*/
 @WebServlet("/CadastroFornecedor")
 public class CadastroFornecedor extends HttpServlet {
 	private static final long serialVersionUID = 1L;
