@@ -10,6 +10,10 @@ public class Fornecedor {
 	private Endereco endereco;
 	
 	public Fornecedor() {}
+	
+	public Fornecedor(String nome){
+		this.nome = nome;
+	}
 
 	public Integer getId() {
 		return id;

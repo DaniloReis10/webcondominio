@@ -23,7 +23,7 @@ public class FornecedorDao {
 		PreparedStatement ps = null;		
 		String sql = "INSERT INTO tbl_fornecedor(nome,descricao,email,senha,tbl_endereco_id) values (?,?,?,?,?)";		
 		try {			
-			this.conexao.setAutoCommit(false); // iniciar transação			
+			this.conexao.setAutoCommit(false); // iniciar transaï¿½ï¿½o			
 			ps = this.conexao.prepareStatement(sql);
 			
 			EnderecoDao enderecoDao = new EnderecoDao();
@@ -60,10 +60,10 @@ public class FornecedorDao {
 		PreparedStatement ps = null;		
 		String sql = "UPDATE tbl_fornecedor SET nome=?,descricao=?,email=?,senha=? WHERE id=?";		
 		try {			
-			this.conexao.setAutoCommit(false); // iniciar transação			
+			this.conexao.setAutoCommit(false); // iniciar transaï¿½ï¿½o			
 			ps = this.conexao.prepareStatement(sql);
 			
-			// Altera a tabela endereço
+			// Altera a tabela endereï¿½o
 			EnderecoDao enderecoDao = new EnderecoDao();
 			Endereco endereco = enderecoDao.enderecoPorId(fornecedor.getEndereco().getId());
 			enderecoDao.alterar(endereco);
@@ -96,7 +96,7 @@ public class FornecedorDao {
 		PreparedStatement ps = null;		
 		String sql = "DELETE FROM tbl_fornecedor WHERE id=?";		
 		try {			
-			this.conexao.setAutoCommit(false); // iniciar transação			
+			this.conexao.setAutoCommit(false); // iniciar transaï¿½ï¿½o			
 			ps = this.conexao.prepareStatement(sql);
 			
 			ps.setInt(1, fornecedor.getId());

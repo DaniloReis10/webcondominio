@@ -40,11 +40,6 @@ public class CadastroFornecedor extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		System.out.println("Opa!");
-		String senha = request.getParameter("Senha");
-		String confirmSenha = request.getParameter("ConfirmarSenha");
 				
 		Fornecedor fornecedor = new Fornecedor();
 		fornecedor.setNome(request.getParameter("NomeFornecedor"));
@@ -57,7 +52,8 @@ public class CadastroFornecedor extends HttpServlet {
 		
 		fornecedor.setEndereco(endereco);
 		
-		this.doGet(request, response);
+		RequestDispatcher rd = request.getRequestDispatcher("views/listaFornecedor.jsp");
+		rd.forward(request, response);
 		
 	}
 

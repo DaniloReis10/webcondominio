@@ -92,20 +92,6 @@
 						-->
 						<div class="clearfix"></div>
 
-						<!-- Senha -->
-						<div class="form-group col-md-2">
-							<label for="Senha">Senha</label> <input type="password"
-								id="Senha" name="Senha" class="form-control" required
-								minlength="6" maxlength="25" />
-						</div>
-
-						<!-- Confirmar Senha -->
-						<div class="form-group col-md-2">
-							<label for="ConfirmarSenha">Confirmar Senha</label> <input
-								type="password" id="ConfirmarSenha" name="ConfirmarSenha"
-								class="form-control" />
-						</div>
-
 					</div>
 
 				</div>
