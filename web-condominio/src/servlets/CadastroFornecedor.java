@@ -45,15 +45,10 @@ public class CadastroFornecedor extends HttpServlet {
 		System.out.println("Opa!");
 		String senha = request.getParameter("Senha");
 		String confirmSenha = request.getParameter("ConfirmarSenha");
-		
-		if (!senha.equals(confirmSenha)) {
-			System.out.println("Senhas diferentes!");
-		}
-		
+				
 		Fornecedor fornecedor = new Fornecedor();
 		fornecedor.setNome(request.getParameter("NomeFornecedor"));
 		fornecedor.setEmail(request.getParameter("Email"));
-		fornecedor.setSenha(senha);
 		
 		Endereco endereco = new Endereco();
 		endereco.setLogradouro(request.getParameter("Logradouro"));
