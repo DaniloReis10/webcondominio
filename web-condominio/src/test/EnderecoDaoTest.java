@@ -18,9 +18,6 @@ public class EnderecoDaoTest {
 		
 		endereco.setLogradouro("Rua Tibúrcio Cavalcante");
 		endereco.setNumero("2289");
-		endereco.setBairro("Aldeota");
-		endereco.setCidade("Fortaleza");
-		endereco.setEstado("Ceará");
 		endereco.setCep("60125001");
 		
 		EnderecoDao dao = new EnderecoDao();
@@ -37,9 +34,6 @@ public class EnderecoDaoTest {
 		endereco.setId(1);
 		endereco.setLogradouro("Rua Barbosa de Freitas");
 		endereco.setNumero("229");
-		endereco.setBairro("Meireles");
-		endereco.setCidade("Fortaleza");
-		endereco.setEstado("Ceará");
 		endereco.setCep("60170020");
 		
 		endereco.setComplemento("Esquina com Ana Bilhar");

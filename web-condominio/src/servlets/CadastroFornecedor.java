@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.FornecedorDao;
 import model.Endereco;
 import model.Fornecedor;
 
@@ -50,10 +52,24 @@ public class CadastroFornecedor extends HttpServlet {
 		endereco.setNumero(request.getParameter("Numero"));
 		endereco.setCep(request.getParameter("Cep"));
 		
+		endereco.setCep(endereco.getCep().replace(".", ""));
+		endereco.setCep(endereco.getCep().replace("-", ""));
+		
 		fornecedor.setEndereco(endereco);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("views/listaFornecedor.jsp");
-		rd.forward(request, response);
+		FornecedorDao fornecedorDao = new FornecedorDao();
+		try {
+			fornecedorDao.salvar(fornecedor);
+		} catch (SQLException e) {
+			request.setAttribute("mensagem", "Não foi possível gravar o Fornecedor");
+			
+			RequestDispatcher rd = request.getRequestDispatcher("views/cadastroFornecedor.jsp");
+			rd.forward(request, response);
+		}
+		
+		response.sendRedirect("/web-condominio/ListaFornecedor");
+		/*RequestDispatcher rd = request.getRequestDispatcher("views/listaFornecedor.jsp");
+		rd.forward(request, response);*/
 		
 	}
 

@@ -26,10 +26,7 @@ private Connection conexao;
 			
 			ps.setString(1, endereco.getLogradouro());
 			ps.setString(2, endereco.getNumero());
-			ps.setString(3, endereco.getBairro());
 			ps.setString(4, endereco.getComplemento());
-			ps.setString(5, endereco.getCidade());
-			ps.setString(6, endereco.getEstado());
 			ps.setString(7, endereco.getCep());
 			
 			ps.execute();
@@ -63,10 +60,7 @@ private Connection conexao;
 			
 			ps.setString(1, endereco.getLogradouro());
 			ps.setString(2, endereco.getNumero());
-			ps.setString(3, endereco.getBairro());
 			ps.setString(4, endereco.getComplemento());
-			ps.setString(5, endereco.getCidade());
-			ps.setString(6, endereco.getEstado());
 			ps.setString(7, endereco.getCep());
 			ps.setInt(8, endereco.getId());
 			
@@ -142,10 +136,7 @@ private Connection conexao;
 				endereco.setId(id);
 				endereco.setLogradouro(logradouro);
 				endereco.setNumero(numero);
-				endereco.setBairro(bairro);
 				endereco.setComplemento(complemento);
-				endereco.setCidade(cidade);
-				endereco.setEstado(estado);
 				endereco.setCep(cep);
 				
 				lista.add(endereco);

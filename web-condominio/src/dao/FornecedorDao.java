@@ -30,9 +30,7 @@ public class FornecedorDao {
 			Integer id = enderecoDao.salvar(fornecedor.getEndereco());
 			
 			ps.setString(1, fornecedor.getNome());
-			ps.setString(2, fornecedor.getDescricao());
 			ps.setString(3, fornecedor.getEmail());
-			ps.setString(4, fornecedor.getSenha());
 			ps.setInt(5, id);
 			
 			ps.execute();
@@ -40,12 +38,12 @@ public class FornecedorDao {
 			this.conexao.commit();
 			
 			return UtilDao.ultimoId(ps);
-		} catch (SQLException e) {			
-			e.printStackTrace();
+		} catch (SQLException e) {
+			System.out.println("Ocorreu um erro ao salvar um fornecedor");
 			try {
 				this.conexao.rollback();
 			} catch (SQLException e1) {
-				e1.printStackTrace();
+				System.out.println("Não foi possivel fazer rollback");
 			}
 			return null;
 		} finally {			
@@ -69,9 +67,7 @@ public class FornecedorDao {
 			enderecoDao.alterar(endereco);
 			
 			ps.setString(1, fornecedor.getNome());
-			ps.setString(2, fornecedor.getDescricao());
 			ps.setString(3, fornecedor.getEmail());
-			ps.setString(4, fornecedor.getSenha());
 			ps.setInt(5, fornecedor.getId());
 			
 			ps.execute();
@@ -145,9 +141,7 @@ public class FornecedorDao {
 
 				fornecedor.setId(rs.getInt("id"));
 				fornecedor.setNome(rs.getString("nome"));
-				fornecedor.setDescricao(rs.getString("descricao"));
 				fornecedor.setEmail(rs.getString("email"));
-				fornecedor.setSenha(rs.getString("senha"));
 
 				Integer idEndereco = rs.getInt("tbl_endereco_id");
 				EnderecoDao dao = new EnderecoDao();

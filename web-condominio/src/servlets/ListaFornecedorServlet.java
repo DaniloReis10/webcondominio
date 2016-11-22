@@ -38,11 +38,16 @@ public class ListaFornecedorServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		//FornecedorDao fornecedorDao = new FornecedorDao();
+		FornecedorDao fornecedorDao = new FornecedorDao();
 		List<Fornecedor> fornecedores = null;
 		
-		// fornecedores = fornecedorDao.listar();
-		fornecedores = new ArrayList<Fornecedor>(Arrays.asList(new Fornecedor("Thiago"), new Fornecedor("Andre")));
+		try {
+			fornecedores = fornecedorDao.listar();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			fornecedores = new ArrayList<Fornecedor>(Arrays.asList(new Fornecedor("Thiago"), new Fornecedor("Andre")));
+			//e.printStackTrace();
+		}
 
 		request.setAttribute("fornecedores", fornecedores);
 

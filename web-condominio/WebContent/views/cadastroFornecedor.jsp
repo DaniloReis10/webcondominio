@@ -36,15 +36,14 @@
 						<div class="form-group col-md-4">
 							<label for="NomeFornecedor">Nome do Fornecedor</label> <input
 								type="text" id="NomeFornecedor" name="NomeFornecedor"
-								class="form-control" required minlength="3" maxlength="80"
-								pattern="[a-z\s]+$" />
+								class="form-control" required minlength="3" maxlength="80"/>
 						</div>
 
 						<!-- Email Fornecedor -->
 						<div class="form-group col-md-4">
 							<label for="Email">E-mail do Fornecedor</label> <input
 								type="text" id="Email" name="Email" class="form-control"
-								required minlength="3" maxlength="80" pattern="[a-z\s]+$" />
+								required minlength="3" maxlength="80"/>
 						</div>
 
 						<div class="clearfix"></div>

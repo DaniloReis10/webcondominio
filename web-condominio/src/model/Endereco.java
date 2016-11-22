@@ -5,13 +5,12 @@ public class Endereco {
 	private Integer id;
 	private String logradouro;
 	private String numero;
-	private String bairro;
 	private String complemento;
-	private String cidade;
-	private String estado;
 	private String cep;
 	
-	public Endereco() {}
+	public Endereco() {
+		this.complemento = "";
+	}
 
 	public Integer getId() {
 		return id;
@@ -37,36 +36,12 @@ public class Endereco {
 		this.numero = numero;
 	}
 
-	public String getBairro() {
-		return bairro;
-	}
-
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
-	}
-
 	public String getComplemento() {
 		return complemento;
 	}
 
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
-	}
-
-	public String getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
 	}
 
 	public String getCep() {
@@ -79,7 +54,7 @@ public class Endereco {
 
 	@Override
 	public String toString() {
-		return "Endereco [id=" + id + ", logradouro=" + logradouro + ", numero=" + numero + ", bairro=" + bairro
-				+ ", complemento=" + complemento + ", cidade=" + cidade + ", estado=" + estado + ", cep=" + cep + "]";
+		return "Endereco [id=" + id + ", logradouro=" + logradouro + ", numero=" + numero + ", complemento=" + complemento 
+				+ ", cep=" + cep + "]";
 	}
 }

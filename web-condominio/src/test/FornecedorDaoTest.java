@@ -18,14 +18,10 @@ public class FornecedorDaoTest {
 		Endereco endereco = new Endereco();		
 		endereco.setLogradouro("");
 		endereco.setNumero("");
-		endereco.setBairro("");
-		endereco.setCidade("");
-		endereco.setEstado("");
 		endereco.setCep("");
 		
 		Fornecedor fornecedor = new Fornecedor();
 		fornecedor.setNome("S/F");
-		fornecedor.setDescricao("S/F");
 		fornecedor.setEndereco(endereco);
 		
 		FornecedorDao dao = new FornecedorDao();
@@ -46,16 +42,12 @@ public class FornecedorDaoTest {
 		endereco.setId(idEndereco);
 		endereco.setLogradouro("Rua Ana Bilhar");
 		endereco.setNumero("123");
-		endereco.setBairro("Meireles");
-		endereco.setCidade("Fortaleza");
-		endereco.setEstado("Ceará");
 		endereco.setCep("60170021");		
 		endereco.setComplemento("Proximo de X");
 		
 		Fornecedor fornecedor = new Fornecedor();
 		fornecedor.setId(idFornecedor);
 		fornecedor.setNome("Cagece");
-		fornecedor.setDescricao("Cia de água");
 		fornecedor.setEndereco(endereco);
 		
 		dao.alterar(fornecedor);
