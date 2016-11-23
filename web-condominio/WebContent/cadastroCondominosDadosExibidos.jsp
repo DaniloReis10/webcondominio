@@ -49,11 +49,25 @@
 </table>
 <br>
 
-<input id="concluirCadastro" class="btn" type="submit" value="Concluir Cadastro" name="limparCampos"/>
-<input id="alterarDados" class="btn" type="submit" value="Alterar dados" name="alterarDados" action="cadastroCondominos.html" />
+<input id="concluirCadastro" class="btn" type="submit" onclick="botaoConcluirCadastro" value="Concluir Cadastro" name="limparCampos"/>
+<input id="alterarDados" class="btn" type="button" onclick="alterarDados()" value="Alterar dados" name="alterarDados" action="cadastroCondominos.html" />
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 
 		<script src="js/bootstrap.min.js"></script>
+		<script type="text/javascript">
+			function alterarDados(){
+				window.location.assign("localhost:8080/web-condominio/cadastroCondominos.html");
+			}
+			
+			function botaoConcluirCadastro(){
+				if (confirm('Concluir cadastro?')) {
+					alert('Cadastro realizado com sucesso');
+				} else {
+					
+				}
+			}
+		
+		</script>
 </body>
 </html>
