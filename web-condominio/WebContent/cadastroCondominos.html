@@ -11,44 +11,54 @@
 		<div class="container">
 			<form name="cadastroCondominos" method = "post" action="cadastroCondominosDadosExibidos.jsp" class="form-horizontal">
 				<div class="control-group">
-				  <label class="control-label" for="inputNome">Nome</label>
+				  <label class="control-label" for="inputCPF">CPF</label>
 				  <div class="controls">
-				    <input id="inputNome" type="text" name="nome" placeholder="Nome Completo" required autofocus />
-				  </div>
-				</div>
-
-				<div class="control-group">
-				  <label class="control-label" for="inputCpf">CPF</label>
-				  <div class="controls">
-				    <input id="inputCpf" type="text" name="cpf" placeholder="Somente números" pattern="[0-9]{11}" required autofocus />
-				  </div>
-				</div>
-
-				<div class="control-group">
-				  <label class="control-label" for="inputDataNasc">Data Nascimento</label>
-				  <div class="controls">
-				    <input id="inputDataNasc" type ="text" name="data_nascimento" placeholder="Formato: xx/xx/xxxx" required autofocus />
+				    <input id="inputCPF" type="text" name="CPF" placeholder="Somente números" pattern="[0-9]{11}" required autofocus />
 				  </div>
 				</div>
 				
 				<div class="control-group">
-				  <label class="control-label" for="inputDataCadastro">Data Cadastro</label>
+				  <label class="control-label" for="inputMorador_Nome">Nome</label>
 				  <div class="controls">
-				    <input id="inputDataCadastro" type ="text" name="data_cadastro" placeholder="Formato: xx/xx/xxxx" required autofocus />
-				  </div>
-				</div>
-
-				<div class="control-group">
-				  <label class="control-label" for="inputEmail">Email</label>
-				  <div class="controls">
-				    <input id="inputEmail" type ="email" name="email" placeholder="Digite o email" required autofocus />
+				    <input id="inputMorador_Nome" type="text" name="Morador_Nome" placeholder="Nome Completo" required autofocus />
 				  </div>
 				</div>
 				
+				<div class="control-group">
+				  <label class="control-label" for="inputMorador_Email">Email</label>
+				  <div class="controls">
+				    <input id="inputMorador_Email" type ="email" name="Morador_Email" placeholder="Digite o email" required autofocus />
+				  </div>
+				</div>
+				
+				<div class="control-group">
+				  <label class="control-label" for="inputMorador_DataNascimento">Data Nascimento</label>
+				  <div class="controls">
+				    <input id="inputMorador_DataNascimento" type ="text" name="Morador_DataNascimento" placeholder="Formato: xx/xx/xxxx" required autofocus />
+				  </div>
+				</div>
+				
+				<div class="control-group">
+				  <label class="control-label" for="inputMorador_Sindico">Morador_Sindico</label>
+				  <div class="controls">
+				    <select name="TipoMorador" form="carform">
+					  <option value="0">Sindico</option>
+					  <option value="1">Comum</option>
+					</select>
+				  </div>
+				</div>
+				
+				<div class="control-group">
+				  <label class="control-label" for="inputMorador_Telefone">Celular</label>
+				  <div class="controls">
+				    <input id="inputMorador_Telefone" type ="tel" name="Morador_Telefone" placeholder="Format: XXXXXXXXX" pattern="[0-9]{11}" required autofocus />
+				  </div>
+				</div>
+
 				<div class="control-group">
 				  <label class="control-label" for="inputSenha">Senha (8 digitos)</label>
 				  <div class="controls">
-				    <input id="inputSenha" type ="password" name="senha" placeholder="" pattern="[0-9]{8}" required autofocus />
+				    <input id="inputSenha" type ="password" name="Morador_Senha" placeholder="" pattern="[0-9]{8}" required autofocus />
 				  </div>
 				</div>
 				
@@ -60,24 +70,10 @@
 				</div>
 
 				<div class="control-group">
-				  <label class="control-label" for="inputCelular">Celular</label>
-				  <div class="controls">
-				    <input id="inputCelular" type ="tel" name="fone_celular" placeholder="Format: ddd + num" pattern="[0-9]{11}" required autofocus />
-				  </div>
-				</div>
-
-				<div class="control-group">
-				  <label class="control-label" for="inputFoneResidencial">Telefone Residencial</label>
-				  <div class="controls">
-				    <input id="inputFoneResidencial" name="fone_residencial" type ="tel" placeholder="" pattern="[0-9]{10}" required autofocus />
-				  </div>
-				</div>
-
-				<div class="control-group">
 				  <div class="controls">
 				    <input id="cadastrar" class="btn" type="submit" value="Cadastrar" name="cadastrar" />
 				    <input id="limpar" class="btn" type="reset" value="Limpar Campos" name="limparCampos"/>
-				  </div>
+				 </div>
 
 				</div>
 

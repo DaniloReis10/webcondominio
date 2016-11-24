@@ -9,14 +9,14 @@
 <link rel="stylesheet" type="text/css" href="libs/bootstrap-3.3.7-dist/css/bootstrap.css">
 </head>
 <%
-	String nome = request.getParameter("nome");
-	String cpf = request.getParameter("cpf");
-	String data_nascimento = request.getParameter("data_nascimento");
-	String data_cadastro = request.getParameter("data_cadastro");
-	String email = request.getParameter("email");
+	String CPF = request.getParameter("CPF");
+	String Morador_Nome = request.getParameter("Morador_Nome");
+	String Morador_Email = request.getParameter("Morador_Email");
+	String Morador_DataNascimento = request.getParameter("Morador_DataNascimento");
+	String Morador_Sindico = request.getParameter("Morador_Sindico");
+	String Morador_Telefone = request.getParameter("fone_celular");
 	String senha = request.getParameter("senha");
-	String fone_celular = request.getParameter("fone_celular");
-	String fone_residencial = request.getParameter("fone_residencial");
+	
 %>
 <body>
 <h1>Dados cadastrados:</h1>
@@ -24,26 +24,24 @@
 <table border="1" class="table table-striped">
   <thead>
     <tr>
-      <th>Nome</th>
       <th>CPF</th>
-      <th>Data de Nascimento</th>
-      <th>Data de Cadastro</th>
+      <th>Nome</th>
       <th>Email</th>
+      <th>Data de Nascimento</th>
+      <th>É sindico?</th>
+      <th>Telefone</th>
       <th>Senha</th>
-      <th>Fone Celular</th>
-      <th>Fone Residencial</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><%= nome %></td>
-      <td><%= cpf %></td>
-      <td><%= data_nascimento %></td>
-      <td><%= data_cadastro %></td>
-      <td><%= email %></td>
+      <td><%= CPF %></td>
+      <td><%= Morador_Nome %></td>
+      <td><%= Morador_Email %></td>
+      <td><%= Morador_DataNascimento %></td>
+      <td><%= Morador_Sindico %></td>
+      <td><%= Morador_Telefone %></td>
       <td><%= senha %></td>
-      <td><%= fone_celular %></td>
-      <td><%= fone_residencial %></td>
     </tr>
   </tbody>
 </table>
