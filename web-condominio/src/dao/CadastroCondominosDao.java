@@ -25,7 +25,7 @@ public class CadastroCondominosDao {
 		PreparedStatement ps = null;		
 		String sql = "INSERT INTO morador values (?,?,?,?,?,?,?)";		
 		try {			
-			this.conexao.setAutoCommit(false); // iniciar transação			
+			this.conexao.setAutoCommit(false); // iniciar transaÃ§Ã£o			
 			ps = this.conexao.prepareStatement(sql);
 			
 			ps.setString(1, cadastro_condominos.getCPF());
@@ -59,7 +59,7 @@ public class CadastroCondominosDao {
 	
 	public void alterar(cadastroCondominos cadastro_condominos) throws SQLException {		
 		PreparedStatement ps = null;		
-		String sql = "UPDATE morador SET CPF=?, =?,"
+		String sql = "UPDATE morador SET CPF=?,"
 				+ "Morador_Nome=?,"
 				+ "Morador_Email=?,"
 				+ "Morador_DataNascimento=?"
@@ -67,7 +67,7 @@ public class CadastroCondominosDao {
 				+ "Morador_Telefone=?"
 				+ "senha=? WHERE id=?";		
 		try {			
-			this.conexao.setAutoCommit(false); // iniciar transação			
+			this.conexao.setAutoCommit(false); // iniciar transaÃ§Ã£o			
 			ps = this.conexao.prepareStatement(sql);
 			
 			ps.setString(1, cadastro_condominos.getCPF());
@@ -100,7 +100,7 @@ public class CadastroCondominosDao {
 		PreparedStatement ps = null;		
 		String sql = "DELETE FROM morador WHERE CPF=?";		
 		try {			
-			this.conexao.setAutoCommit(false); // iniciar transação			
+			this.conexao.setAutoCommit(false); // iniciar transaÃ§Ã£o			
 			ps = this.conexao.prepareStatement(sql);
 			
 			ps.setString(1, cadastro_condominos.getCPF());
