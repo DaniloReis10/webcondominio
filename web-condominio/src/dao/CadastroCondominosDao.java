@@ -75,8 +75,8 @@ public class CadastroCondominosDao {
 			ps.setString(3, cadastro_condominos.getMorador_Email());
 			ps.setString(4, cadastro_condominos.getMorador_DataNascimento());
 			ps.setString(5, cadastro_condominos.getMorador_Sindico());
-			ps.setString(5, cadastro_condominos.getMorador_Telefone());
-			ps.setString(5, cadastro_condominos.getSenha());
+			ps.setString(6, cadastro_condominos.getMorador_Telefone());
+			ps.setString(7, cadastro_condominos.getSenha());
 			
 			ps.execute();
 			
