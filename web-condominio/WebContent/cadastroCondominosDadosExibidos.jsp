@@ -13,9 +13,9 @@
 	String Morador_Nome = request.getParameter("Morador_Nome");
 	String Morador_Email = request.getParameter("Morador_Email");
 	String Morador_DataNascimento = request.getParameter("Morador_DataNascimento");
-	String Morador_Sindico = request.getParameter("Morador_Sindico");
-	String Morador_Telefone = request.getParameter("fone_celular");
-	String senha = request.getParameter("senha");
+	String Morador_Sindico = request.getParameter("TipoMorador");
+	String Morador_Telefone = request.getParameter("Morador_Telefone");
+	String senha = request.getParameter("Morador_Senha");
 	
 %>
 <body>
@@ -55,7 +55,7 @@
 		<script src="js/bootstrap.min.js"></script>
 		<script type="text/javascript">
 			function alterarDados(){
-				window.location.assign("localhost:8080/web-condominio/cadastroCondominos.html");
+				windows.history.back();
 			}
 			
 			function botaoConcluirCadastro(){
