@@ -19,15 +19,14 @@ private Connection conexao;
 	
 	public Integer salvar(Endereco endereco) throws SQLException{		
 		PreparedStatement ps = null;		
-		String sql = "INSERT INTO tbl_endereco(logradouro,numero,bairro,complemento,cidade,estado,cep) values (?,?,?,?,?,?,?)";		
+		String sql = "INSERT INTO tbl_endereco(logradouro,numero,cep) values (?,?,?)";		
 		try {			
 			this.conexao.setAutoCommit(false); // iniciar transação			
 			ps = this.conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			
 			ps.setString(1, endereco.getLogradouro());
 			ps.setString(2, endereco.getNumero());
-			ps.setString(4, endereco.getComplemento());
-			ps.setString(7, endereco.getCep());
+			ps.setString(3, endereco.getCep());
 			
 			ps.execute();
 			

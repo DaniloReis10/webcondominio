@@ -43,10 +43,10 @@
 									<td>${fornecedor.getEndereco().getNumero()}</td>
 									<td>${fornecedor.getEndereco().getCep()}</td>
 									<td>
-										<button id="btnEditar" class="btn btn-info" title="Editar" type="button" data-id="${fornecedor.getId()}">
+										<button class="btn btn-info btnEditar" title="Editar" type="button" data-id="${fornecedor.getId()}">
 											<span class="glyphicon glyphicon-pencil"></span>
 										</button>
-										<button id="btnDeletar" class="btn btn-danger" title="Deletar" type="button">
+										<button class="btn btn-danger btnDeletar" title="Deletar" type="button" data-id="${fornecedor.getId()}">
 											<span class="glyphicon glyphicon-remove"></span>
 										</button>
 									</td>
@@ -57,7 +57,7 @@
 						<tr>
 							<td colspan="7" style=""">
 								<button id="btnNovo" class="btn btn-success"
-									style="margin-left: 45%" type="button">
+									stylle="margin-left: 45%" type="button">
 									<span class="glyphicon glyphicon-plus"></span> Novo
 								</button>
 							</td>

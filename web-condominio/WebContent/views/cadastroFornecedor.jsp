@@ -22,7 +22,7 @@
 			<div class="panel panel-primary">
 
 				<div class="panel-heading">
-					<p class="panel-title">Cadastro de Fornecedor</p>
+					<p class="panel-title">Cadastrar Fornecedor</p>
 				</div>
 
 				<div class="panel-body">
@@ -30,6 +30,8 @@
 					<c:if test="${mensagem != null && mensagem.length() > 0}">
 						<div id="mensagemCadastro" class="alert alert-danger">${mensagem}</div>
 					</c:if>
+
+					<input type="hidden" name="id" value="${fornecedor.getId()}"/>
 
 					<div class="row">
 						<!-- Nome Fornecedor -->

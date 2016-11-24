@@ -99,14 +99,11 @@ public class FornecedorDao {
 			ps.execute();
 			
 			FornecedorDao fDao = new FornecedorDao();
-			Integer idEndereco = fDao.fornecedorPorId(fornecedor.getId()).getEndereco().getId();
+			EnderecoDao eDao = new EnderecoDao();
+			eDao.excluir(fornecedor.getEndereco());
 			
 			this.conexao.commit();			
 
-			EnderecoDao eDao = new EnderecoDao();
-			Endereco endereco = new Endereco();
-			endereco.setId(idEndereco);
-			eDao.excluir(endereco);
 			
 		} catch (SQLException e) {			
 			e.printStackTrace();
@@ -133,7 +130,7 @@ public class FornecedorDao {
 			myStmt = this.conexao.createStatement();
 
 			String sql = "SELECT forn.id as id, forn.nome as nome, forn.email as email, ender.id as enderecoId, ender.logradouro as logradouro, "
-					+ "ender.numero as numero, ender.complemento as complemento, ender.cep as cep FROM tbl_fornecedor as forn JOIN tbl_endereco as ender ON ender.id == forn.tbl_endereco_id";
+					+ "ender.numero as numero, ender.cep as cep FROM tbl_fornecedor as forn JOIN tbl_endereco as ender ON ender.id = forn.tbl_endereco_id";
 			ResultSet rs = myStmt.executeQuery(sql);
 
 			while (rs.next()) {
@@ -149,7 +146,6 @@ public class FornecedorDao {
 				endereco.setLogradouro(rs.getString("logradouro"));
 				endereco.setNumero(rs.getString("numero"));
 				endereco.setCep(rs.getString("cep"));
-				endereco.setComplemento(rs.getString("complemento"));
 				
 				fornecedor.setEndereco(endereco);
 

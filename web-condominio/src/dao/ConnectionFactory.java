@@ -9,6 +9,9 @@ public class ConnectionFactory {
 	private static String dbUrl = "jdbc:mysql://sql9.freemysqlhosting.net/sql9144998";
 	private static String dbUser = "sql9144998";
 	private static String dbPass = "VnAexJFcQG";
+	/*private static String dbUrl = "jdbc:mysql://localhost/db_condominio";
+	private static String dbUser = "root";
+	private static String dbPass = "ivia@2015";*/
 	
 	private static Connection myConn = null;
 
