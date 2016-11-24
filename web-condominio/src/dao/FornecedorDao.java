@@ -21,17 +21,17 @@ public class FornecedorDao {
 	
 	public Integer salvar(Fornecedor fornecedor) throws SQLException{		
 		PreparedStatement ps = null;		
-		String sql = "INSERT INTO tbl_fornecedor(nome,descricao,email,senha,tbl_endereco_id) values (?,?,?,?,?)";		
+		String sql = "INSERT INTO tbl_fornecedor(nome, email, tbl_endereco_id) values (?, ?, ?)";		
 		try {			
-			this.conexao.setAutoCommit(false); // iniciar transa��o			
+			this.conexao.setAutoCommit(false);	
 			ps = this.conexao.prepareStatement(sql);
 			
 			EnderecoDao enderecoDao = new EnderecoDao();
 			Integer id = enderecoDao.salvar(fornecedor.getEndereco());
 			
 			ps.setString(1, fornecedor.getNome());
-			ps.setString(3, fornecedor.getEmail());
-			ps.setInt(5, id);
+			ps.setString(2, fornecedor.getEmail());
+			ps.setInt(3, id);
 			
 			ps.execute();
 			
@@ -56,7 +56,7 @@ public class FornecedorDao {
 	
 	public void alterar(Fornecedor fornecedor) throws SQLException{		
 		PreparedStatement ps = null;		
-		String sql = "UPDATE tbl_fornecedor SET nome=?,descricao=?,email=?,senha=? WHERE id=?";		
+		String sql = "UPDATE tbl_fornecedor SET nome=?, email=? WHERE id=?";		
 		try {			
 			this.conexao.setAutoCommit(false); // iniciar transa��o			
 			ps = this.conexao.prepareStatement(sql);
@@ -67,8 +67,8 @@ public class FornecedorDao {
 			enderecoDao.alterar(endereco);
 			
 			ps.setString(1, fornecedor.getNome());
-			ps.setString(3, fornecedor.getEmail());
-			ps.setInt(5, fornecedor.getId());
+			ps.setString(2, fornecedor.getEmail());
+			ps.setInt(3, fornecedor.getId());
 			
 			ps.execute();
 			
@@ -132,7 +132,8 @@ public class FornecedorDao {
 
 			myStmt = this.conexao.createStatement();
 
-			String sql = "SELECT * FROM tbl_fornecedor";
+			String sql = "SELECT forn.id as id, forn.nome as nome, forn.email as email, ender.id as enderecoId, ender.logradouro as logradouro, "
+					+ "ender.numero as numero, ender.complemento as complemento, ender.cep as cep FROM tbl_fornecedor as forn JOIN tbl_endereco as ender ON ender.id == forn.tbl_endereco_id";
 			ResultSet rs = myStmt.executeQuery(sql);
 
 			while (rs.next()) {
@@ -142,11 +143,14 @@ public class FornecedorDao {
 				fornecedor.setId(rs.getInt("id"));
 				fornecedor.setNome(rs.getString("nome"));
 				fornecedor.setEmail(rs.getString("email"));
-
-				Integer idEndereco = rs.getInt("tbl_endereco_id");
-				EnderecoDao dao = new EnderecoDao();
-				Endereco endereco = dao.enderecoPorId(idEndereco);
-
+				
+				Endereco endereco = new Endereco();
+				endereco.setId(rs.getInt("enderecoId"));
+				endereco.setLogradouro(rs.getString("logradouro"));
+				endereco.setNumero(rs.getString("numero"));
+				endereco.setCep(rs.getString("cep"));
+				endereco.setComplemento(rs.getString("complemento"));
+				
 				fornecedor.setEndereco(endereco);
 
 				lista.add(fornecedor);
