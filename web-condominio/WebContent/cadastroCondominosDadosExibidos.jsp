@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="model.CadastroCondominosDados" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,6 +10,9 @@
 <link rel="stylesheet" type="text/css" href="libs/bootstrap-3.3.7-dist/css/bootstrap.css">
 </head>
 <%
+	
+	/**
+	
 	String CPF = request.getParameter("CPF");
 	String Morador_Nome = request.getParameter("Morador_Nome");
 	String Morador_Email = request.getParameter("Morador_Email");
@@ -17,31 +21,36 @@
 	String Morador_Telefone = request.getParameter("Morador_Telefone");
 	String senha = request.getParameter("Morador_Senha");
 	
+	*/
+	
+	
+	
 %>
 <body>
+
 <h1>Dados cadastrados:</h1>
 <br><br>	
 <table border="1" class="table table-striped">
   <thead>
     <tr>
-      <th>CPF</th>
-      <th>Nome</th>
-      <th>Email</th>
-      <th>Data de Nascimento</th>
-      <th>É sindico?</th>
-      <th>Telefone</th>
-      <th>Senha</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th> </th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><%= CPF %></td>
-      <td><%= Morador_Nome %></td>
-      <td><%= Morador_Email %></td>
-      <td><%= Morador_DataNascimento %></td>
-      <td><%= Morador_Sindico %></td>
-      <td><%= Morador_Telefone %></td>
-      <td><%= senha %></td>
+      <td>cadastroCondominos ${cadastroCondominos.CPF}</td>
+      <td>cadastroCondominos ${cadastroCondominos.Morador_Nome}</td>
+      <td>cadastroCondominos ${cadastroCondominos.Morador_Email}</td>
+      <td>cadastroCondominos ${cadastroCondominos.Data_Nascimento}</td>
+      <td>cadastroCondominos ${cadastroCondominos.Morador_Sindico}</td>
+      <td>cadastroCondominos ${cadastroCondominos.Morador_Telefone}</td>
+      <td>cadastroCondominos ${cadastroCondominos.senha}</td>
     </tr>
   </tbody>
 </table>
