@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		<div class="container">
-			<form name="cadastroCondominos" method = "post" action="cadastroCondominosDadosExibidos.jsp" class="form-horizontal">
+			<form name="cadastroCondominos" method = "service" action="ServletCadastroCondominosExibirDados" class="form-horizontal">
 				<div class="control-group">
 				  <label class="control-label" for="inputCPF">CPF</label>
 				  <div class="controls">
@@ -53,8 +53,8 @@
 				  <div class="controls">
 				    <input id="inputMorador_Telefone" type ="tel" name="Morador_Telefone" placeholder="Format: XXXXXXXXX" pattern="[0-9]{11}" required autofocus />
 				  </div>
-				</div>
-
+				</div>	
+				
 				<div class="control-group">
 				  <label class="control-label" for="inputSenha">Senha (8 digitos)</label>
 				  <div class="controls">
