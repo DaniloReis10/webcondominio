@@ -91,7 +91,7 @@ public class ServletCadastroCondominosExibirDados extends HttpServlet {
 	        out.println("<th>Morador</th>");
 	        out.println("<th>Email</th>");
 	        out.println("<th>Data Nascimento</th>");
-	        out.println("<th>Ã‰ sindico?</th>");
+	        out.println("<th>É sindico?</th>");
 	        out.println("<th>Telefone</th>");
 	        out.println("<th>Locatario ou Proprietario</th>");
 	        out.println("<th>Senha</th>");
