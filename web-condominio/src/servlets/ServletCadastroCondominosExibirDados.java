@@ -34,7 +34,7 @@ public class ServletCadastroCondominosExibirDados extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		doPost(request, response);
 	}
 
 	/**
@@ -53,6 +53,7 @@ public class ServletCadastroCondominosExibirDados extends HttpServlet {
 		String Morador_DataNascimento = request.getParameter("Morador_DataNascimento");
 		String Morador_Sindico = request.getParameter("TipoMorador");
 		String Morador_Telefone = request.getParameter("Morador_Telefone");
+		String Tipo_morador_idTipo_morador = request.getParameter("Tipo_morador_idTipo_morador");
 		String Morador_Senha = request.getParameter("Morador_Senha");
 		
 		CadastroCondominosDados cadastro_condominos = new CadastroCondominosDados();
@@ -63,6 +64,7 @@ public class ServletCadastroCondominosExibirDados extends HttpServlet {
 		cadastro_condominos.setMorador_DataNascimento(Morador_DataNascimento);
 		cadastro_condominos.setMorador_Sindico(Morador_Sindico);
 		cadastro_condominos.setMorador_Telefone(Morador_Telefone);
+		cadastro_condominos.setTipo_morador_idTipo_morador(Tipo_morador_idTipo_morador);
 		cadastro_condominos.setSenha(Morador_Senha);
 		
 		
@@ -91,6 +93,7 @@ public class ServletCadastroCondominosExibirDados extends HttpServlet {
 	        out.println("<th>Data Nascimento</th>");
 	        out.println("<th>É sindico?</th>");
 	        out.println("<th>Telefone</th>");
+	        out.println("<th>Locatário ou Proprietário</th>");
 	        out.println("<th>Senha</th>");
 	        out.println("</th>");
 	        out.println("</thead>");
@@ -103,6 +106,7 @@ public class ServletCadastroCondominosExibirDados extends HttpServlet {
 	        out.println("<td>"+Morador_DataNascimento+"</td>");
 	        out.println("<td>"+Morador_Sindico+"</td>");
 	        out.println("<td>"+Morador_Telefone+"</td>");
+	        out.println("<td>"+Tipo_morador_idTipo_morador+"</td>");
 	        out.println("<td>"+Morador_Senha+"</td>");
 	        out.println("</tr>");
 	        out.println("</tbody>");
