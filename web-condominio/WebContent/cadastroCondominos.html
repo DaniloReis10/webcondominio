@@ -34,34 +34,28 @@
 				<div class="control-group">
 				  <label class="control-label" for="inputMorador_DataNascimento">Data Nascimento</label>
 				  <div class="controls">
-				    <input id="inputMorador_DataNascimento" type ="text" name="Morador_DataNascimento" placeholder="Formato: xx/xx/xxxx" required autofocus />
+				    <input id="inputMorador_DataNascimento" type ="text" name="Morador_DataNascimento" placeholder="Formato: ano/mes/dia" required autofocus />
 				  </div>
 				</div>
 				
 				<div class="control-group">
-				  <label class="control-label" for="inputMorador_Sindico">Morador_Sindico</label>
+				  <label class="control-label" for="inputMorador_Sindico">É sindico?</label>
 				  <div class="controls">
-				    <select id=inputMorador_Sindico name="TipoMorador" form="carform">
-					  <option selected value="0">Sindico</option>
-					  <option value="1">Comum</option>
-					</select>
+				    <input id="inputMorador_Sindico" type ="text" name="Morador_Sindico" placeholder="Digite 0-NÃO/1-SIM" required autofocus />
 				  </div>
 				</div>
 				
 				<div class="control-group">
-				  <label class="control-label" for="inputTipo_morador_idTipo_morador">Proprietário ou Locatário?</label>
+				  <label class="control-label" for="inputTipo_morador_idTipo_morador">Proprietario ou Locatario?</label>
 				  <div class="controls">
-				    <select id=inputTipo_morador_idTipo_morador name="Tipo_morador_idTipo_morador" form="carform">
-				      <option selected value="locatario">Locatário</option>
-					  <option value="proprietário">Proprietário</option>
-					</select>
+				    <input id="inputTipo_morador_idTipo_morador" type ="text" name="Morador_Sindico" placeholder="Digite 0-Proprietário/1-Locatário" required autofocus />
 				  </div>
 				</div>
 				
 				<div class="control-group">
-				  <label class="control-label" for="inputMorador_Telefone">Celular</label>
+				  <label class="control-label" for="inputMorador_Telefone">Telefone Fixo</label>
 				  <div class="controls">
-				    <input id="inputMorador_Telefone" type ="tel" name="Morador_Telefone" placeholder="Format: XXXXXXXXX" pattern="[0-9]{11}" required autofocus />
+				    <input id="inputMorador_Telefone" type ="tel" name="Morador_Telefone" placeholder="Format: xxxx-xxxx" pattern="[0-9]{9}" required autofocus />
 				  </div>
 				</div>	
 				

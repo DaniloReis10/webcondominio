@@ -23,9 +23,7 @@ public class CadastroCondominosDao {
 	
 	public void salvar(CadastroCondominosDados cadastro_condominos) throws SQLException{		
 		PreparedStatement ps = null;		
-		String sql = "INSERT INTO morador(CPF, Morador_Nome, Morador_Email, Morador_DataNascimento, Morador_Sindico"
-				+ "Morador_Telefone, Tipo_morador_idTipo_morador, senha ) "
-				+ "values (?,?,?,?,?,?,?)";		
+		String sql = "INSERT INTO morador values (?,?,?,?,?,?,?,?)";		
 		try {			
 			this.conexao.setAutoCommit(false); // iniciar transaÃ§Ã£o			
 			ps = this.conexao.prepareStatement(sql);
