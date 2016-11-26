@@ -1,15 +1,25 @@
 package model;
 
-public class cadastroCondominos {
+public class CadastroCondominosDados {
 	private String CPF;
 	private String Morador_Nome;
 	private String Morador_Email;
 	private String Morador_DataNascimento;
 	private String Morador_Sindico;
 	private String Morador_Telefone;
+	private String Tipo_morador_idTipo_morador;
+	
+	public String getTipo_morador_idTipo_morador() {
+		return Tipo_morador_idTipo_morador;
+	}
+
+	public void setTipo_morador_idTipo_morador(String tipo_morador_idTipo_morador) {
+		Tipo_morador_idTipo_morador = tipo_morador_idTipo_morador;
+	}
+
 	private String senha;
 	
-	public cadastroCondominos(){
+	public CadastroCondominosDados(){
 		
 	}
 
