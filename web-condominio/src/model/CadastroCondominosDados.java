@@ -1,11 +1,13 @@
 package model;
 
+import java.sql.Date;
+
 public class CadastroCondominosDados {
 	private String CPF;
 	private String Morador_Nome;
 	private String Morador_Email;
-	private String Morador_DataNascimento;
-	private String Morador_Sindico;
+	private Date Morador_DataNascimento;
+	private int Morador_Sindico;
 	private String Morador_Telefone;
 	private String Tipo_morador_idTipo_morador;
 	
@@ -47,19 +49,11 @@ public class CadastroCondominosDados {
 		Morador_Email = morador_Email;
 	}
 
-	public String getMorador_DataNascimento() {
-		return Morador_DataNascimento;
-	}
-
-	public void setMorador_DataNascimento(String morador_DataNascimento) {
-		Morador_DataNascimento = morador_DataNascimento;
-	}
-
-	public String getMorador_Sindico() {
+	public int getMorador_Sindico() {
 		return Morador_Sindico;
 	}
 
-	public void setMorador_Sindico(String morador_Sindico) {
+	public void setMorador_Sindico(int morador_Sindico) {
 		Morador_Sindico = morador_Sindico;
 	}
 
@@ -77,6 +71,14 @@ public class CadastroCondominosDados {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public Date getMorador_DataNascimento() {
+		return Morador_DataNascimento;
+	}
+
+	public void setMorador_DataNascimento(Date morador_DataNascimento) {
+		Morador_DataNascimento = morador_DataNascimento;
 	}
 	
 	

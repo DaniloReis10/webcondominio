@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		<div class="container">
-			<form name="cadastroCondominos" method = "service" action="ServletCadastroCondominosExibirDados" class="form-horizontal">
+			<form name="cadastroCondominos" method = "POST" action="ServletCadastroCondominosExibirDados" class="form-horizontal">
 				<div class="control-group">
 				  <label class="control-label" for="inputCPF">CPF</label>
 				  <div class="controls">
@@ -34,14 +34,14 @@
 				<div class="control-group">
 				  <label class="control-label" for="inputMorador_DataNascimento">Data Nascimento</label>
 				  <div class="controls">
-				    <input id="inputMorador_DataNascimento" type ="text" name="Morador_DataNascimento" placeholder="Ex: 1970-06-09" required autofocus />
+				    <input id="inputMorador_DataNascimento" type ="Date" name="Morador_DataNascimento" required autofocus />
 				  </div>
 				</div>
 				
 				<div class="control-group">
 				  <label class="control-label" for="inputMorador_Sindico">É sindico?</label>
 				  <div class="controls">
-				    <input id="inputMorador_Sindico" type ="text" name="Morador_Sindico" placeholder="Digite 0-NÃO/1-SIM" required autofocus />
+				    <input id="inputMorador_Sindico" type ="number" name="Morador_Sindico" placeholder="Digite 0-NÃO/1-SIM" required autofocus />
 				  </div>
 				</div>
 				

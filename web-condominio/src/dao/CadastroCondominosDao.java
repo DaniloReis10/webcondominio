@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Date;
 import model.Despesa;
 import model.Fornecedor;
 import model.Periodicidade;
@@ -23,16 +23,23 @@ public class CadastroCondominosDao {
 	
 	public void salvar(CadastroCondominosDados cadastro_condominos) throws SQLException{		
 		PreparedStatement ps = null;		
-		String sql = "INSERT INTO morador values (?,?,?,?,?,?,?,?)";		
+		String sql = "INSERT INTO morador(CPF,"
+				+ "Morador_Nome,"
+				+ "Morador_Email,"
+				+ "Morador_DataNascimento,"
+				+ "Morador_Sindico,"
+				+ "Morador_Telefone,"
+				+ "Tipo_morador_idTipo_morador,"
+				+ "senha) "
+				+ "values (?,?,?,?,?,?,?,?)";		
 		try {			
 			this.conexao.setAutoCommit(false); // iniciar transaÃ§Ã£o			
 			ps = this.conexao.prepareStatement(sql);
-			
 			ps.setString(1,cadastro_condominos.getCPF());
 			ps.setString(2,cadastro_condominos.getMorador_Nome());
 			ps.setString(3,cadastro_condominos.getMorador_Email());
-			ps.setString(4,cadastro_condominos.getMorador_DataNascimento());
-			ps.setString(5,cadastro_condominos.getMorador_Sindico());
+			ps.setDate(4,cadastro_condominos.getMorador_DataNascimento());
+			ps.setInt(5,cadastro_condominos.getMorador_Sindico());
 			ps.setString(6,cadastro_condominos.getMorador_Telefone());
 			ps.setString(7,cadastro_condominos.getTipo_morador_idTipo_morador());
 			ps.setString(8,cadastro_condominos.getSenha());
@@ -74,8 +81,8 @@ public class CadastroCondominosDao {
 			ps.setString(1, cadastro_condominos.getCPF());
 			ps.setString(2, cadastro_condominos.getMorador_Nome());
 			ps.setString(3, cadastro_condominos.getMorador_Email());
-			ps.setString(4, cadastro_condominos.getMorador_DataNascimento());
-			ps.setString(5, cadastro_condominos.getMorador_Sindico());
+			ps.setDate(4, cadastro_condominos.getMorador_DataNascimento());
+			ps.setInt(5, cadastro_condominos.getMorador_Sindico());
 			ps.setString(6, cadastro_condominos.getMorador_Telefone());
 			ps.setString(7,cadastro_condominos.getTipo_morador_idTipo_morador());
 			ps.setString(8,cadastro_condominos.getSenha());
