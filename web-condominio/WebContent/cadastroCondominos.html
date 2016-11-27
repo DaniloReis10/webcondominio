@@ -39,16 +39,19 @@
 				</div>
 				
 				<div class="control-group">
-				  <label class="control-label" for="inputMorador_Sindico">É sindico?</label>
+				  <label class="control-label" for="inputMorador_Sindico">É sindico? (0-NÃO/1-SIM)</label>
 				  <div class="controls">
-				    <input id="inputMorador_Sindico" type ="number" name="Morador_Sindico" placeholder="Digite 0-NÃO/1-SIM" required autofocus />
+				    <input id="inputMorador_Sindico" type ="number" min="0" max="1" name="Morador_Sindico" placeholder="Digite 0-NÃO/1-SIM" required autofocus />
 				  </div>
 				</div>
 				
 				<div class="control-group">
 				  <label class="control-label" for="inputTipo_morador_idTipo_morador">Proprietario ou Locatario?</label>
 				  <div class="controls">
-				    <input id="inputTipo_morador_idTipo_morador" type ="text" name="Morador_Sindico" placeholder="Digite proprietário ou locatario" required autofocus />
+				  <select class="selectpicker" id="inputTipo_morador_idTipo_morador" name="Tipo_morador_idTipo_morador">
+				  	<option selected value="proprietario">proprietario</option>
+				  	<option value="locatario">locatario</option>
+				  </select>  
 				  </div>
 				</div>
 				
