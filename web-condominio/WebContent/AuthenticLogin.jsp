@@ -63,7 +63,7 @@
 			  
 			</form>
 			<br>
- 			<a href="localhost:8080/web-condominio/cadastroCondominos.html" class="btn btn-default" >Novo Morador?<br>Realize seu cadastro</a>
+ 			<a href="cadastroCondominos.html" class="btn btn-default" >Novo Morador?<br>Realize seu cadastro</a>
 			
 		</div>
 	</div>
