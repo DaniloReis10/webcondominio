@@ -7,11 +7,13 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import model.CadastroCondominosDados;
 import dao.CadastroCondominosDao;
 
@@ -50,6 +52,7 @@ public class ServletCadastroCondominosExibirDados extends HttpServlet {
 		try{
 			
 			PrintWriter out = response.getWriter();
+			//String apertarBotaoConcluiCadastro = request.getParameter("apertarBotaoConcluiCadastro");
 			String CPF = request.getParameter("CPF");
 			String Morador_Nome = request.getParameter("Morador_Nome");
 			String Morador_Email = request.getParameter("Morador_Email");
@@ -59,7 +62,7 @@ public class ServletCadastroCondominosExibirDados extends HttpServlet {
 			Date Morador_DataNascimento = formato.parse(request.getParameter("Morador_DataNascimento"));
 			java.sql.Date dateSql = new java.sql.Date(Morador_DataNascimento.getTime());
 			
-			int Morador_Sindico = Integer.parseInt(request.getParameter("TipoMorador"));
+			int Morador_Sindico = Integer.parseInt(request.getParameter("Morador_Sindico"));
 			String Morador_Telefone = request.getParameter("Morador_Telefone");
 			String Tipo_morador_idTipo_morador = request.getParameter("Tipo_morador_idTipo_morador");
 			String Morador_Senha = request.getParameter("Morador_Senha");
@@ -73,61 +76,69 @@ public class ServletCadastroCondominosExibirDados extends HttpServlet {
 			cadastro_condominos.setMorador_Telefone(Morador_Telefone);
 			cadastro_condominos.setTipo_morador_idTipo_morador(Tipo_morador_idTipo_morador);
 			cadastro_condominos.setSenha(Morador_Senha);
-
-
-			CadastroCondominosDao dao = new CadastroCondominosDao();
 			
-			try {
-
-				dao.salvar(cadastro_condominos);
-				
-				out.println("<html>");
-				out.println("<head>");
-				out.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">");
-				out.println("<title>Dados a serem cadastrados</title>");
-				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/menu-estilo.css\">");
-				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"libs/bootstrap-3.3.7-dist/css/bootstrap.css\">");
-				out.println("</head>");
-				out.println("<body>");
-				out.println("<h1>Dados cadastrados:</h1>");
-				out.println("<br><br>");
-				out.println("<table border=\"1\" class=\"table table-striped\">");
-				out.println("<thead>");
-				out.println("<tr>");
-				out.println("<th>CPF</th>");
-				out.println("<th>Morador</th>");
-				out.println("<th>Email</th>");
-				out.println("<th>Data Nascimento</th>");
-				out.println("<th>É sindico?</th>");
-				out.println("<th>Telefone</th>");
-				out.println("<th>Locatario ou Proprietario</th>");
-				out.println("<th>Senha</th>");
-				out.println("</th>");
-				out.println("</thead>");
-				out.println("<tbody>");
-				out.println("<tbody>");
-				out.println("<tr>");
-				out.println("<td>"+CPF+"</td>");
-				out.println("<td>"+Morador_Nome+"</td>");
-				out.println("<td>"+Morador_Email+"</td>");
-				out.println("<td>"+Morador_DataNascimento+"</td>");
-				out.println("<td>"+Morador_Sindico+"</td>");
-				out.println("<td>"+Morador_Telefone+"</td>");
-				out.println("<td>"+Tipo_morador_idTipo_morador+"</td>");
-				out.println("<td>"+Morador_Senha+"</td>");
-				out.println("</tr>");
-				out.println("</tbody>");
-				out.println("</table>");
-				out.println("<br>");	        
-				/*<input id="concluirCadastro" class="btn" type="submit" onclick="botaoConcluirCadastro" value="Concluir Cadastro" name="limparCampos"/>
-	        <input id="alterarDados" class="btn" type="button" onclick="alterarDados()" value="Alterar dados" name="alterarDados" action="cadastroCondominos.html" />*/
-				//out.println("<script src=\"http://code.jquery.com/jquery-latest.js\"></script>");
-
-
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-
+			SimpleDateFormat dataImpressao = new SimpleDateFormat("dd-MM-yyy");
+			out.println("<html>");
+			out.println("<head>");
+			out.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">");
+			out.println("<title>Dados a serem cadastrados</title>");
+			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/menu-estilo.css\">");
+			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"libs/bootstrap-3.3.7-dist/css/bootstrap.css\">");
+			out.println("</head>");
+			out.println("<body>");
+			out.println("<h1>Dados cadastrados:</h1>");
+			out.println("<br><br>");
+			out.println("<table border=\"1\" class=\"table table-striped\">");
+			out.println("<thead>");
+			out.println("<tr>");
+			out.println("<th>CPF</th>");
+			out.println("<th>Morador</th>");
+			out.println("<th>Email</th>");
+			out.println("<th>Data Nascimento</th>");
+			out.println("<th>É sindico?</th>");
+			out.println("<th>Telefone</th>");
+			out.println("<th>Locatario ou Proprietario</th>");
+			out.println("<th>Senha</th>");
+			out.println("</th>");
+			out.println("</thead>");
+			out.println("<tbody>");
+			out.println("<tbody>");
+			out.println("<tr>");
+			out.println("<td>"+CPF+"</td>");
+			out.println("<td>"+Morador_Nome+"</td>");
+			out.println("<td>"+Morador_Email+"</td>");
+			out.println("<td>"+dataImpressao.format(Morador_DataNascimento)+"</td>");
+			out.println("<td>"+Morador_Sindico+"</td>");
+			out.println("<td>"+Morador_Telefone+"</td>");
+			out.println("<td>"+Tipo_morador_idTipo_morador+"</td>");
+			out.println("<td>"+Morador_Senha+"</td>");
+			out.println("</tr>");
+			out.println("</tbody>");
+			out.println("</table>");
+			out.println("<br>");
+			out.println("<div class=\"control-group\">"
+					+ "<div class=\"controls\">"
+					+ "<input id=\"concluirCadastro\" class=\"btn\" type=\"submit\" action=\"botaoConcluirCadastro\" value=\"Concluir\" />"
+					+ "<input id=\"alterarDados\" class=\"btn\" type=\"button\" onclick=\"alterarDados()\" value=\"Alterar dados\" name=\"alterarDados\" action=\"cadastroCondominos.html\" />"
+					+ "</div>"
+					+ "</div>"
+					+ "<script src=\"http://code.jquery.com/jquery-latest.js\"></script>"
+					+ "<script src=\"http://code.jquery.com/jquery-latest.js\"></script>"
+					+ "<script src=\"js/bootstrap.min.js\"></script>"
+					+ "<script type=\"text/javascript\">"
+					+ "function alterarDados(){"
+					+ "windows.history.back();"
+					+ "}"
+					+ "function botaoConcluirCadastro(){"
+					+ "if (confirm('Concluir cadastro?')) {"
+					+ "alert('Cadastro realizado com sucesso');"
+					+ "} else {"
+					+ "}"
+					+ "}"
+					+ "</script>");
+			out.println("</body>");
+			out.println("</html>");
+			
 		} catch (ParseException e1) {
 			
 			e1.printStackTrace();
