@@ -5,15 +5,15 @@
 		<link rel="stylesheet" type="text/css" href="css/menu-estilo.css">
 		<link rel="stylesheet" type="text/css" href="libs/bootstrap-3.3.7-dist/css/bootstrap.css">
 
-		<meta charset="utf-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 	</head>
 	<body>
 		<div class="container">
-			<form name="cadastroCondominos" method = "POST" action="ServletCadastroCondominosExibirDados" class="form-horizontal">
+			<form name="cadastroCondominos" method = "POST" action="ServletExibir_e_SalvarDadosCadastrados" class="form-horizontal">
 				<div class="control-group">
 				  <label class="control-label" for="inputCPF">CPF</label>
 				  <div class="controls">
-				    <input id="inputCPF" type="text" name="CPF" placeholder="Somente n√∫meros" pattern="[0-9]{11}" required autofocus />
+				    <input id="inputCPF" type="text" name="CPF" placeholder="Somente n˙meros" pattern="[0-9]{11}" required autofocus />
 				  </div>
 				</div>
 				
@@ -39,7 +39,7 @@
 				</div>
 				
 				<div class="control-group">
-				  <label class="control-label" for="inputMorador_Sindico">√â sindico? (0-N√ÉO/1-SIM)</label>
+				  <label class="control-label" for="inputMorador_Sindico">… sindico? (0-N√O/1-SIM)</label>
 				  <div class="controls">
 				  <select class="selectpicker" id="inputMorador_Sindico" name="Morador_Sindico">
 				  	<option selected value="0">0</option>
