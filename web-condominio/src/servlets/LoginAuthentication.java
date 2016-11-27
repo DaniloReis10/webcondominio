@@ -51,6 +51,7 @@ public class LoginAuthentication extends HttpServlet {
 		ResultSet rs;
 		String userName=new String("");
 		String passwrd=new String("");
+		String nomeUsuario = "";
 		response.setContentType("text/html");
 		try {
 			// Load the database driver
@@ -58,26 +59,32 @@ public class LoginAuthentication extends HttpServlet {
 			// Get a Connection to the database
 			connection = DriverManager.getConnection(connectionURL, "root", "123456"); 
 			//Add the data into the database
-			String sql = "select CPF,senha from bdcondominio";
+			String sql = "select CPF,senha,Morador_Nome from morador";
 			Statement s = connection.createStatement();
 			s.executeQuery (sql);
 			rs = s.getResultSet();
 			while (rs.next ()){
 				userName=rs.getString("CPF");
 				passwrd=rs.getString("senha");
+				nomeUsuario = rs.getString("Morador_Nome");
+				if(userName.equals(request.getParameter("login")) && passwrd.equals(request.getParameter("senha"))){
+					break;
+				}
+				
 			}
 			rs.close ();
 			s.close ();
 		}catch(Exception e){
 			System.out.println("Exception is ;"+e);
+			e.printStackTrace();
 		}
-		if(userName.equals(request.getParameter("login"))
-				&& passwrd.equals(request.getParameter("senha"))){
-			out.println("WELCOME "+userName);
+		if(userName.equals(request.getParameter("login")) && passwrd.equals(request.getParameter("senha"))){
+			out.println("BemVindo "+nomeUsuario+"!");
 		}
 		else{
-			out.println("Please enter correct username and password");
-			out.println("<a href='AuthenticLogin.jsp'><br>Login again</a>");
+			out.println("Por favor, informe o login a senha corretos<br>");
+			
+			out.println("<a href='AuthenticLogin.jsp'><br>Tente novamente</a>");
 		}
 	}
 
