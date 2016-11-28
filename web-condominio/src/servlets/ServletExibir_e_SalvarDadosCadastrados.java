@@ -58,10 +58,11 @@ public class ServletExibir_e_SalvarDadosCadastrados extends HttpServlet {
 			String Morador_Email = request.getParameter("Morador_Email");
 
 			//request.setAttribute("morador_DataNascimento", request.getParameter("Morador_DataNascimento"));
+			//Conversao do formato da data digitada pelo usuario
 			SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 			Date Morador_DataNascimento = formato.parse(request.getParameter("Morador_DataNascimento"));
 			java.sql.Date dateSql = new java.sql.Date(Morador_DataNascimento.getTime());
-
+			
 			int Morador_Sindico = Integer.parseInt(request.getParameter("Morador_Sindico"));
 			String Morador_Telefone = request.getParameter("Morador_Telefone");
 			String Tipo_morador_idTipo_morador = request.getParameter("Tipo_morador_idTipo_morador");
@@ -74,7 +75,7 @@ public class ServletExibir_e_SalvarDadosCadastrados extends HttpServlet {
 			  hexString.append(String.format("%02X", 0xFF & b));
 			}
 			
-			//senha criptografada vai para uma coluna especÌfica no SQL
+			//senha criptografada vai para uma coluna espec√≠fica no SQL
 			String Morador_Senha_Hash = hexString.toString();
 
 			CadastroCondominosDados cadastro_condominos = new CadastroCondominosDados();
@@ -85,7 +86,7 @@ public class ServletExibir_e_SalvarDadosCadastrados extends HttpServlet {
 			cadastro_condominos.setMorador_Sindico(Morador_Sindico);
 			cadastro_condominos.setMorador_Telefone(Morador_Telefone);
 			cadastro_condominos.setTipo_morador_idTipo_morador(Tipo_morador_idTipo_morador);
-			cadastro_condominos.setSenha(Morador_Senha_Hash);
+			cadastro_condominos.setMorador_Senha_Hash(Morador_Senha_Hash);
 
 
 			CadastroCondominosDao dao = new CadastroCondominosDao();
@@ -111,10 +112,9 @@ public class ServletExibir_e_SalvarDadosCadastrados extends HttpServlet {
 				out.println("<th>Morador</th>");
 				out.println("<th>Email</th>");
 				out.println("<th>Data Nascimento</th>");
-				out.println("<th>… sindico?</th>");
+				out.println("<th>√â sindico?</th>");
 				out.println("<th>Telefone</th>");
 				out.println("<th>Locatario ou Proprietario</th>");
-				out.println("<th>Senha</th>");
 				out.println("</th>");
 				out.println("</thead>");
 				out.println("<tbody>");
@@ -127,20 +127,19 @@ public class ServletExibir_e_SalvarDadosCadastrados extends HttpServlet {
 				out.println("<td>"+Morador_Sindico+"</td>");
 				out.println("<td>"+Morador_Telefone+"</td>");
 				out.println("<td>"+Tipo_morador_idTipo_morador+"</td>");
-				//out.println("<td>"+Morador_Senha+"</td>");
 				out.println("</tr>");
 				out.println("</tbody>");
 				out.println("</table>");
 				out.println("</body>");
 				out.println("</html>");
 			} catch (SQLException e) {
-				out.println("<h1>Erro no cadastro. Volte a p·gina e tente novamente.</h1>");
+				out.println("<h1>Erro no cadastro. Volte a p√°gina e tente novamente.</h1>");
 				e.printStackTrace();
 			}
 
 		} catch (ParseException e1) {
 			PrintWriter out = null;
-			out.println("<h1>Erro no cadastro. Volte a p·gina e tente novamente.</h1>");
+			out.println("<h1>Erro no cadastro. Volte a p√°gina e tente novamente.</h1>");
 			e1.printStackTrace();
 		} catch (NoSuchAlgorithmException e1) {
 			// TODO Auto-generated catch block
