@@ -33,7 +33,7 @@ public class CadastroCondominosDao {
 				+ "Morador_Senha_Hash) "
 				+ "values (?,?,?,?,?,?,?,?)";		
 		try {			
-			this.conexao.setAutoCommit(false); // iniciar transaÃ§Ã£o			
+			this.conexao.setAutoCommit(false); // iniciar transaÃƒÂ§ÃƒÂ£o			
 			ps = this.conexao.prepareStatement(sql);
 			ps.setString(1,cadastro_condominos.getCPF());
 			ps.setString(2,cadastro_condominos.getMorador_Nome());
@@ -42,7 +42,7 @@ public class CadastroCondominosDao {
 			ps.setInt(5,cadastro_condominos.getMorador_Sindico());
 			ps.setString(6,cadastro_condominos.getMorador_Telefone());
 			ps.setString(7,cadastro_condominos.getTipo_morador_idTipo_morador());
-			ps.setString(8,cadastro_condominos.getSenha());
+			ps.setString(8,cadastro_condominos.getMorador_Senha_Hash());
 			
 			ps.execute();
 			
@@ -75,7 +75,7 @@ public class CadastroCondominosDao {
 				+ "Tipo_morador_idTipo_morador=?"
 				+ "senha=? WHERE id=?";		
 		try {			
-			this.conexao.setAutoCommit(false); // iniciar transaÃ§Ã£o			
+			this.conexao.setAutoCommit(false); // iniciar transaÃƒÂ§ÃƒÂ£o			
 			ps = this.conexao.prepareStatement(sql);
 			
 			ps.setString(1, cadastro_condominos.getCPF());
@@ -85,7 +85,7 @@ public class CadastroCondominosDao {
 			ps.setInt(5, cadastro_condominos.getMorador_Sindico());
 			ps.setString(6, cadastro_condominos.getMorador_Telefone());
 			ps.setString(7,cadastro_condominos.getTipo_morador_idTipo_morador());
-			ps.setString(8,cadastro_condominos.getSenha());
+			ps.setString(8,cadastro_condominos.getMorador_Senha_Hash());
 			
 			ps.execute();
 			
@@ -109,7 +109,7 @@ public class CadastroCondominosDao {
 		PreparedStatement ps = null;		
 		String sql = "DELETE FROM morador WHERE CPF=?";		
 		try {			
-			this.conexao.setAutoCommit(false); // iniciar transaÃ§Ã£o			
+			this.conexao.setAutoCommit(false); // iniciar transaÃƒÂ§ÃƒÂ£o			
 			ps = this.conexao.prepareStatement(sql);
 			
 			ps.setString(1, cadastro_condominos.getCPF());
