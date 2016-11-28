@@ -29,7 +29,7 @@ CREATE TABLE `apartamento` (
   PRIMARY KEY (`Apt_Numero`,`Bloco_idBloco`),
   KEY `fk_Apartamento_Bloco1_idx` (`Bloco_idBloco`),
   CONSTRAINT `fk_Apartamento_Bloco1` FOREIGN KEY (`Bloco_idBloco`) REFERENCES `bloco` (`idBloco`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COMMENT='O relacionamento é de n apartamentos para um bloco. Cada bloco tem 4 andares e cada andar tem três apartamentos.';
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COMMENT='O relacionamento Ã© de n apartamentos para um bloco. Cada bloco tem 4 andares e cada andar tem trÃªs apartamentos.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,7 +90,7 @@ CREATE TABLE `area` (
 
 LOCK TABLES `area` WRITE;
 /*!40000 ALTER TABLE `area` DISABLE KEYS */;
-INSERT INTO `area` VALUES (1,'Piscina'),(2,'Área A'),(3,'Área B'),(4,'Churrasqueira');
+INSERT INTO `area` VALUES (1,'Piscina'),(2,'Ã�rea A'),(3,'Ã�rea B'),(4,'Churrasqueira');
 /*!40000 ALTER TABLE `area` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -134,7 +134,7 @@ CREATE TABLE `empresa` (
   PRIMARY KEY (`idEmpresa`,`Endereco_idEndereco`),
   KEY `fk_Empresa_Endereco1_idx` (`Endereco_idEndereco`),
   CONSTRAINT `fk_Empresa_Endereco1` FOREIGN KEY (`Endereco_idEndereco`) REFERENCES `endereco` (`idEndereco`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='Tabela de empresas que prestam serviços para o condomínio. EX: Água - CAGECE, Energia Elétrica - COELCE ';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='Tabela de empresas que prestam serviÃ§os para o condomÃ­nio. EX: Ã�gua - CAGECE, Energia ElÃ©trica - COELCE ';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -143,7 +143,7 @@ CREATE TABLE `empresa` (
 
 LOCK TABLES `empresa` WRITE;
 /*!40000 ALTER TABLE `empresa` DISABLE KEYS */;
-INSERT INTO `empresa` VALUES (1,'Inovar Ar Condicionado','89.875.948/8934-90','3236-3243',1),(2,'CAGECE','07.040.108/0001-57','3254-3445',5),(3,'COELCE','07.047.251/0001-70','3542-2343',6),(4,'OI - TELEFONE/INTERNET','04.164.616/0006-63','3422-3335',2),(5,'Reparos Aquecedores','34.354.643/3406-63','3534-5345',3),(6,'Empresa Resolve - Reparos e Reformas','21.234.213/4123-12','3213-6787',4),(7,'Manutenção de Elevadores','23.423.423/2342-23','3242-5346',13);
+INSERT INTO `empresa` VALUES (1,'Inovar Ar Condicionado','89.875.948/8934-90','3236-3243',1),(2,'CAGECE','07.040.108/0001-57','3254-3445',5),(3,'COELCE','07.047.251/0001-70','3542-2343',6),(4,'OI - TELEFONE/INTERNET','04.164.616/0006-63','3422-3335',2),(5,'Reparos Aquecedores','34.354.643/3406-63','3534-5345',3),(6,'Empresa Resolve - Reparos e Reformas','21.234.213/4123-12','3213-6787',4),(7,'ManutenÃ§Ã£o de Elevadores','23.423.423/2342-23','3242-5346',13);
 /*!40000 ALTER TABLE `empresa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -162,7 +162,7 @@ CREATE TABLE `endereco` (
   `Endereco_Bairro` varchar(45) NOT NULL,
   `Endereco_Cidade` varchar(45) NOT NULL,
   PRIMARY KEY (`idEndereco`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='Tabela usada para identificar os endereços das entidades "funcionário" e "empresa".';
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='Tabela usada para identificar os endereÃ§os das entidades "funcionÃ¡rio" e "empresa".';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -171,7 +171,7 @@ CREATE TABLE `endereco` (
 
 LOCK TABLES `endereco` WRITE;
 /*!40000 ALTER TABLE `endereco` DISABLE KEYS */;
-INSERT INTO `endereco` VALUES (1,'Rua São Francisco','1234','23.423.423-23','Aldeota','Fortaleza'),(2,'Rua Dois','536','43.645.656-90','Parangaba','Fortaleza'),(3,'Rua Treze de Maio','53','12.343.433-27','Fátima','Fortaleza'),(4,'Rua Duque de Caxias','432','65.453.453-54','Centro','Fortaleza'),(5,'Rua Tibúrcio Cavalcante','342','32.345.657-65','Dionínio Torres','Fortaleza'),(6,'Rua Padre Valdevino','150','23.534.645-45','Aldeota','Fortaleza'),(7,'Rua Três','123','12.234.536-67','Conjunto Ceará','Fortaleza'),(8,'Rua Macílio Dias','4321','12.333.242-53','Messejana','Fortaleza'),(9,'Av. Silas Mungumba','343','54.634.345-23','Parangaba','Fortaleza'),(10,'Rua Primeiro de Janeiro','355','12.544.645-12','Maraponga','Fortaleza'),(11,'Av. Washington Soares','7655','15.564.345-23','Edson Queiroz','Fortaleza'),(12,'Rua Gustavo Sampaio','756','43.234.543-34','Parquelândia','Fortaleza'),(13,'Rua Gurgel','533','12.543.345-34','Cidade dos Funcionários','Fortaleza');
+INSERT INTO `endereco` VALUES (1,'Rua SÃ£o Francisco','1234','23.423.423-23','Aldeota','Fortaleza'),(2,'Rua Dois','536','43.645.656-90','Parangaba','Fortaleza'),(3,'Rua Treze de Maio','53','12.343.433-27','FÃ¡tima','Fortaleza'),(4,'Rua Duque de Caxias','432','65.453.453-54','Centro','Fortaleza'),(5,'Rua TibÃºrcio Cavalcante','342','32.345.657-65','DionÃ­nio Torres','Fortaleza'),(6,'Rua Padre Valdevino','150','23.534.645-45','Aldeota','Fortaleza'),(7,'Rua TrÃªs','123','12.234.536-67','Conjunto CearÃ¡','Fortaleza'),(8,'Rua MacÃ­lio Dias','4321','12.333.242-53','Messejana','Fortaleza'),(9,'Av. Silas Mungumba','343','54.634.345-23','Parangaba','Fortaleza'),(10,'Rua Primeiro de Janeiro','355','12.544.645-12','Maraponga','Fortaleza'),(11,'Av. Washington Soares','7655','15.564.345-23','Edson Queiroz','Fortaleza'),(12,'Rua Gustavo Sampaio','756','43.234.543-34','ParquelÃ¢ndia','Fortaleza'),(13,'Rua Gurgel','533','12.543.345-34','Cidade dos FuncionÃ¡rios','Fortaleza');
 /*!40000 ALTER TABLE `endereco` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -192,7 +192,7 @@ CREATE TABLE `evento` (
   KEY `fk_Evento_Morador1_idx` (`Morador_CPF`),
   CONSTRAINT `fk_Evento_Area1` FOREIGN KEY (`Area_idAREA`) REFERENCES `area` (`idAREA`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_Evento_Morador1` FOREIGN KEY (`Morador_CPF`) REFERENCES `morador` (`CPF`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='Cada evento está relacionado a uma área específica do condomínio. Ex: piscina, salão de festas, salão de jogos, etc.';
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='Cada evento estÃ¡ relacionado a uma Ã¡rea especÃ­fica do condomÃ­nio. Ex: piscina, salÃ£o de festas, salÃ£o de jogos, etc.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -226,7 +226,7 @@ CREATE TABLE `funcionario` (
   KEY `fk_Funcionario_Setor1_idx` (`Setor_idSetor`),
   CONSTRAINT `fk_Funcionario_Endereco1` FOREIGN KEY (`Endereco_idEndereco`) REFERENCES `endereco` (`idEndereco`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_Funcionario_Setor1` FOREIGN KEY (`Setor_idSetor`) REFERENCES `setor` (`idSetor`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Tabela que representa os funcionários do condomínio, e cada funcionário tem relacionamento com um setor de serviço do condomínio. Cada funcionário está relacionado a um endereço.';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Tabela que representa os funcionÃ¡rios do condomÃ­nio, e cada funcionÃ¡rio tem relacionamento com um setor de serviÃ§o do condomÃ­nio. Cada funcionÃ¡rio estÃ¡ relacionado a um endereÃ§o.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -235,7 +235,7 @@ CREATE TABLE `funcionario` (
 
 LOCK TABLES `funcionario` WRITE;
 /*!40000 ALTER TABLE `funcionario` DISABLE KEYS */;
-INSERT INTO `funcionario` VALUES ('123.234.345-34','João Gomes',900,'1989-03-29','M',1,12,4),('123.423.423-43','Vivian Cordeiro',900,'1988-03-12','F',1,7,1),('234.756.765-76','Ronaldo Garcia',900,'1969-07-18','M',1,11,1),('423.534.234.12','Ivone Xavier',900,'1966-04-23','F',1,9,1),('534.345.654-34','Gabriela dos Santos',1900,'1979-12-01','F',1,10,3),('645.645.654-45','Carlos Almeida',900,'1975-05-11','M',1,8,2);
+INSERT INTO `funcionario` VALUES ('123.234.345-34','JoÃ£o Gomes',900,'1989-03-29','M',1,12,4),('123.423.423-43','Vivian Cordeiro',900,'1988-03-12','F',1,7,1),('234.756.765-76','Ronaldo Garcia',900,'1969-07-18','M',1,11,1),('423.534.234.12','Ivone Xavier',900,'1966-04-23','F',1,9,1),('534.345.654-34','Gabriela dos Santos',1900,'1979-12-01','F',1,10,3),('645.645.654-45','Carlos Almeida',900,'1975-05-11','M',1,8,2);
 /*!40000 ALTER TABLE `funcionario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -252,7 +252,7 @@ CREATE TABLE `gasto` (
   `Gasto_Serv` float NOT NULL,
   `Gasto_Data` date NOT NULL,
   PRIMARY KEY (`idGasto`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='Será o somatório dos valores da prestação de serviços no mês e da folha mensal de funcionários. Os valores serão armazenados em "Gasto_Func" e "Gasto_Serv" e a Data servirá para agrupar os gastos por mês.';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='SerÃ¡ o somatÃ³rio dos valores da prestaÃ§Ã£o de serviÃ§os no mÃªs e da folha mensal de funcionÃ¡rios. Os valores serÃ£o armazenados em "Gasto_Func" e "Gasto_Serv" e a Data servirÃ¡ para agrupar os gastos por mÃªs.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -281,7 +281,7 @@ CREATE TABLE `mensalidade_condominio` (
   PRIMARY KEY (`idMensalidade_Condominio`,`Morador_CPF`),
   KEY `fk_Mensalidade_condominio_Morador1_idx` (`Morador_CPF`),
   CONSTRAINT `fk_Mensalidade_condominio_Morador1` FOREIGN KEY (`Morador_CPF`) REFERENCES `morador` (`CPF`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=177 DEFAULT CHARSET=utf8 COMMENT='Cada morador tem n mensalidades. Existe o atributo booleano para indicar se determinada mensalidade está paga ou não (servirá para filtrar a inadimplência).';
+) ENGINE=InnoDB AUTO_INCREMENT=177 DEFAULT CHARSET=utf8 COMMENT='Cada morador tem n mensalidades. Existe o atributo booleano para indicar se determinada mensalidade estÃ¡ paga ou nÃ£o (servirÃ¡ para filtrar a inadimplÃªncia).';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -310,6 +310,7 @@ CREATE TABLE `morador` (
   `Morador_Telefone` varchar(9) DEFAULT NULL,
   `Morador_Adimplente` tinyint(1) DEFAULT NULL,
   `Tipo_morador_idTipo_morador` varchar(12) NOT NULL,
+  `Morador_Senha_Hash` varchar(255) NOT NULL,
   PRIMARY KEY (`CPF`),
   UNIQUE KEY `Morad_Nome_UNIQUE` (`Morador_Nome`),
   UNIQUE KEY `Morad_DataNascimento_UNIQUE` (`Morador_DataNascimento`),
@@ -324,7 +325,24 @@ CREATE TABLE `morador` (
 
 LOCK TABLES `morador` WRITE;
 /*!40000 ALTER TABLE `morador` DISABLE KEYS */;
-INSERT INTO `morador` VALUES ('12342343234','João Santos','joao@hotmail.com','1987-12-09',0,'3235-2423',0,'1'),('21312312321','Ramon Santos','ramon@gmail.com','1988-05-12',0,'3234-2342',0,'1'),('21312312323','Augusto Oliveira','aug@hotmail.com','1965-03-12',0,'3213-1231',0,'1'),('24234809093','Paula Holanda','paulah@gmail.com','1980-04-08',0,'3242-2342',0,'2'),('34655465547','Lucas Holanda','lucas@gmail.com','1978-12-24',0,'3242-3453',1,'1'),('35345323424','Amanda Rodrigues','amanda@hotmail.com','1960-01-23',0,'3213-1231',1,'1'),('42354365767','Ana Paula Maia','ana@gmail.com','1993-01-15',0,'3209-2983',0,'2'),('54312342334','Mário Pontes','mario@hotmail.com','1983-09-07',1,'3212-2323',0,'1'),('54365423409','Mariana Brandão','mari@yahoo.com','1988-10-31',0,'3242-4322',0,'2'),('54586789700','Carlos Alberto','carlos@gmail.com','1966-11-12',0,'3213-3532',0,'2'),('55475567557','Marilia Mendes','mar@gmail.com','1988-12-11',0,'3234-2342',0,'1'),('64576734523','Matheus Gomes','mat@yahoo.com','1979-05-27',0,'3209-3453',1,'1'),('65464545656','Leonardo Sousa','leo@hotmail.com','1980-04-19',0,'3222-1233',1,'2'),('75634523409','Melissa Soares','mel@yahoo.com','1960-03-20',0,'3213-4564',0,'2'),('75656745634','Victor Alves','vic@hotmail.com','1985-03-18',0,'3234-5345',0,'2'),('87656734556','José Fernandes de Medeiros','jose@hotmail.com','1984-10-22',0,'3324-3453',0,'1'),('97745645309','Paula Neves','paula@gmail.com','1991-07-26',0,'3234-3245',1,'2'),('97864523434','Jaqueline de Santos Moura','jaq@gmail.com','1989-06-29',0,'3335-4564',0,'1');
+INSERT INTO `morador` VALUES ('12342343234','João Santos','joao@hotmail.com','1987-12-09',0,'3235-2423',0,'1'),
+('21312312321','Ramon Santos','ramon@gmail.com','1988-05-12',0,'3234-2342',0,'1'),
+('21312312323','Augusto Oliveira','aug@hotmail.com','1965-03-12',0,'3213-1231',0,'1'),
+('24234809093','Paula Holanda','paulah@gmail.com','1980-04-08',0,'3242-2342',0,'2'),
+('34655465547','Lucas Holanda','lucas@gmail.com','1978-12-24',0,'3242-3453',1,'1'),
+('35345323424','Amanda Rodrigues','amanda@hotmail.com','1960-01-23',0,'3213-1231',1,'1'),
+('42354365767','Ana Paula Maia','ana@gmail.com','1993-01-15',0,'3209-2983',0,'2'),
+('54312342334','MÃ¡rio Pontes','mario@hotmail.com','1983-09-07',1,'3212-2323',0,'1'),
+('54365423409','Mariana BrandÃ£o','mari@yahoo.com','1988-10-31',0,'3242-4322',0,'2'),
+('54586789700','Carlos Alberto','carlos@gmail.com','1966-11-12',0,'3213-3532',0,'2'),
+('55475567557','Marilia Mendes','mar@gmail.com','1988-12-11',0,'3234-2342',0,'1'),
+('64576734523','Matheus Gomes','mat@yahoo.com','1979-05-27',0,'3209-3453',1,'1'),
+('65464545656','Leonardo Sousa','leo@hotmail.com','1980-04-19',0,'3222-1233',1,'2'),
+('75634523409','Melissa Soares','mel@yahoo.com','1960-03-20',0,'3213-4564',0,'2'),
+('75656745634','Victor Alves','vic@hotmail.com','1985-03-18',0,'3234-5345',0,'2'),
+('87656734556','JosÃ© Fernandes de Medeiros','jose@hotmail.com','1984-10-22',0,'3324-3453',0,'1'),
+('97745645309','Paula Neves','paula@gmail.com','1991-07-26',0,'3234-3245',1,'2'),
+('97864523434','Jaqueline de Santos Moura','jaq@gmail.com','1989-06-29',0,'3335-4564',0,'1');
 /*!40000 ALTER TABLE `morador` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -340,8 +358,8 @@ SET character_set_client = utf8;
  1 AS `ID`,
  1 AS `DATA`,
  1 AS `RECEITAS`,
- 1 AS `SALÁRIOS`,
- 1 AS `SERVIÇOS`,
+ 1 AS `SALÃ�RIOS`,
+ 1 AS `SERVIÃ‡OS`,
  1 AS `DESPESAS`,
  1 AS `RESTO`*/;
 SET character_set_client = @saved_cs_client;
@@ -362,7 +380,7 @@ CREATE TABLE `servico` (
   PRIMARY KEY (`idServico`),
   KEY `fk_Servico_Empresa1_idx` (`Empresa_idEmpresa`),
   CONSTRAINT `fk_Servico_Empresa1` FOREIGN KEY (`Empresa_idEmpresa`) REFERENCES `empresa` (`idEmpresa`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COMMENT='Cada serviço está relacionado a uma empresa. E o somatorio dos valores dos serviços será armazenado na tabela "gasto".';
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COMMENT='Cada serviÃ§o estÃ¡ relacionado a uma empresa. E o somatorio dos valores dos serviÃ§os serÃ¡ armazenado na tabela "gasto".';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -371,7 +389,7 @@ CREATE TABLE `servico` (
 
 LOCK TABLES `servico` WRITE;
 /*!40000 ALTER TABLE `servico` DISABLE KEYS */;
-INSERT INTO `servico` VALUES (1,'MANUTENÇÃO DE ELEVADORES',1000,'2016-01-01',7),(2,'ÁGUA',3500,'2016-01-01',2),(3,'ENERGIA ELÉTRICA',4600,'2016-01-01',3),(4,'TELEFONIA/INTERNET',240,'2016-01-01',4),(5,'REPAROS GERAIS',500,'2016-01-01',6),(6,'REPAROS AR-CONDICIONADO',2600,'2016-01-01',1),(7,'MANUTENÇÃO DE ELEVADORES',1000,'2016-02-01',7),(8,'ÁGUA',3600,'2016-02-01',2),(9,'ENERGIA ELÉTRICA',4000,'2016-02-01',6),(10,'TELEFONIA-INTERNET',240,'2016-02-01',4),(11,'REPAROS GERAIS',500,'2016-02-01',6),(12,'REPAROS AR-CONDICIONADO',2000,'2016-02-01',1),(13,'REPAROS AQUECEDORES',700,'2016-03-01',3),(14,'MANUTENÇÃO DE ELEVADORES',1500,'2016-03-01',7),(15,'ÁGUA',3000,'2016-03-01',2),(16,'ENERGIA ELÉTRICA',3900,'2016-03-01',6),(17,'TELEFONIA/INTERNET',240,'2016-03-01',4),(18,'REPAROS GERAIS',500,'2016-04-01',6),(19,'REPAROS AR-CONDICIONADO',1200,'2016-04-01',1),(31,'ÁGUA',3200,'2016-04-01',2),(32,'ENERGIA ELÉTRICA',3800,'2016-04-01',6),(33,'TELEFONIA/INTERNET',240,'2016-04-01',4);
+INSERT INTO `servico` VALUES (1,'MANUTENÃ‡ÃƒO DE ELEVADORES',1000,'2016-01-01',7),(2,'Ã�GUA',3500,'2016-01-01',2),(3,'ENERGIA ELÃ‰TRICA',4600,'2016-01-01',3),(4,'TELEFONIA/INTERNET',240,'2016-01-01',4),(5,'REPAROS GERAIS',500,'2016-01-01',6),(6,'REPAROS AR-CONDICIONADO',2600,'2016-01-01',1),(7,'MANUTENÃ‡ÃƒO DE ELEVADORES',1000,'2016-02-01',7),(8,'Ã�GUA',3600,'2016-02-01',2),(9,'ENERGIA ELÃ‰TRICA',4000,'2016-02-01',6),(10,'TELEFONIA-INTERNET',240,'2016-02-01',4),(11,'REPAROS GERAIS',500,'2016-02-01',6),(12,'REPAROS AR-CONDICIONADO',2000,'2016-02-01',1),(13,'REPAROS AQUECEDORES',700,'2016-03-01',3),(14,'MANUTENÃ‡ÃƒO DE ELEVADORES',1500,'2016-03-01',7),(15,'Ã�GUA',3000,'2016-03-01',2),(16,'ENERGIA ELÃ‰TRICA',3900,'2016-03-01',6),(17,'TELEFONIA/INTERNET',240,'2016-03-01',4),(18,'REPAROS GERAIS',500,'2016-04-01',6),(19,'REPAROS AR-CONDICIONADO',1200,'2016-04-01',1),(31,'Ã�GUA',3200,'2016-04-01',2),(32,'ENERGIA ELÃ‰TRICA',3800,'2016-04-01',6),(33,'TELEFONIA/INTERNET',240,'2016-04-01',4);
 /*!40000 ALTER TABLE `servico` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -386,7 +404,7 @@ CREATE TABLE `setor` (
   `idSetor` int(11) NOT NULL AUTO_INCREMENT,
   `Setor_Descricao` varchar(45) NOT NULL,
   PRIMARY KEY (`idSetor`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='Setores de serviços do condomínio, ex: Serviços Gerais, Portaria, etc. ';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='Setores de serviÃ§os do condomÃ­nio, ex: ServiÃ§os Gerais, Portaria, etc. ';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -395,7 +413,7 @@ CREATE TABLE `setor` (
 
 LOCK TABLES `setor` WRITE;
 /*!40000 ALTER TABLE `setor` DISABLE KEYS */;
-INSERT INTO `setor` VALUES (1,'Serviços Gerais'),(2,'Portaria'),(3,'Administração'),(4,'Jardineiro');
+INSERT INTO `setor` VALUES (1,'ServiÃ§os Gerais'),(2,'Portaria'),(3,'AdministraÃ§Ã£o'),(4,'Jardineiro');
 /*!40000 ALTER TABLE `setor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -410,7 +428,7 @@ CREATE TABLE `tipo_morador` (
   `idTipo_morador` int(11) NOT NULL AUTO_INCREMENT,
   `Tipo_Descricao` varchar(13) DEFAULT NULL,
   PRIMARY KEY (`idTipo_morador`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Poderá ser locatário ou proprietário.';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='PoderÃ¡ ser locatÃ¡rio ou proprietÃ¡rio.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -419,7 +437,7 @@ CREATE TABLE `tipo_morador` (
 
 LOCK TABLES `tipo_morador` WRITE;
 /*!40000 ALTER TABLE `tipo_morador` DISABLE KEYS */;
-INSERT INTO `tipo_morador` VALUES (1,'proprietário'),(2,'locatário');
+INSERT INTO `tipo_morador` VALUES (1,'proprietÃ¡rio'),(2,'locatÃ¡rio');
 /*!40000 ALTER TABLE `tipo_morador` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -492,7 +510,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `saldomes` AS select `m`.`idMensalidade_Condominio` AS `ID`,`m`.`Mensalidade_Vencimento` AS `DATA`,sum(`m`.`Mensalidade_Valor`) AS `RECEITAS`,`g`.`Gasto_Func` AS `SALÁRIOS`,`g`.`Gasto_Serv` AS `SERVIÇOS`,(`g`.`Gasto_Func` + `g`.`Gasto_Serv`) AS `DESPESAS`,(sum(`m`.`Mensalidade_Valor`) - (`g`.`Gasto_Func` + `g`.`Gasto_Serv`)) AS `RESTO` from (`mensalidade_condominio` `m` join `gasto` `g`) where ((`m`.`Mensalidade_Pago` = 0) and (`m`.`Mensalidade_Vencimento` = `g`.`Gasto_Data`)) group by `m`.`Mensalidade_Vencimento` */;
+/*!50001 VIEW `saldomes` AS select `m`.`idMensalidade_Condominio` AS `ID`,`m`.`Mensalidade_Vencimento` AS `DATA`,sum(`m`.`Mensalidade_Valor`) AS `RECEITAS`,`g`.`Gasto_Func` AS `SALÃ�RIOS`,`g`.`Gasto_Serv` AS `SERVIÃ‡OS`,(`g`.`Gasto_Func` + `g`.`Gasto_Serv`) AS `DESPESAS`,(sum(`m`.`Mensalidade_Valor`) - (`g`.`Gasto_Func` + `g`.`Gasto_Serv`)) AS `RESTO` from (`mensalidade_condominio` `m` join `gasto` `g`) where ((`m`.`Mensalidade_Pago` = 0) and (`m`.`Mensalidade_Vencimento` = `g`.`Gasto_Data`)) group by `m`.`Mensalidade_Vencimento` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
