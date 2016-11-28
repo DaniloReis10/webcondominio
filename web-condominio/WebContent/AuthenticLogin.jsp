@@ -17,27 +17,39 @@
 			.masthead {
   				background-color: @brand-primary;
 			}
+			
+			#menu-wrapper{
+				margin-top: 8%;
+				color: white;
+				text-align: center;
+			}
+			
 		</style>
 		<meta charset="utf-8">
 	</head>
 <body>
-	
-	<div class="row">
-			<div class="col-lg-8 col-lg-offset-4">
-				<h1>Condominio Morada da Lagoa</h1>
+	<div id="wrapper">
+				
+		<div id="menu-wrapper">
+			<div id="menu">
+				<ul>
+					<li><h1 id="titulo">Condominio Morada da lagoa</h1></li>
+					
+				</ul>
 			</div>
-			
-		</div>		
+		</div>
+		
+	</div>		
 		
 		<div class="row">
 			
 			<div class="col-lg-9 col-lg-offset-5">
 			 
 			<form class="form-login" name="frm" action="LoginAuthentication" method="Post" onSubmit="returnValidate()">
-			  <h3 class="form-login-heading">Login</h3>
-
+				<br><br><br>
 			  <div class="control-group">
-			    <label class="control-label" for="inputLogin">Login(Informe CPF)</label>
+			 
+			    <label class="control-label" for="inputLogin"> <br>Login(Informe CPF)</label>
 			    <div class="controls">
 			      <input id="inputLogin" name="login" value="" placeholder="Sem os digitos" required autofocus />
 			    </div>

@@ -112,7 +112,7 @@ public class ServletExibir_e_SalvarDadosCadastrados extends HttpServlet {
 				out.println("<th>Morador</th>");
 				out.println("<th>Email</th>");
 				out.println("<th>Data Nascimento</th>");
-				out.println("<th>√â sindico?</th>");
+				out.println("<th>… sindico?</th>");
 				out.println("<th>Telefone</th>");
 				out.println("<th>Locatario ou Proprietario</th>");
 				out.println("</th>");
@@ -133,13 +133,13 @@ public class ServletExibir_e_SalvarDadosCadastrados extends HttpServlet {
 				out.println("</body>");
 				out.println("</html>");
 			} catch (SQLException e) {
-				out.println("<h1>Erro no cadastro. Volte a p√°gina e tente novamente.</h1>");
+				out.println("<h1>Erro no cadastro. Volte a p·gina e tente novamente.</h1>");
 				e.printStackTrace();
 			}
 
 		} catch (ParseException e1) {
 			PrintWriter out = null;
-			out.println("<h1>Erro no cadastro. Volte a p√°gina e tente novamente.</h1>");
+			out.println("<h1>Erro no cadastro. Volte a p·gina e tente novamente.</h1>");
 			e1.printStackTrace();
 		} catch (NoSuchAlgorithmException e1) {
 			// TODO Auto-generated catch block

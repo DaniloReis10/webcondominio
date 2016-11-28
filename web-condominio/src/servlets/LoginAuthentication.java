@@ -60,9 +60,7 @@ public class LoginAuthentication extends HttpServlet {
 		
 		response.setContentType("text/html");
 		
-		
 		try {
-			
 			//CRIPTOGRAFAR A SENHA
 			MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
 			byte messageDigest[] = algorithm.digest(request.getParameter("Morador_Senha_Hash").getBytes("UTF-8"));
@@ -108,12 +106,87 @@ public class LoginAuthentication extends HttpServlet {
 			if(userName.equals(request.getParameter("login")) && passwrd.equals(senhaDigitada) &&
 					tipoUsuario == 0){
 				
-				out.println("BemVindo "+nomeUsuario+"!");
+				out.println("<html>");
+				out.println("<head>");
+				out.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">");
+				out.println("<title>Dados a serem cadastrados</title>");
+				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/menu-estilo.css\">");
+				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"libs/bootstrap-3.3.7-dist/css/bootstrap.css\">");
+				out.println("<style>");
+				out.println(".row{");
+				out.println("text-align: center;");
+				out.println("margin-top: 5%;");
+				out.println("}");
+				out.println(".masthead {");
+				out.println("background-color: @brand-primary;");
+				out.println("}");
+				out.println("#menu-wrapper{"
+						+ "margin-top: 8%;"
+						+ "color: white;"
+						+ "text-align: center;"
+						+ "}");
+				out.println("</style>");
+				out.println("</head>");
+				out.println("<body>");
+				out.println("<div id=\"wrapper\">");
+				out.println("<div id=\"menu-wrapper\">");
+				out.println("<div id=\"menu\">");
+				out.println("<ul>");
+				out.println("<li><h2>Bem-Vindo(a) "+nomeUsuario+"!<h2></li>");
+				out.println("</ul>");
+				out.println("</div>");
+				out.println("</div>");
+				out.println("</div>");
+				out.println("<div class=\"row\">");
+				out.println("<div class=\"col-lg-8 col-lg-offset-2\">");
+				out.println("<a href=\"JSP_TelaMorador.jsp\" class=\"btn btn-default\" >Clique aqui para ser redirecionado a pagina de funções de MORADOR</a>");
+				out.println("</div>");
+				out.println("</div>");
 				
+				out.println("</body>");
+				out.println("</html>");
 				
 			}else if (userName.equals(request.getParameter("login")) && passwrd.equals(senhaDigitada) &&
 					tipoUsuario == 1){
-				out.println("Bem-Vindo administrador "+nomeUsuario+"!");
+				out.println("<html>");
+				out.println("<head>");
+				out.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">");
+				out.println("<title>Dados a serem cadastrados</title>");
+				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/menu-estilo.css\">");
+				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"libs/bootstrap-3.3.7-dist/css/bootstrap.css\">");
+				out.println("<style>");
+				out.println(".row{");
+				out.println("text-align: center;");
+				out.println("margin-top: 5%;");
+				out.println("}");
+				out.println(".masthead {");
+				out.println("background-color: @brand-primary;");
+				out.println("}");
+				out.println("#menu-wrapper{"
+						+ "margin-top: 8%;"
+						+ "color: white;"
+						+ "text-align: center;"
+						+ "}");
+				out.println("</style>");
+				out.println("</head>");
+				out.println("<body>");
+				out.println("<div id=\"wrapper\">");
+				out.println("<div id=\"menu-wrapper\">");
+				out.println("<div id=\"menu\">");
+				out.println("<ul>");
+				out.println("<li><h2>Bem-Vindo(a) "+nomeUsuario+"!<h2></li>");
+				out.println("</ul>");
+				out.println("</div>");
+				out.println("</div>");
+				out.println("</div>");
+				out.println("<div class=\"row\">");
+				out.println("<div class=\"col-lg-8 col-lg-offset-2\">");
+				out.println("<a href=\"JSP_TelaAdmin.jsp\" class=\"btn btn-default\" >Clique aqui para ser redirecionado a pagina de funções de ADMINISTRADOR</a>");
+				out.println("</div>");
+				out.println("</div>");
+				
+				out.println("</body>");
+				out.println("</html>");
 				
 				
 			}else{
