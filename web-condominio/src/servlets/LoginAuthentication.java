@@ -70,7 +70,7 @@ public class LoginAuthentication extends HttpServlet {
 			for (byte b : messageDigest) {
 			  hexString.append(String.format("%02X", 0xFF & b));
 			}
-			//senha criptografada vai para uma coluna espec�fica no SQL
+			//senha criptografada vai para uma coluna específica no SQL
 			String senhaDigitada = hexString.toString();
 			
 			// Load the database driver
@@ -91,7 +91,7 @@ public class LoginAuthentication extends HttpServlet {
 				tipoUsuario = rs.getInt("Morador_Sindico");
 				nomeUsuario = rs.getString("Morador_Nome");
 				
-				//condi�ao de parada da pesquisa dentro do banco de dados
+				//condiçao de parada da pesquisa dentro do banco de dados
 				if(userName.equals(request.getParameter("login")) && passwrd.equals(senhaDigitada) &&
 				   tipoUsuario == 0 || userName.equals(request.getParameter("login")) && passwrd.equals(senhaDigitada) &&
 				   tipoUsuario == 1){
@@ -104,7 +104,75 @@ public class LoginAuthentication extends HttpServlet {
 			rs.close ();
 			s.close ();
 			
-			//Verifica��o dos dados do Banco de dados com os dados digitados pelos usuarios
+			//Verificação dos dados do Banco de dados com os dados digitados pelos usuarios
+			if(userName.equals(request.getParameter("login")) && passwrd.equals(senhaDigitada) &&
+					tipoUsuario == 0){
+				
+				out.println("BemVindo "+nomeUsuario+"!");
+				
+				
+			}else if (userName.equals(request.getParameter("login")) && passwrd.equals(senhaDigitada) &&
+					tipoUsuario == 1){
+				out.println("Bem-Vindo administrador "+nomeUsuario+"!");
+				
+				
+			}else{
+				
+				out.println("Por favor, informe o login a senha corretos<br>");
+				out.println("Senha digitada: "+senhaDigitada);
+				out.println("<br>"+passwrd);
+				out.println("<a href='AuthenticLogin.jsp'><br>Tente novamente</a>");
+				
+			}
+			
+		}catch(Exception e){
+			System.out.println("Exception is ;"+e);
+			out.println("Erro => "+e);
+			e.printStackTrace();
+		}
+		
+	}
+
+}
+
+
+
+			}
+			//senha criptografada vai para uma coluna específica no SQL
+			String senhaDigitada = hexString.toString();
+			
+			// Load the database driver
+			Class.forName("com.mysql.jdbc.Driver");
+			
+			// Get a Connection to the database
+			connection = DriverManager.getConnection(connectionURL, "root", "123456"); 
+			
+			//Add the data into the database
+			String sql = "select CPF,Morador_Senha_Hash,Morador_Nome,Morador_Sindico from morador";
+			Statement s = connection.createStatement();
+			s.executeQuery (sql);
+			rs = s.getResultSet();
+			
+			while (rs.next ()){
+				userName=rs.getString("CPF");
+				passwrd=rs.getString("Morador_Senha_Hash");
+				tipoUsuario = rs.getInt("Morador_Sindico");
+				nomeUsuario = rs.getString("Morador_Nome");
+				
+				//condiçao de parada da pesquisa dentro do banco de dados
+				if(userName.equals(request.getParameter("login")) && passwrd.equals(senhaDigitada) &&
+				   tipoUsuario == 0 || userName.equals(request.getParameter("login")) && passwrd.equals(senhaDigitada) &&
+				   tipoUsuario == 1){
+					
+					break;
+					
+				}
+				
+			}
+			rs.close ();
+			s.close ();
+			
+			//Verificação dos dados do Banco de dados com os dados digitados pelos usuarios
 			if(userName.equals(request.getParameter("login")) && passwrd.equals(senhaDigitada) &&
 					tipoUsuario == 0){
 				
