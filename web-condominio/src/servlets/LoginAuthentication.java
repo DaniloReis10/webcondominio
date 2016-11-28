@@ -52,6 +52,7 @@ public class LoginAuthentication extends HttpServlet {
 		String userName=new String("");
 		String passwrd=new String("");
 		String nomeUsuario = "";
+		int tipoUsuario = 0;
 		response.setContentType("text/html");
 		try {
 			// Load the database driver
@@ -59,13 +60,14 @@ public class LoginAuthentication extends HttpServlet {
 			// Get a Connection to the database
 			connection = DriverManager.getConnection(connectionURL, "root", "123456"); 
 			//Add the data into the database
-			String sql = "select CPF,senha,Morador_Nome from morador";
+			String sql = "select CPF,senha,Morador_Nome,Morador_Sindico from morador";
 			Statement s = connection.createStatement();
 			s.executeQuery (sql);
 			rs = s.getResultSet();
 			while (rs.next ()){
 				userName=rs.getString("CPF");
 				passwrd=rs.getString("senha");
+				tipoUsuario = rs.getInt("Morador_Sindico");
 				nomeUsuario = rs.getString("Morador_Nome");
 				if(userName.equals(request.getParameter("login")) && passwrd.equals(request.getParameter("senha"))){
 					break;
@@ -78,10 +80,15 @@ public class LoginAuthentication extends HttpServlet {
 			System.out.println("Exception is ;"+e);
 			e.printStackTrace();
 		}
-		if(userName.equals(request.getParameter("login")) && passwrd.equals(request.getParameter("senha"))){
+		if(userName.equals(request.getParameter("login")) && passwrd.equals(request.getParameter("senha")) &&
+				tipoUsuario == 0){
 			out.println("BemVindo "+nomeUsuario+"!");
-		}
-		else{
+			
+		}else if (userName.equals(request.getParameter("login")) && passwrd.equals(request.getParameter("senha")) &&
+				tipoUsuario == 1){
+			out.println("Bem-Vindo administrador "+nomeUsuario+"!");
+			
+		}else{
 			out.println("Por favor, informe o login a senha corretos<br>");
 			
 			out.println("<a href='AuthenticLogin.jsp'><br>Tente novamente</a>");
