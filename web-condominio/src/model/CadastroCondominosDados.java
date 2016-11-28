@@ -10,7 +10,7 @@ public class CadastroCondominosDados {
 	private int Morador_Sindico;
 	private String Morador_Telefone;
 	private String Tipo_morador_idTipo_morador;
-	private String senha;
+	private String Morador_Senha_Hash;
 	
 	public String getTipo_morador_idTipo_morador() {
 		return Tipo_morador_idTipo_morador;
@@ -64,12 +64,12 @@ public class CadastroCondominosDados {
 		Morador_Telefone = morador_Telefone;
 	}
 
-	public String getSenha() {
-		return senha;
+	public String getMorador_Senha_Hash() {
+		return Morador_Senha_Hash;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setMorador_Senha_Hash(String Morador_Senha_Hash) {
+		this.Morador_Senha_Hash = Morador_Senha_Hash;
 	}
 
 	public Date getMorador_DataNascimento() {
