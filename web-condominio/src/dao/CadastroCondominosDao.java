@@ -30,7 +30,7 @@ public class CadastroCondominosDao {
 				+ "Morador_Sindico,"
 				+ "Morador_Telefone,"
 				+ "Tipo_morador_idTipo_morador,"
-				+ "senha) "
+				+ "Morador_Senha_Hash) "
 				+ "values (?,?,?,?,?,?,?,?)";		
 		try {			
 			this.conexao.setAutoCommit(false); // iniciar transaÃ§Ã£o			

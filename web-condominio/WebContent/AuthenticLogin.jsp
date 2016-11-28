@@ -46,7 +46,7 @@
 			  <div class="control-group">
 			    <label class="control-label" for="inputSenha"><br>Senha</label>
 			    <div class="controls">
-			      <input id="inputSenha" type="password" name="senha" value="" placeholder="Digite a sua senha..." required autofocus />
+			      <input id="inputSenha" type="password" name="Morador_Senha_Hash" value="" placeholder="Digite a sua senha..." required autofocus />
 			    </div>
 			  </div>
 

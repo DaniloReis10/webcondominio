@@ -10,6 +10,7 @@ public class CadastroCondominosDados {
 	private int Morador_Sindico;
 	private String Morador_Telefone;
 	private String Tipo_morador_idTipo_morador;
+	private String senha;
 	
 	public String getTipo_morador_idTipo_morador() {
 		return Tipo_morador_idTipo_morador;
@@ -18,8 +19,6 @@ public class CadastroCondominosDados {
 	public void setTipo_morador_idTipo_morador(String tipo_morador_idTipo_morador) {
 		Tipo_morador_idTipo_morador = tipo_morador_idTipo_morador;
 	}
-
-	private String senha;
 	
 	public CadastroCondominosDados(){
 		

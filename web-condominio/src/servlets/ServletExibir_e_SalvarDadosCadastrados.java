@@ -3,6 +3,8 @@ package servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -63,7 +65,17 @@ public class ServletExibir_e_SalvarDadosCadastrados extends HttpServlet {
 			int Morador_Sindico = Integer.parseInt(request.getParameter("Morador_Sindico"));
 			String Morador_Telefone = request.getParameter("Morador_Telefone");
 			String Tipo_morador_idTipo_morador = request.getParameter("Tipo_morador_idTipo_morador");
-			String Morador_Senha = request.getParameter("Morador_Senha");
+			
+			//CRIPTOGRAFAR A SENHA
+			MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
+			byte messageDigest[] = algorithm.digest(request.getParameter("Morador_Senha_Hash").getBytes("UTF-8"));
+			StringBuilder hexString = new StringBuilder();
+			for (byte b : messageDigest) {
+			  hexString.append(String.format("%02X", 0xFF & b));
+			}
+			
+			//senha criptografada vai para uma coluna específica no SQL
+			String Morador_Senha_Hash = hexString.toString();
 
 			CadastroCondominosDados cadastro_condominos = new CadastroCondominosDados();
 			cadastro_condominos.setCPF(CPF);
@@ -73,7 +85,7 @@ public class ServletExibir_e_SalvarDadosCadastrados extends HttpServlet {
 			cadastro_condominos.setMorador_Sindico(Morador_Sindico);
 			cadastro_condominos.setMorador_Telefone(Morador_Telefone);
 			cadastro_condominos.setTipo_morador_idTipo_morador(Tipo_morador_idTipo_morador);
-			cadastro_condominos.setSenha(Morador_Senha);
+			cadastro_condominos.setSenha(Morador_Senha_Hash);
 
 
 			CadastroCondominosDao dao = new CadastroCondominosDao();
@@ -115,7 +127,7 @@ public class ServletExibir_e_SalvarDadosCadastrados extends HttpServlet {
 				out.println("<td>"+Morador_Sindico+"</td>");
 				out.println("<td>"+Morador_Telefone+"</td>");
 				out.println("<td>"+Tipo_morador_idTipo_morador+"</td>");
-				out.println("<td>"+Morador_Senha+"</td>");
+				//out.println("<td>"+Morador_Senha+"</td>");
 				out.println("</tr>");
 				out.println("</tbody>");
 				out.println("</table>");
@@ -129,6 +141,9 @@ public class ServletExibir_e_SalvarDadosCadastrados extends HttpServlet {
 		} catch (ParseException e1) {
 			PrintWriter out = null;
 			out.println("<h1>Erro no cadastro. Volte a página e tente novamente.</h1>");
+			e1.printStackTrace();
+		} catch (NoSuchAlgorithmException e1) {
+			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	}
