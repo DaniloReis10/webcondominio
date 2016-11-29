@@ -23,8 +23,6 @@
 	
 	*/
 	
-	
-	
 %>
 <body>
 
@@ -33,13 +31,12 @@
 <table border="1" class="table table-striped">
   <thead>
     <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th> </th>
+      <th>CPF</th>
+      <th>Morador_Nome</th>
+      <th>Morador_Email</th>
+      <th>Data_Nascimento</th>
+      <th>Morador_Sindico</th>
+      <th>Morador_Telefone</th>
     </tr>
   </thead>
   <tbody>
@@ -50,7 +47,7 @@
       <td>cadastroCondominos ${cadastroCondominos.Data_Nascimento}</td>
       <td>cadastroCondominos ${cadastroCondominos.Morador_Sindico}</td>
       <td>cadastroCondominos ${cadastroCondominos.Morador_Telefone}</td>
-      <td>cadastroCondominos ${cadastroCondominos.senha}</td>
+      <td>cadastroCondominos ${cadastroCondominos.Tipo_morador_idTipo_morador}</td>
     </tr>
   </tbody>
 </table>
