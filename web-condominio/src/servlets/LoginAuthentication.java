@@ -1,18 +1,16 @@
 package servlets;
 
 import java.io.IOException;
-
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import java.io.*;
 import java.util.*;
 import java.security.MessageDigest;
 import java.sql.*;
-
 import javax.servlet.*;
 import javax.servlet.http.*;
 
@@ -68,7 +66,7 @@ public class LoginAuthentication extends HttpServlet {
 			for (byte b : messageDigest) {
 			  hexString.append(String.format("%02X", 0xFF & b));
 			}
-			//senha criptografada vai para uma coluna específica no SQL
+			//senha criptografada vai para uma coluna especÃ­fica no SQL
 			String senhaDigitada = hexString.toString();
 			
 			// Load the database driver
@@ -89,7 +87,7 @@ public class LoginAuthentication extends HttpServlet {
 				tipoUsuario = rs.getInt("Morador_Sindico");
 				nomeUsuario = rs.getString("Morador_Nome");
 				
-				//condiçao de parada da pesquisa dentro do banco de dados
+				//condiÃ§ao de parada da pesquisa dentro do banco de dados
 				if(userName.equals(request.getParameter("login")) && passwrd.equals(senhaDigitada) &&
 				   tipoUsuario == 0 || userName.equals(request.getParameter("login")) && passwrd.equals(senhaDigitada) &&
 				   tipoUsuario == 1){
@@ -102,11 +100,11 @@ public class LoginAuthentication extends HttpServlet {
 			rs.close ();
 			s.close ();
 			
-			//Verificação dos dados do Banco de dados com os dados digitados pelos usuarios
+			//VerificaÃ§Ã£o dos dados do Banco de dados com os dados digitados pelos usuarios
 			if(userName.equals(request.getParameter("login")) && passwrd.equals(senhaDigitada) &&
 					tipoUsuario == 0){
-				
-				out.println("<html>");
+				/*
+				 * out.println("<html>");
 				out.println("<head>");
 				out.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">");
 				out.println("<title>Dados a serem cadastrados</title>");
@@ -139,18 +137,24 @@ public class LoginAuthentication extends HttpServlet {
 				out.println("</div>");
 				out.println("<div class=\"row\">");
 				out.println("<div class=\"col-lg-8 col-lg-offset-2\">");
-				out.println("<a href=\"JSP_TelaMorador.jsp\" class=\"btn btn-default\" >Clique aqui para ser redirecionado a pagina de fun��es de MORADOR</a>");
+				out.println("<a href=\"JSP_TelaMorador.jsp\" class=\"btn btn-default\" >Clique aqui para ser redirecionado a pagina de funções de MORADOR</a>");
 				out.println("</div>");
 				out.println("</div>");
 				out.println("<script type=\"text/javascript\">");
 				out.println("history.forward()");
 				out.println("</script>");
 				out.println("</body>");
-				out.println("</html>");
+				out.println("</html>");*/
+				
+				request.setAttribute("Morador_Sindico", nomeUsuario);
+				
+				RequestDispatcher rd = request.getRequestDispatcher("JSP_TelaMorador.jsp");
+				rd.forward(request, response);
 				
 			}else if (userName.equals(request.getParameter("login")) && passwrd.equals(senhaDigitada) &&
 					tipoUsuario == 1){
-				out.println("<html>");
+				/*
+				 * out.println("<html>");
 				out.println("<head>");
 				out.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">");
 				out.println("<title>Dados a serem cadastrados</title>");
@@ -183,7 +187,7 @@ public class LoginAuthentication extends HttpServlet {
 				out.println("</div>");
 				out.println("<div class=\"row\">");
 				out.println("<div class=\"col-lg-8 col-lg-offset-2\">");
-				out.println("<a href=\"JSP_TelaAdmin.jsp\" class=\"btn btn-default\" >Clique aqui para ser redirecionado a pagina de fun��es de ADMINISTRADOR</a>");
+				out.println("<a href=\"JSP_TelaAdmin.jsp\" class=\"btn btn-default\" >Clique aqui para ser redirecionado a pagina de funções de ADMINISTRADOR</a>");
 				out.println("</div>");
 				out.println("</div>");
 				out.println("<script type=\"text/javascript\">");
@@ -191,13 +195,16 @@ public class LoginAuthentication extends HttpServlet {
 				out.println("</script>");
 				out.println("</body>");
 				out.println("</html>");
+				*/
+				request.setAttribute("Morador_Sindico", nomeUsuario);
 				
+				RequestDispatcher rd = request.getRequestDispatcher("JSP_TelaAdmin.jsp");
+				rd.forward(request, response);
 				
 			}else{
 				
 				out.println("Por favor, informe o login a senha corretos<br>");
-				out.println("Senha digitada: "+senhaDigitada);
-				out.println("<br>"+passwrd);
+				
 				out.println("<a href='AuthenticLogin.jsp'><br>Tente novamente</a>");
 				
 			}
