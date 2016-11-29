@@ -10,6 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -75,7 +76,7 @@ public class ServletExibir_e_SalvarDadosCadastrados extends HttpServlet {
 			  hexString.append(String.format("%02X", 0xFF & b));
 			}
 			
-			//senha criptografada vai para uma coluna específica no SQL
+			//senha criptografada vai para uma coluna especÃ­fica no SQL
 			String Morador_Senha_Hash = hexString.toString();
 
 			CadastroCondominosDados cadastro_condominos = new CadastroCondominosDados();
@@ -94,7 +95,13 @@ public class ServletExibir_e_SalvarDadosCadastrados extends HttpServlet {
 			try {
 				dao.salvar(cadastro_condominos);
 				SimpleDateFormat dataImpressao = new SimpleDateFormat("dd-MM-yyy");
-				out.println("<html>");
+				
+				request.setAttribute("cadastroCondominos", cadastro_condominos);
+				
+				RequestDispatcher rd = request.getRequestDispatcher("cadastroCondominosDadosExibidos.jsp");
+				rd.forward(request, response);
+				
+				/*out.println("<html>");
 				out.println("<head>");
 				out.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">");
 				out.println("<title>Dados a serem cadastrados</title>");
@@ -112,7 +119,7 @@ public class ServletExibir_e_SalvarDadosCadastrados extends HttpServlet {
 				out.println("<th>Morador</th>");
 				out.println("<th>Email</th>");
 				out.println("<th>Data Nascimento</th>");
-				out.println("<th>� sindico?</th>");
+				out.println("<th>É sindico?</th>");
 				out.println("<th>Telefone</th>");
 				out.println("<th>Locatario ou Proprietario</th>");
 				out.println("</th>");
@@ -142,15 +149,16 @@ public class ServletExibir_e_SalvarDadosCadastrados extends HttpServlet {
 				out.println("}");
 				out.println("</script>");
 				out.println("</body>");
-				out.println("</html>");
+				out.println("</html>");*/
+				
 			} catch (SQLException e) {
-				out.println("<h1>Erro no cadastro. Volte a p�gina e tente novamente.</h1>");
+				out.println("<h1>Erro no cadastro. Volte a página e tente novamente.</h1>");
 				e.printStackTrace();
 			}
 
 		} catch (ParseException e1) {
 			PrintWriter out = null;
-			out.println("<h1>Erro no cadastro. Volte a p�gina e tente novamente.</h1>");
+			out.println("<h1>Erro no cadastro. Volte a página e tente novamente.</h1>");
 			e1.printStackTrace();
 		} catch (NoSuchAlgorithmException e1) {
 			// TODO Auto-generated catch block
