@@ -5,7 +5,7 @@
 
 <html>
 	<head>
-		<title>Admin</title>
+		
 		<link rel="stylesheet" type="text/css" href="css/menu-estilo.css">
 		<link rel="stylesheet" type="text/css" href="libs/bootstrap-3.3.7-dist/css/bootstrap.css">
 		
@@ -13,10 +13,5 @@
 	</head>
 	<body>
 		<jsp:include page="menuMorador.html"/>
-		
-		cadastrar usuarios<br>
-		alterar dados usuarios<br>
-		editar cadastro despesa<br>
-		
 	</body>
 </html>

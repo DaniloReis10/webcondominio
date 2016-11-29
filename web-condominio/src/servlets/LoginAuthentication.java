@@ -142,7 +142,9 @@ public class LoginAuthentication extends HttpServlet {
 				out.println("<a href=\"JSP_TelaMorador.jsp\" class=\"btn btn-default\" >Clique aqui para ser redirecionado a pagina de funções de MORADOR</a>");
 				out.println("</div>");
 				out.println("</div>");
-				
+				out.println("<script type=\"text/javascript\">");
+				out.println("history.forward()");
+				out.println("</script>");
 				out.println("</body>");
 				out.println("</html>");
 				
@@ -184,7 +186,9 @@ public class LoginAuthentication extends HttpServlet {
 				out.println("<a href=\"JSP_TelaAdmin.jsp\" class=\"btn btn-default\" >Clique aqui para ser redirecionado a pagina de funções de ADMINISTRADOR</a>");
 				out.println("</div>");
 				out.println("</div>");
-				
+				out.println("<script type=\"text/javascript\">");
+				out.println("history.forward()");
+				out.println("</script>");
 				out.println("</body>");
 				out.println("</html>");
 				

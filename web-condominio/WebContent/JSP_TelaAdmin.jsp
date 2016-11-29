@@ -14,9 +14,5 @@
 	<body>
 		<jsp:include page="menuAdmin.html"/>
 		
-		cadastrar usuarios<br>
-		alterar dados usuarios<br>
-		editar cadastro despesa<br>
-		
 	</body>
 </html>

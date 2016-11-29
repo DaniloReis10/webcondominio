@@ -130,6 +130,17 @@ public class ServletExibir_e_SalvarDadosCadastrados extends HttpServlet {
 				out.println("</tr>");
 				out.println("</tbody>");
 				out.println("</table>");
+				out.println("<div class=\"control-group\">"
+				+ "<div class=\"controls\">"
+				+ "<input id=\"voltarTelaAdmin\" onclick=\"telaAdmin()\" class=\"btn\" type=\"submit\" value=\"Voltar Tela Admin\" name=\"voltarTelaAdmin\" />"
+				+ "<input id=\"cadastrarNovoMorador\" href=\"http://localhost:8080/web-condominio/cadastroCondominos.html\" class=\"btn\" type=\"submit\" value=\"Cadastrar Outro Morador\" name=\"cadastrarMorador\" />"
+				+ "</div>"
+				+ "</div>");
+				out.println("<script type=\"text/javascript\">");
+				out.println("function telaAdmin(){");
+				out.println("window.location.href = 'http://localhost:8080/web-condominio/JSP_TelaAdmin.jsp';");
+				out.println("}");
+				out.println("</script>");
 				out.println("</body>");
 				out.println("</html>");
 			} catch (SQLException e) {
