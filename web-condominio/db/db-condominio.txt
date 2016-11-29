@@ -18,20 +18,19 @@ CREATE SCHEMA IF NOT EXISTS `db_condominio` DEFAULT CHARACTER SET utf8 ;
 USE `db_condominio` ;
 
 -- -----------------------------------------------------
--- Table `db_condominio`.`tbl_condonimo`
+-- Table `db_condominio`.`morador`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db_condominio`.`tbl_condonimo` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(45) NULL DEFAULT NULL,
-  `cpf` VARCHAR(45) NOT NULL,
-  `data_nascimento` DATE NOT NULL,
-  `data_cadastro` DATE NOT NULL,
-  `ativo` TINYINT(1) NOT NULL,
-  `email` VARCHAR(45) NOT NULL,
-  `senha` VARCHAR(100) NOT NULL,
-  `fone_celular` VARCHAR(45) NOT NULL,
-  `fone_residencial` VARCHAR(45) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`))
+CREATE TABLE IF NOT EXISTS `db_condominio`.`morador` (
+  `CPF` VARCHAR(45) NOT NULL,
+  `Morador_Nome` VARCHAR(45) NULL DEFAULT NULL,
+  `Morador_Email` varchar(45) DEFAULT NULL,
+  `Morador_DataNascimento` DATE NOT NULL,
+  `Morador_Sindico` tinyint(1) NOT NULL DEFAULT '0',
+  `Tipo_morador_idTipo_morador` VARCHAR(45) NOT NULL,
+  `Morador_Telefone` varchar(9) DEFAULT NULL,
+  `Tipo_morador_idTipo_morador` varchar(12) NOT NULL,
+  `Morador_Senha_Hash` varchar(255) NOT NULL,
+  PRIMARY KEY (`CPF`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
