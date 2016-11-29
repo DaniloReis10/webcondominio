@@ -4,6 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
+	<!-- status pagamentos, relatorios,  -->
 	<head>
 		
 		<link rel="stylesheet" type="text/css" href="css/menu-estilo.css">
@@ -13,5 +14,6 @@
 	</head>
 	<body>
 		<jsp:include page="menuMorador.html"/>
+		
 	</body>
 </html>
