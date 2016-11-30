@@ -21,9 +21,10 @@ public class CadastroCondominosDao {
 		this.conexao = ConnectionFactory.getConnection();
 	}
 	
+	//O Servlet que faz esta operação chama-se "ServletExibir_e_SalvarDadosCadastrados
 	public void salvar(CadastroCondominosDados cadastro_condominos) throws SQLException{		
 		PreparedStatement ps = null;		
-		String sql = "INSERT INTO morador(CPF,"
+		String sql = "INSERT INTO tbl_morador(CPF,"
 				+ "Morador_Nome,"
 				+ "Morador_Email,"
 				+ "Morador_DataNascimento,"
@@ -33,7 +34,7 @@ public class CadastroCondominosDao {
 				+ "Morador_Senha_Hash) "
 				+ "values (?,?,?,?,?,?,?,?)";		
 		try {			
-			this.conexao.setAutoCommit(false); // iniciar transaÃƒÂ§ÃƒÂ£o			
+			this.conexao.setAutoCommit(false); // iniciar transaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o			
 			ps = this.conexao.prepareStatement(sql);
 			ps.setString(1,cadastro_condominos.getCPF());
 			ps.setString(2,cadastro_condominos.getMorador_Nome());
@@ -66,16 +67,15 @@ public class CadastroCondominosDao {
 	
 	public void alterar(CadastroCondominosDados cadastro_condominos) throws SQLException {		
 		PreparedStatement ps = null;		
-		String sql = "UPDATE morador SET CPF=?,"
+		String sql = "UPDATE tbl_morador SET CPF=?,"
 				+ "Morador_Nome=?,"
 				+ "Morador_Email=?,"
 				+ "Morador_DataNascimento=?"
 				+ "Morador_Sindico=?"
 				+ "Morador_Telefone=?"
-				+ "Tipo_morador_idTipo_morador=?"
-				+ "senha=? WHERE id=?";		
+				+ "Tipo_morador_idTipo_morador=?";		
 		try {			
-			this.conexao.setAutoCommit(false); // iniciar transaÃƒÂ§ÃƒÂ£o			
+			this.conexao.setAutoCommit(false); // iniciar transaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o			
 			ps = this.conexao.prepareStatement(sql);
 			
 			ps.setString(1, cadastro_condominos.getCPF());
@@ -85,7 +85,7 @@ public class CadastroCondominosDao {
 			ps.setInt(5, cadastro_condominos.getMorador_Sindico());
 			ps.setString(6, cadastro_condominos.getMorador_Telefone());
 			ps.setString(7,cadastro_condominos.getTipo_morador_idTipo_morador());
-			ps.setString(8,cadastro_condominos.getMorador_Senha_Hash());
+			
 			
 			ps.execute();
 			
@@ -107,9 +107,9 @@ public class CadastroCondominosDao {
 	
 	public void excluir(CadastroCondominosDados cadastro_condominos) throws SQLException{		
 		PreparedStatement ps = null;		
-		String sql = "DELETE FROM morador WHERE CPF=?";		
+		String sql = "DELETE FROM tbl_morador WHERE CPF=?";		
 		try {			
-			this.conexao.setAutoCommit(false); // iniciar transaÃƒÂ§ÃƒÂ£o			
+			this.conexao.setAutoCommit(false); // iniciar transaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o			
 			ps = this.conexao.prepareStatement(sql);
 			
 			ps.setString(1, cadastro_condominos.getCPF());
@@ -131,7 +131,7 @@ public class CadastroCondominosDao {
 		}
 	}
 	
-	public List<CadastroCondominosDados> listar() throws SQLException {
+	public List<CadastroCondominosDados> listarDadosMoradores() throws SQLException {
 		
 		Statement myStmt = null;
 		
@@ -140,7 +140,7 @@ public class CadastroCondominosDao {
 
 			myStmt = this.conexao.createStatement();
 
-			String sql = "SELECT * FROM morador";
+			String sql = "SELECT * FROM tbl_morador";
 			ResultSet rs = myStmt.executeQuery(sql);
 
 			while (rs.next()) {
@@ -148,14 +148,12 @@ public class CadastroCondominosDao {
 				CadastroCondominosDados cadastro_condominos = new CadastroCondominosDados();
 
 				cadastro_condominos.setCPF(rs.getString("CPF"));
-				cadastro_condominos.setMorador_Nome("Morador_Nome");
-				cadastro_condominos.setCPF(rs.getString("Morador_Email"));
-				cadastro_condominos.setCPF(rs.getString("Morador_DataNascimento"));
-				cadastro_condominos.setCPF(rs.getString("Morador_Sindico"));
-				cadastro_condominos.setCPF(rs.getString("Morador_Telefone"));
-				cadastro_condominos.setCPF(rs.getString("senha"));
-				cadastro_condominos.setCPF(rs.getString("Morador_Adimplente"));
-				cadastro_condominos.setCPF(rs.getString("Tipo_morador_idTipo_morador"));
+				cadastro_condominos.setMorador_Nome(rs.getString("Morador_Nome"));
+				cadastro_condominos.setMorador_Email(rs.getString("Morador_Email"));
+				cadastro_condominos.setMorador_DataNascimento(rs.getDate("Morador_DataNascimento"));
+				cadastro_condominos.setMorador_Sindico(rs.getInt("Morador_Sindico"));
+				cadastro_condominos.setMorador_Telefone(rs.getString("Morador_Telefone"));
+				cadastro_condominos.setTipo_morador_idTipo_morador(rs.getString("Tipo_morador_idTipo_morador"));
 
 				lista.add(cadastro_condominos);
 			}
@@ -170,20 +168,6 @@ public class CadastroCondominosDao {
 		
 	}
 	
-	public Despesa despesaPorId(Integer id) throws SQLException {
-		
-		DespesaDao dao = new DespesaDao();
-		
-		List<Despesa> lista = dao.listar();
-		
-		for (Despesa despesa : lista) {
-			if(despesa.getId().equals(id)){
-				return despesa;
-			}
-		}
-		
-		return null;
-	}
 	
 }
 
