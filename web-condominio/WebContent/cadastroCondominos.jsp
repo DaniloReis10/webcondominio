@@ -1,7 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+   <%Object obj = request.getSession().getAttribute("nomeUsuario"); %>
 <!DOCTYPE html>
 <html>
 <head>
-<title>cadastroCondominos</title>
+<title>Admin - cadastroCondominos</title>
 <link rel="stylesheet" type="text/css" href="css/menu-estilo.css">
 <link rel="stylesheet" type="text/css" href="libs/bootstrap-3.3.7-dist/css/bootstrap.css">
 
@@ -17,18 +20,22 @@
 }
 </style>
 </head>
+
 <body>
+
+<jsp:include page="JSP_TelaAdmin.jsp"></jsp:include>
 	<div class="row">
 		<div class="col-lg-9 col-lg-offset-5">
 			<div class="container">
 				<form name="cadastroCondominos" method="POST"
 					action="ServletExibir_e_SalvarDadosCadastrados"
 					class="form-horizontal">
+					
 					<div class="control-group">
 						<label class="control-label" for="inputCPF">CPF</label>
 						<div class="controls">
 							<input id="inputCPF" type="text" name="CPF"
-								placeholder="Somente n�meros" pattern="[0-9]{11}" required
+								placeholder="Somente números" pattern="[0-9]{11}" required
 								autofocus />
 						</div>
 					</div>
@@ -59,7 +66,7 @@
 					</div>
 
 					<div class="control-group">
-						<label class="control-label" for="inputMorador_Sindico">ɉ sindico? (0-NÃO/1-SIM)</label>
+						<label class="control-label" for="inputMorador_Sindico">É sindico? (0-NÃO/1-SIM)</label>
 						<div class="controls">
 							<select class="selectpicker" id="inputMorador_Sindico"
 								name="Morador_Sindico">
