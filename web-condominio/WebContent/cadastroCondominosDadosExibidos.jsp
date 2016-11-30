@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
 <%@ page import="model.CadastroCondominosDados" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -32,46 +34,30 @@
   <thead>
     <tr>
       <th>CPF</th>
-      <th>Morador_Nome</th>
-      <th>Morador_Email</th>
-      <th>Data_Nascimento</th>
-      <th>Morador_Sindico</th>
-      <th>Morador_Telefone</th>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Data de nascimento</th>
+      <th>É Sindico</th>
+      <th>Telefone</th>
+      <th>Tipo de Morador</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>cadastroCondominos ${cadastroCondominos.CPF}</td>
-      <td>cadastroCondominos ${cadastroCondominos.Morador_Nome}</td>
-      <td>cadastroCondominos ${cadastroCondominos.Morador_Email}</td>
-      <td>cadastroCondominos ${cadastroCondominos.Data_Nascimento}</td>
-      <td>cadastroCondominos ${cadastroCondominos.Morador_Sindico}</td>
-      <td>cadastroCondominos ${cadastroCondominos.Morador_Telefone}</td>
-      <td>cadastroCondominos ${cadastroCondominos.Tipo_morador_idTipo_morador}</td>
+      <td>${param.CPF}</td>
+      <td>${param.Morador_Nome}</td>
+      <td>${param.Morador_Email}</td>
+      <td>${param.Morador_DataNascimento}</td>
+      <td>${param.Morador_Sindico}</td>
+      <td>${param.Morador_Telefone}</td>
+      <td>${param.Tipo_morador_idTipo_morador}</td>
     </tr>
   </tbody>
 </table>
 <br>
 
-<input id="concluirCadastro" class="btn" type="submit" onclick="botaoConcluirCadastro" value="Concluir Cadastro" name="limparCampos"/>
-<input id="alterarDados" class="btn" type="button" onclick="alterarDados()" value="Alterar dados" name="alterarDados" action="cadastroCondominos.html" />
+<a class="btn btn-primary btn-lg" href="JSP_TelaAdmin.jsp" role="button">Voltar a tela de Admin</a>
+<a class="btn btn-primary btn-lg" href="cadastroCondominos.jsp" role="button">Alterar Dados</a>
 
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-
-		<script src="js/bootstrap.min.js"></script>
-		<script type="text/javascript">
-			function alterarDados(){
-				windows.history.back();
-			}
-			
-			function botaoConcluirCadastro(){
-				if (confirm('Concluir cadastro?')) {
-					alert('Cadastro realizado com sucesso');
-				} else {
-					
-				}
-			}
-		
-		</script>
 </body>
 </html>
