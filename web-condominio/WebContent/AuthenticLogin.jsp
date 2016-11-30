@@ -1,3 +1,6 @@
+<!-- Página de Login. Os dados digitados são redirecionados para
+a servlet de nome "AuthenticLogin" -->
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -48,13 +51,15 @@
 			<form class="form-login" name="frm" action="LoginAuthentication" method="Post" onSubmit="returnValidate()">
 				<br><br><br>
 			  <div class="control-group">
-			 
+			 	
+			 	<!-- CAMPO LOGIN -->
 			    <label class="control-label" for="inputLogin"> <br>Login(Informe CPF)</label>
 			    <div class="controls">
 			      <input id="inputLogin" name="login" value="" placeholder="Sem os digitos" required autofocus />
 			    </div>
 			  </div>
 			  
+			  <!-- CAMPO SENHA -->
 			  <div class="control-group">
 			    <label class="control-label" for="inputSenha"><br>Senha</label>
 			    <div class="controls">
@@ -75,7 +80,9 @@
 			  
 			</form>
 			<br>
- 			<a href="cadastroCondominos.html" class="btn btn-default" >Novo Morador?<br>Realize seu cadastro</a>
+			
+			<!-- CAMPO DE REDIRECIONAMENTO DE CADASTRO -->
+ 			<!--  <a href="cadastroCondominos.html" class="btn btn-default" >Novo Morador?<br>Realize seu cadastro</a>-->
 			
 		</div>
 	</div>
