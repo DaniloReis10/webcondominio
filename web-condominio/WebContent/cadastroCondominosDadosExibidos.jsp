@@ -3,13 +3,23 @@
     
 <%@ page import="model.CadastroCondominosDados" %>
 
+<%Object obj = request.getSession().getAttribute("nomeUsuario"); %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<jsp:include page="JSP_TelaAdmin.jsp"></jsp:include>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Dados a serem cadastrados</title>
 <link rel="stylesheet" type="text/css" href="css/menu-estilo.css">
 <link rel="stylesheet" type="text/css" href="libs/bootstrap-3.3.7-dist/css/bootstrap.css">
+<style type="text/css">
+h1{
+
+text-align: center;
+
+}
+</style>
 </head>
 <%
 	
@@ -28,7 +38,7 @@
 %>
 <body>
 
-<h1>Dados cadastrados:</h1>
+<h1>Morador cadastrado com sucesso!!!</h1>
 <br><br>	
 <table border="1" class="table table-striped">
   <thead>
@@ -55,9 +65,6 @@
   </tbody>
 </table>
 <br>
-
-<a class="btn btn-primary btn-lg" href="JSP_TelaAdmin.jsp" role="button">Voltar a tela de Admin</a>
-<a class="btn btn-primary btn-lg" href="cadastroCondominos.jsp" role="button">Alterar Dados</a>
 
 </body>
 </html>
