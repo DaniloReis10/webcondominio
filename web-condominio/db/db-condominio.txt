@@ -26,7 +26,6 @@ CREATE TABLE IF NOT EXISTS `db_condominio`.`morador` (
   `Morador_Email` varchar(45) DEFAULT NULL,
   `Morador_DataNascimento` DATE NOT NULL,
   `Morador_Sindico` tinyint(1) NOT NULL DEFAULT '0',
-  `Tipo_morador_idTipo_morador` VARCHAR(45) NOT NULL,
   `Morador_Telefone` varchar(9) DEFAULT NULL,
   `Tipo_morador_idTipo_morador` varchar(12) NOT NULL,
   `Morador_Senha_Hash` varchar(255) NOT NULL,
