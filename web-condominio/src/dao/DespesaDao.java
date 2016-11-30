@@ -13,13 +13,29 @@ import model.Fornecedor;
 import model.Periodicidade;
 import model.TipoDespesa;
 
+/*
+ * Classe responsável pelo acesso ao DB do Modelo de Despesa.
+ * 
+ * @author Caio Ponte
+ * */
 public class DespesaDao {
-private Connection conexao;
 	
+	private Connection conexao;
+	
+	/*
+	 * Construtor
+	 * */
 	public DespesaDao() {
 		this.conexao = ConnectionFactory.getConnection();
 	}
 	
+	/*
+	 * Método salvar despesa: todos os atributos são relevantes
+	 * 
+	 * @param despesa despesa com seus atributos preenchidos
+	 * 
+	 * @return um <code>integer</code> especificando o id no DB da última despesa inserida
+	 * */
 	public Integer salvar(Despesa despesa) throws SQLException{		
 		PreparedStatement ps = null;		
 		String sql = "INSERT INTO tbl_despesa(nome,tbl_tipo_despesa_id,tbl_fornecedor_id,tbl_periodicidade_id) values (?,?,?,?)";		
@@ -53,6 +69,11 @@ private Connection conexao;
 		}
 	}
 	
+	/*
+	 * Método alterar despesa: todos os atributos são relevantes
+	 * 
+	 * @param despesa despesa com seus atributos preenchidos
+	 * */
 	public void alterar(Despesa despesa) throws SQLException {		
 		PreparedStatement ps = null;		
 		String sql = "UPDATE tbl_despesa SET nome=?,tbl_tipo_despesa_id=?,tbl_fornecedor_id=?,tbl_periodicidade_id=? WHERE id=?";		
@@ -84,6 +105,11 @@ private Connection conexao;
 		}
 	}
 	
+	/*
+	 * Método excluir despesa: apenas o id é relevante
+	 * 
+	 * @param despesa despesa com o id da despesa que vai ser deletada
+	 * */
 	public void excluir(Despesa despesa) throws SQLException{		
 		PreparedStatement ps = null;		
 		String sql = "DELETE FROM tbl_despesa WHERE id=?";		
@@ -110,6 +136,11 @@ private Connection conexao;
 		}
 	}
 	
+	/*
+	 * Método listar despesas
+	 * 
+	 * @return um lista de despesa com todas as despesas cadastradas no DB
+	 * */
 	public List<Despesa> listar() throws SQLException {
 		
 		Statement myStmt = null;
@@ -154,10 +185,15 @@ private Connection conexao;
 				 myStmt.close();
 			 }
 		}
-		
-		
 	}
 	
+	/*
+	 * Método que retorna um objeto de despesa com um determinado id
+	 * 
+	 * @param um inteiro especificando o id da despesa
+	 * 
+	 * @return um objeto despesa com o id especificado
+	 * */
 	public Despesa despesaPorId(Integer id) throws SQLException {
 		
 		DespesaDao dao = new DespesaDao();

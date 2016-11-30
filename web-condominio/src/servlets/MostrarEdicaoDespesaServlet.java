@@ -20,6 +20,13 @@ import model.Fornecedor;
 import model.Periodicidade;
 import model.TipoDespesa;
 
+/*
+ * Classe responsável por repassar os dados da despesa a ser edita para a view que
+ * irá montar a tela de edição da despesa selecionada
+ * 
+ * @author Caio Ponte
+ * 
+ * */
 @WebServlet(value="/tela-edicao-despesa")
 public class MostrarEdicaoDespesaServlet extends HttpServlet {
 

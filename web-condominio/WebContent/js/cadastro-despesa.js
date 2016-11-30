@@ -32,7 +32,7 @@ var onEditClick = function(e) {
 }
 
 var onDeleteClick = function(e) {
-	var result = confirm("Want to delete?");
+	var result = confirm("Realmente deseja excluir o item selecionado?");
 	if (result) {
 		
 	    var idDespesa = e.currentTarget.id;

@@ -18,17 +18,17 @@ CREATE SCHEMA IF NOT EXISTS `db_condominio` DEFAULT CHARACTER SET utf8 ;
 USE `db_condominio` ;
 
 -- -----------------------------------------------------
--- Table `db_condominio`.`morador`
+-- Table `db_condominio`.`tbl_morador`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db_condominio`.`morador` (
+CREATE TABLE IF NOT EXISTS `db_condominio`.`tbl_morador` (
   `CPF` VARCHAR(45) NOT NULL,
   `Morador_Nome` VARCHAR(45) NULL DEFAULT NULL,
-  `Morador_Email` varchar(45) DEFAULT NULL,
+  `Morador_Email` VARCHAR(45) NOT NULL,
   `Morador_DataNascimento` DATE NOT NULL,
-  `Morador_Sindico` tinyint(1) NOT NULL DEFAULT '0',
-  `Morador_Telefone` varchar(9) DEFAULT NULL,
-  `Tipo_morador_idTipo_morador` varchar(12) NOT NULL,
-  `Morador_Senha_Hash` varchar(255) NOT NULL,
+  `Morador_Sindico` TINYINT(1) NOT NULL,
+  `Morador_Telefone` VARCHAR(45) NOT NULL,
+  `Tipo_Morador_idTipo_morador` VARCHAR(45) NOT NULL,
+  `Morador_Senha_Hash` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`CPF`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -140,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `db_condominio`.`tbl_funcionario` (
   `fone_celular` VARCHAR(45) NOT NULL,
   `fone_residencial` VARCHAR(45) NULL DEFAULT NULL,
   `tbl_endereco_id` INT(11) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`, `tbl_endereco_id`),
   UNIQUE INDEX `cpf_UNIQUE` (`cpf` ASC),
   INDEX `fk_tbl_funcionario_tbl_endereco1_idx` (`tbl_endereco_id` ASC),
   CONSTRAINT `fk_tbl_funcionario_tbl_endereco1`
@@ -179,12 +179,12 @@ CREATE TABLE IF NOT EXISTS `db_condominio`.`tbl_receita` (
   `valor_boleto` FLOAT NOT NULL,
   `valor_pago` FLOAT NOT NULL,
   `data` DATE NOT NULL,
-  `tbl_condonimo_id` INT(11) NOT NULL,
+  `tbl_morador_cpf` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_tbl_receita_tbl_condonimo1_idx` (`tbl_condonimo_id` ASC),
-  CONSTRAINT `fk_tbl_receita_tbl_condonimo1`
-    FOREIGN KEY (`tbl_condonimo_id`)
-    REFERENCES `db_condominio`.`tbl_condonimo` (`id`)
+  INDEX `fk_tbl_receita_tbl_morador1_idx` (`tbl_morador_cpf` ASC),
+  CONSTRAINT `fk_tbl_receita_tbl_morador1`
+    FOREIGN KEY (`tbl_morador_cpf`)
+    REFERENCES `db_condominio`.`tbl_morador` (`CPF`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB

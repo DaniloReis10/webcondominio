@@ -14,6 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 import dao.DespesaDao;
 import model.Despesa;
 
+/*
+ * Classe respnsável por passar os dados de despesa para a a view que irá montar a 
+ * tela de lançamento de despesa.
+ * 
+ * @author Caio Ponte
+ * 
+ * */
 @WebServlet(value="/lancamento")
 public class LancamentoDespesaServlet extends HttpServlet {
 	

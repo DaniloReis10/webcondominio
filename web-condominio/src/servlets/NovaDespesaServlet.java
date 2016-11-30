@@ -18,6 +18,13 @@ import model.Fornecedor;
 import model.Periodicidade;
 import model.TipoDespesa;
 
+/*
+ * Classe que busca dados importantes para a montagem do formulário de nova despesa,
+ * como: fornecedor, periodicidades e tipos de despesas cadastrados.
+ * 
+ * @author Caio Ponte
+ * 
+ * */
 @WebServlet(value="/nova-despesa")
 public class NovaDespesaServlet extends HttpServlet {
 	

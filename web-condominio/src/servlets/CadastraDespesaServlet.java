@@ -16,6 +16,12 @@ import model.Fornecedor;
 import model.Periodicidade;
 import model.TipoDespesa;
 
+/*
+ * Classe responsável por tratar a inserção de novas despesas
+ * 
+ * @author Caio Ponte
+ * 
+ * */
 @WebServlet(value="/cadastrar-despesa")
 public class CadastraDespesaServlet extends HttpServlet {
 
@@ -23,7 +29,8 @@ public class CadastraDespesaServlet extends HttpServlet {
 	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+			
+			// Pega todos os dados importantes
 			String nome = request.getParameter("nomeDespesa");
 			Integer idFornecedor = Integer.parseInt(request.getParameter("idFornecedor"));
 			Integer idTipo = Integer.parseInt(request.getParameter("idTipo"));
@@ -35,6 +42,7 @@ public class CadastraDespesaServlet extends HttpServlet {
 			System.out.println(idPeriodicidade);
 			System.out.println();
 			
+			// Cria os objetos Model
 			Despesa despesa = new Despesa();
 			Fornecedor fornecedor = new Fornecedor();
 			TipoDespesa tipo = new TipoDespesa();
@@ -49,16 +57,19 @@ public class CadastraDespesaServlet extends HttpServlet {
 			despesa.setTipo(tipo);
 			despesa.setPeriodicidade(periodicidade);
 			
+			// Cria objeto de acesso ao banco de despesa
 			DespesaDao dao = new DespesaDao();
 			
 			try {
-				dao.salvar(despesa);
+				dao.salvar(despesa); // salva a despesa
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 			
+			// repassa a despesa salva
 			request.setAttribute("despesa", despesa);
 			
+			// redireciona para um view de cadastro com sucesso
 			RequestDispatcher rd = request.getRequestDispatcher("nova-despesa-sucesso.jsp");
 			rd.forward(request, response);
 	}

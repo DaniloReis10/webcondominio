@@ -14,6 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 import dao.DespesaDao;
 import model.Despesa;
 
+/*
+ * Classe responsável por Manter as Despesas, ou seja, exibe as despesas já cadastradas,
+ * exibe as opções de editar, excluir e criar nova Despesa.
+ * 
+ * @author Caio Ponte
+ * 
+ * */
 @WebServlet(value="/despesa")
 public class ManterDespesaServlet extends HttpServlet {
 
@@ -24,7 +31,9 @@ public class ManterDespesaServlet extends HttpServlet {
 		
 		try {
 			DespesaDao dao = new DespesaDao();
-			List<Despesa> despesas = dao.listar();
+			List<Despesa> despesas = dao.listar(); // listar todas as despesas
+			
+			// redecionar para a view responsável mostrar "manter despesa"
 			RequestDispatcher rd = request.getRequestDispatcher("cadastro-despesa.jsp");
 			request.setAttribute("despesas", despesas);
 			rd.forward(request, response);
