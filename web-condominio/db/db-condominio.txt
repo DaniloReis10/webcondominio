@@ -20,7 +20,7 @@ USE `db_condominio` ;
 -- -----------------------------------------------------
 -- Table `db_condominio`.`morador`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db_condominio`.`tbl_morador` (
+CREATE TABLE IF NOT EXISTS `db_condominio`.`morador` (
   `CPF` VARCHAR(45) NOT NULL,
   `Morador_Nome` VARCHAR(45) NULL DEFAULT NULL,
   `Morador_Email` VARCHAR(45) NOT NULL,
