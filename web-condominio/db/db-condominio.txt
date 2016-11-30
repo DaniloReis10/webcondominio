@@ -33,6 +33,22 @@ CREATE TABLE IF NOT EXISTS `db_condominio`.`morador` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
+-- -----------------------------------------------------
+-- Table `db_condominio`.`tbl_statusPagamento`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `db_condominio`.`tbl_statusPagamento` (
+  `idStatusPag` CHAR(1) NOT NULL AUTO_INCREMENT,
+  `fk_CPF` VARCHAR(45) NOT NULL,
+  `dataPagamento` DATE NOT NULL,
+  `pagEfetuado` CHAR (1) NOT NULL,
+  `urlBoleto` VARCHAR (255) NOT NULL,
+  PRIMARY KEY (`idStatusPag`)
+  FOREIGN KEY (`fk_CPF`)
+    REFERENCES `db_condominio`.`morador` (`CPF`)
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
 
 -- -----------------------------------------------------
 -- Table `db_condominio`.`tbl_endereco`
