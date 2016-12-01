@@ -1,6 +1,6 @@
-/**Este Servlet é responsável por salvar as informações dos moradores 
- * que são cadastradas e depois redirecionar estas informações para serem
- * exibidas por uma página jsp de nome "cadastroCondominosDadosExibidos.jsp"*/
+/**Este Servlet Ã© responsÃ¡vel por salvar as informaÃ§Ãµes dos moradores 
+ * que sÃ£o cadastradas e depois redirecionar estas informaÃ§Ãµes para serem
+ * exibidas por uma pÃ¡gina jsp de nome "cadastroCondominosDadosExibidos.jsp"*/
 
 package servlets;
 
@@ -22,7 +22,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.CadastroCondominosDados;
+import model.CadastroCondominosFinanceiro;
 import dao.CadastroCondominosDao;
+import dao.Dao_CadastroCondominosFinanceiro;
 
 /**
  * Servlet implementation class SalvarDadosCadastrados
@@ -58,10 +60,11 @@ public class ServletExibir_e_SalvarDadosCadastrados extends HttpServlet {
 		try{
 
 			PrintWriter out = response.getWriter();
+			//DADOS DA Pagina "cadastroMoradores.jsp (Dados Pessoais Moradores)"
 			String CPF = request.getParameter("CPF");
 			String Morador_Nome = request.getParameter("Morador_Nome");
 			String Morador_Email = request.getParameter("Morador_Email");
-
+			
 			//request.setAttribute("morador_DataNascimento", request.getParameter("Morador_DataNascimento"));
 			//Conversao do formato da data digitada pelo usuario
 			SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
@@ -80,9 +83,9 @@ public class ServletExibir_e_SalvarDadosCadastrados extends HttpServlet {
 			  hexString.append(String.format("%02X", 0xFF & b));
 			}
 			
-			//senha criptografada vai para uma coluna especÃƒÂ­fica no SQL
+			//senha criptografada vai para uma coluna especÃƒÆ’Ã‚Â­fica no SQL
 			String Morador_Senha_Hash = hexString.toString();
-
+			
 			CadastroCondominosDados cadastro_condominos = new CadastroCondominosDados();
 			cadastro_condominos.setCPF(CPF);
 			cadastro_condominos.setMorador_Nome(Morador_Nome);
@@ -93,11 +96,11 @@ public class ServletExibir_e_SalvarDadosCadastrados extends HttpServlet {
 			cadastro_condominos.setTipo_morador_idTipo_morador(Tipo_morador_idTipo_morador);
 			cadastro_condominos.setMorador_Senha_Hash(Morador_Senha_Hash);
 
-
 			CadastroCondominosDao dao = new CadastroCondominosDao();
-
+			
 			try {
 				dao.salvar(cadastro_condominos);
+				
 				SimpleDateFormat dataImpressao = new SimpleDateFormat("dd-MM-yyy");
 				
 				request.setAttribute("cadastro_condominos", cadastro_condominos);
