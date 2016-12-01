@@ -19,6 +19,13 @@ import dao.LancamentoDao;
 import model.Despesa;
 import model.Lancamento;
 
+/*
+ * Classe responsável por realizar o lançamento das despesas que foram entradas
+ * na tela de lançamento de despesa.
+ * 
+ * @author Caio Ponte
+ * 
+ * */
 @WebServlet(value="/realizar-lancamento")
 public class RealizarLancamentoServlet extends HttpServlet {
 	
@@ -40,6 +47,7 @@ public class RealizarLancamentoServlet extends HttpServlet {
 			DespesaDao dao = new DespesaDao();
 			List<Despesa> despesas = dao.listar();
 			
+			// Realiza a soma de todos os itens de despesa
 			Float soma = 0F;
 			for (Despesa despesa : despesas) {
 				
@@ -62,6 +70,7 @@ public class RealizarLancamentoServlet extends HttpServlet {
 				}
 			}
 			
+			// Passa a soma para a tela de "lançamento feito com sucesso"
 			request.setAttribute("total", soma);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("lancamento-sucesso.jsp");

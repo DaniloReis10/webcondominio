@@ -16,6 +16,13 @@ import model.Fornecedor;
 import model.Periodicidade;
 import model.TipoDespesa;
 
+/*
+ * Classe respnsável por realiza a edição do registro no DB a partir dos
+ * dados recebidos da view de tela de edição de despesa.
+ * 
+ * @author Caio Ponte
+ * 
+ * */
 @WebServlet(value="/editar-despesa")
 public class EditarDespesaServlet extends HttpServlet {
 

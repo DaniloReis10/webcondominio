@@ -14,6 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 import dao.DespesaDao;
 import model.Despesa;
 
+/*
+ * Classe respnsável por deletar um registro de despesa no BD a partir
+ * de um id passado na request.
+ * 
+ * @author Caio Ponte
+ * 
+ * */
 @WebServlet(value="/excluir-despesa")
 public class ExcluirDespesaServlet extends HttpServlet {
 
