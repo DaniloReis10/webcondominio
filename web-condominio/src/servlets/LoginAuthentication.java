@@ -1,7 +1,7 @@
-/**Esta Servlet é responsável por Autenticar o login digitado e redirecionar
- * para a página com as funções de Morador ou de Administrador.
- * Pagina com as funções de Morador: JSP_TelaMorador
- * Pagina com as funções de Admin.:  JSP_TelaAdmin*/
+/**Esta Servlet Ã© responsÃ¡vel por Autenticar o login digitado e redirecionar
+ * para a pÃ¡gina com as funÃ§Ãµes de Morador ou de Administrador.
+ * Pagina com as funÃ§Ãµes de Morador: JSP_TelaMorador
+ * Pagina com as funÃ§Ãµes de Admin.:  JSP_TelaAdmin*/
 
 package servlets;
 
@@ -67,8 +67,8 @@ public class LoginAuthentication extends HttpServlet {
 			  hexString.append(String.format("%02X", 0xFF & b));
 			}
 			
-			//senha digitada pelo usuario é criptografada, para ser comparada 
-			//com a senha que está no banco (que também é criptografada).
+			//senha digitada pelo usuario Ã© criptografada, para ser comparada 
+			//com a senha que estÃ¡ no banco (que tambÃ©m Ã© criptografada).
 			String senhaDigitada = hexString.toString();
 			
 			// Load the database driver
@@ -77,7 +77,7 @@ public class LoginAuthentication extends HttpServlet {
 			// Get a Connection to the database
 			connection = DriverManager.getConnection(connectionURL, "sql3147054", "FtGgfm3IC6"); 
 			
-			//fazendo a busca dos dados para saber em qual página o login será direcionado
+			//fazendo a busca dos dados para saber em qual pÃ¡gina o login serÃ¡ direcionado
 			String sql = "select CPF,Morador_Senha_Hash,Morador_Nome,Morador_Sindico from tbl_morador";
 			
 			Statement s = connection.createStatement();
@@ -91,7 +91,7 @@ public class LoginAuthentication extends HttpServlet {
 				nome_Usuario = rs.getString("Morador_Nome");
 				cadastro_condominos.setMorador_Nome(nome_Usuario);
 				
-				//condiçao de parada da pesquisa dentro do banco de dados
+				//condiÃ§ao de parada da pesquisa dentro do banco de dados
 				if(userName.equals(request.getParameter("login")) && passwrd.equals(senhaDigitada) &&
 				   tipoUsuario == 0 || userName.equals(request.getParameter("login")) && passwrd.equals(senhaDigitada) &&
 				   tipoUsuario == 1){
@@ -104,13 +104,13 @@ public class LoginAuthentication extends HttpServlet {
 			rs.close ();
 			s.close ();
 			
-			//Verificação dos dados do Banco de dados com os dados digitados pelos usuarios
-			/*O que diz que ele é admin ou não é o sindico. Se ele for sindico (tiver um valor = zero)
-			 * então não é admin. Se for 1 ele é admin*/
+			//VerificaÃ§Ã£o dos dados do Banco de dados com os dados digitados pelos usuarios
+			/*O que diz que ele Ã© admin ou nÃ£o Ã© o sindico. Se ele for sindico (tiver um valor = zero)
+			 * entÃ£o nÃ£o Ã© admin. Se for 1 ele Ã© admin*/
 			if(userName.equals(request.getParameter("login")) && passwrd.equals(senhaDigitada) &&
 					tipoUsuario == 0){
 				
-				//usando getSession, para que o nome do usuario (admin ou morador) permaneça em todas
+				//usando getSession, para que o nome do usuario (admin ou morador) permaneÃ§a em todas
 				//as paginas que correspondem ao tipo de login
 				request.getSession().setAttribute("nomeUsuario", nome_Usuario);
 				
@@ -145,5 +145,3 @@ public class LoginAuthentication extends HttpServlet {
 	}
 
 }
-
-
