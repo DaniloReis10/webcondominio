@@ -35,7 +35,7 @@
 						<label class="control-label" for="inputCPF">CPF</label>
 						<div class="controls">
 							<input id="inputCPF" type="text" name="CPF"
-								placeholder="Somente números" pattern="[0-9]{11}" required
+								placeholder="Somente nÃºmeros" pattern="[0-9]{11}" required
 								autofocus />
 						</div>
 					</div>
@@ -66,7 +66,7 @@
 					</div>
 
 					<div class="control-group">
-						<label class="control-label" for="inputMorador_Sindico">É sindico? (0-NÃO/1-SIM)</label>
+						<label class="control-label" for="inputMorador_Sindico">ÃÂ sindico? (0-NÃÂO/1-SIM)</label>
 						<div class="controls">
 							<select class="selectpicker" id="inputMorador_Sindico"
 								name="Morador_Sindico">
@@ -129,6 +129,7 @@
 					</div>
 
 				</form>
+				
 			</div>
 		</div>
 	</div>
