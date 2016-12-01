@@ -16,12 +16,54 @@ import model.CadastroCondominosDados;
 
 public class CadastroCondominosDao {
 	private Connection conexao;
-	
+
 	public CadastroCondominosDao() {
 		this.conexao = ConnectionFactory.getConnection();
 	}
-	
-	//O Servlet que faz esta operação chama-se "ServletExibir_e_SalvarDadosCadastrados
+
+	public void inserirTabelaBD() throws SQLException{
+		PreparedStatement ps = null;
+
+		String sql = "-- -----------------------------------------------------\n"
+				+ "-- Table `db_condominio`.`tbl_statusPagamento`\n"
+				+ "-- -----------------------------------------------------\n"
+				+ "CREATE TABLE IF NOT EXISTS db_condominio.tbl_statusPagamento ("
+				+ "fk_CPF VARCHAR(45) NOT NULL,"
+				+ "dataPagamento DATE NOT NULL,"
+				+ "pagEfetuado CHAR (1) NOT NULL,"
+				+ "urlBoleto VARCHAR (255) NOT NULL,"
+				+ "PRIMARY KEY (idStatusPag)"
+				+ "FOREIGN KEY (fk_CPF)"
+				+ " REFERENCES db_condominio.tbl_morador (CPF)\n"
+				+ ")"
+				+ " ENGINE = InnoDB"
+				+ "DEFAULT CHARACTER SET = utf8;";
+		try {			
+			this.conexao.setAutoCommit(false); // iniciar transaÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o			
+			ps = this.conexao.prepareStatement(sql);
+			ps.execute();
+
+			this.conexao.commit();
+			
+			
+
+		} catch (SQLException e) {			
+			e.printStackTrace();
+			try {
+				this.conexao.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+
+		} finally {			
+			if(ps != null){
+				ps.close();
+			}			
+			this.conexao.setAutoCommit(true);
+		}
+	}
+
+	//O Servlet que faz esta operaÃ§Ã£o chama-se "ServletExibir_e_SalvarDadosCadastrados
 	public void salvar(CadastroCondominosDados cadastro_condominos) throws SQLException{		
 		PreparedStatement ps = null;		
 		String sql = "INSERT INTO tbl_morador(CPF,"
@@ -34,7 +76,7 @@ public class CadastroCondominosDao {
 				+ "Morador_Senha_Hash) "
 				+ "values (?,?,?,?,?,?,?,?)";		
 		try {			
-			this.conexao.setAutoCommit(false); // iniciar transaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o			
+			this.conexao.setAutoCommit(false); // iniciar transaÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o			
 			ps = this.conexao.prepareStatement(sql);
 			ps.setString(1,cadastro_condominos.getCPF());
 			ps.setString(2,cadastro_condominos.getMorador_Nome());
@@ -44,11 +86,11 @@ public class CadastroCondominosDao {
 			ps.setString(6,cadastro_condominos.getMorador_Telefone());
 			ps.setString(7,cadastro_condominos.getTipo_morador_idTipo_morador());
 			ps.setString(8,cadastro_condominos.getMorador_Senha_Hash());
-			
+
 			ps.execute();
-			
+
 			this.conexao.commit();
-			
+
 		} catch (SQLException e) {			
 			e.printStackTrace();
 			try {
@@ -56,7 +98,7 @@ public class CadastroCondominosDao {
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
-			
+
 		} finally {			
 			if(ps != null){
 				ps.close();
@@ -64,7 +106,7 @@ public class CadastroCondominosDao {
 			this.conexao.setAutoCommit(true);
 		}
 	}
-	
+
 	public void alterar(CadastroCondominosDados cadastro_condominos) throws SQLException {		
 		PreparedStatement ps = null;		
 		String sql = "UPDATE tbl_morador SET CPF=?,"
@@ -75,9 +117,9 @@ public class CadastroCondominosDao {
 				+ "Morador_Telefone=?"
 				+ "Tipo_morador_idTipo_morador=?";		
 		try {			
-			this.conexao.setAutoCommit(false); // iniciar transaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o			
+			this.conexao.setAutoCommit(false); // iniciar transaÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o			
 			ps = this.conexao.prepareStatement(sql);
-			
+
 			ps.setString(1, cadastro_condominos.getCPF());
 			ps.setString(2, cadastro_condominos.getMorador_Nome());
 			ps.setString(3, cadastro_condominos.getMorador_Email());
@@ -85,10 +127,10 @@ public class CadastroCondominosDao {
 			ps.setInt(5, cadastro_condominos.getMorador_Sindico());
 			ps.setString(6, cadastro_condominos.getMorador_Telefone());
 			ps.setString(7,cadastro_condominos.getTipo_morador_idTipo_morador());
-			
-			
+
+
 			ps.execute();
-			
+
 			this.conexao.commit();			
 		} catch (SQLException e) {			
 			e.printStackTrace();
@@ -104,17 +146,17 @@ public class CadastroCondominosDao {
 			this.conexao.setAutoCommit(true);
 		}
 	}
-	
+
 	public void excluir(CadastroCondominosDados cadastro_condominos) throws SQLException{		
 		PreparedStatement ps = null;		
 		String sql = "DELETE FROM tbl_morador WHERE CPF=?";		
 		try {			
-			this.conexao.setAutoCommit(false); // iniciar transaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o			
+			this.conexao.setAutoCommit(false); // iniciar transaÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o			
 			ps = this.conexao.prepareStatement(sql);
-			
+
 			ps.setString(1, cadastro_condominos.getCPF());
 			ps.execute();
-			
+
 			this.conexao.commit();			
 		} catch (SQLException e) {			
 			e.printStackTrace();
@@ -130,11 +172,11 @@ public class CadastroCondominosDao {
 			this.conexao.setAutoCommit(true);
 		}
 	}
-	
+
 	public List<CadastroCondominosDados> listarDadosMoradores() throws SQLException {
-		
+
 		Statement myStmt = null;
-		
+
 		try {
 			List<CadastroCondominosDados> lista = new ArrayList<CadastroCondominosDados>();
 
@@ -160,14 +202,14 @@ public class CadastroCondominosDao {
 
 			return lista;
 		} finally {
-			 if(myStmt != null){
-				 myStmt.close();
-			 }
+			if(myStmt != null){
+				myStmt.close();
+			}
 		}
-		
-		
+
+
 	}
-	
-	
+
+
 }
 
