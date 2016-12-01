@@ -38,6 +38,7 @@
 		<div class="submenu" id="submenu-cad">
 			<ul>
 				<li><a href="cadastroCondominos.jsp">Moradores</a></li>
+				<li><a href="JSP_cadastroCondominosFinanceiro.jsp">Moradores_Financeiro</a></li>
 				<li><a href="#">Funcionários</a></li>
 				<li><a href="despesa">Despesas</a></li>
 				<li><a href="JSP_ListarNomesMoradores.jsp">Listar os moradores</a></li>
@@ -48,9 +49,9 @@
 		<div class="submenu" id="submenu-rel">
 			<ul>
 				<li><a href="#">Mensal por tipo de despesa</a></li>
-				<li><a href="#">Inadiplência</a></li>
+				<li><a href="#">InadiplÃªncia</a></li>
 				<li><a href="#">Fundo de Caixa</a></li>
-				<li><a href="#">Gráfico despesa/receita</a></li>
+				<li><a href="#">GrÃ¡fico despesa/receita</a></li>
 			</ul>
 		</div>
 	</div>
