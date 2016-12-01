@@ -37,7 +37,7 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `db_condominio`.`tbl_statusPagamento`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_condominio`.`tbl_statusPagamento` (
-  `idStatusPag` CHAR(1) NOT NULL AUTO_INCREMENT,
+  `idStatusPag` CHAR(3) NOT NULL AUTO_INCREMENT,
   `fk_CPF` VARCHAR(45) NOT NULL,
   `dataPagamento` DATE NOT NULL,
   `pagEfetuado` CHAR (1) NOT NULL,
