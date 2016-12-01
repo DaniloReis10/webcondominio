@@ -39,16 +39,7 @@ public class relatorioMes extends HttpServlet {
 		LancamentoDao lancamentoDao = new LancamentoDao();
 		
 			
-			try {
-				List<Lancamento> lancamentos = lancamentoDao.lancamentoPorDespesa(idDespesa);
 			
-				RequestDispatcher rd = request.getRequestDispatcher("graficoDespesa.jsp");
-				request.setAttribute("lancamentos", lancamentos);
-				rd.forward(request, response);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			
 	}
 

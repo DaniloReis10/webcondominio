@@ -15,11 +15,13 @@
 </head>
 <body>
 
-	<div class="container">
+<jsp:include page="../menu.html"/>
+
+	<div class="container" style="padding-top: 15px;">
 
 		<form class="" data-valid="false" method="POST">
 
-			<div class="panel panel-primary">
+			<div class="panel panel-default">
 
 				<div class="panel-heading">
 					<p class="panel-title">Editar Fornecedor</p>

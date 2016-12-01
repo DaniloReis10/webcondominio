@@ -1,18 +1,18 @@
-<%@ page language="java"
-    %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 	<link  rel="stylesheet" href="libs/bootstrap-3.3.7-dist/css/bootstrap.css"/>
-
-	<title>Relatorio Despesas</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Relatorio Inadimplencia</title>
 </head>
+<body>
 	
 	<body>
 		<div class='container'>
         <div class="offsetpage-header">
-            <h1>Relatório de despesas</h1>
+            <h1>Relatório de Inadimplencias</h1>
         </div>
         <div class="input-group">
             <span class="input-group-addon">De:</span>
@@ -68,15 +68,9 @@
         <!-- /.modal -->
         <canvas id="graficoDespesas" width="400" height="300"></canvas>
     </div>
-
-
-    <script src="libs/jquery-3.1.1.js"></script>
-    <script src="libs/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
-    <script src="libs/chart.js"></script>
-    <script src="js/graphCreator.js"></script>
-    
-    
-    <script type="text/javascript">
+	
+	<!-- metodo criador de graficos -->
+	<script type="text/javascript">
     
     var graphCreator = (function () {
         'use strict';
@@ -144,17 +138,19 @@
     
     
     
+    <script src="libs/jquery-3.1.1.js"></script>
+    <script src="libs/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script src="libs/chart.js"></script>
+    <script src="js/graphCreator.js"></script>
     
-    
-    
+    <!-- relatorio inadimplencia script -->
     <script type="text/javascript">
     (function () {
         'use strict';
 
-        // escuta o click no botão exibir e chama a função generateGraph
-        $('#btnExibir').on('click', function () {
-      
-			 generateGraph( $('#mesDe').val(), $('#mesAte').val());
+        // escuta o click nos dois dropdowns e chama a função generateGraph
+        $('#mesDe, #mesAte').on('click', function () {
+            generateGraph( $('#mesDe').val(), $('#mesAte').val());
         });
 
 
@@ -170,23 +166,23 @@
 
             // caso algum grafico ja tenha sido criado anteriormente
             // é necessario remover o canvas e criar um novo
-            if( $('#graficoDespesas').length) {
-                $('#graficoDespesas').remove();
-                $('div.container').append( $('<canvas id="graficoDespesas" width="400" height="300"></canvas>') );
+            if( $('#graficoInadimplencia').length) {
+                $('#graficoInadimplencia').remove();
+                $('div.container').append( $('<canvas id="graficoInadimplencia" width="400" height="300"></canvas>') );
             }
-            var canvas = $('#graficoDespesas')[0];
+            var canvas = $('#graficoInadimplencia')[0];
 
-            // numeroDespesas é um vetor com a quantidade de despesas de cada mês
+            // numeroInadimplentes é um vetor com a quantidade de inadimplentes de cada mês
             // o primeiro index correponde a janeiro, e assim em diante.
             // esse vetor será preenchido a partir do local storage
-            var numeroDespesas = [
-                 <c:forEach items="${lancamentos}" var="lancamento">
-	                ${lancamento.getValor()}, 
-					</c:forEach>                 
+            var numeroInadimplentes = [
+            	 <c:forEach items="${inadimplentes}" var="nInadimplentes">  
+            	 	'nInadimplentes',
+            	 </c:forEach>
             ];
 
-            // numeroDespesasFiltrado possui somente o numero dos meses que o usuario selecionou
-            var numeroDespesasFiltrado = numeroDespesas.slice(mesDe, mesAte+1);
+            // numeroInadimplentesFiltrado possui somente o numero dos meses que o usuario selecionou
+            var numeroInadimplentesFiltrado = numeroInadimplentes.slice(mesDe, mesAte+1);
 
             // range informa para a função create quais colunas devem aparecer
             var range = {
@@ -200,11 +196,11 @@
             // terceiro argumento = um vetor com tamanho de cada coluna
             // quarto argumento = quais colunas devem aparecer
             // quinto argumento = estilo do grafico
-            graphCreator.create(canvas, 'Total de despesas' , numeroDespesasFiltrado, range, 'pie');
+            graphCreator.create(canvas, 'N de inadimplentes', numeroInadimplentesFiltrado, range, 'bar');
         }
 
     })();
 	</script>
-    
-	</body>
+	
+</body>
 </html>

@@ -11,14 +11,26 @@ import java.util.List;
 import model.Endereco;
 import model.Fornecedor;
 
+/**
+ * @author alunok9
+ *
+ */
 public class FornecedorDao {
 	
 	private Connection conexao;
 	
+	/**
+	 * 
+	 */
 	public FornecedorDao() {
 		this.conexao = ConnectionFactory.getConnection();
 	}
 	
+	/**
+	 * @param fornecedor
+	 * @return
+	 * @throws SQLException
+	 */
 	public Integer salvar(Fornecedor fornecedor) throws SQLException{		
 		PreparedStatement ps = null;		
 		String sql = "INSERT INTO tbl_fornecedor(nome, email, tbl_endereco_id) values (?, ?, ?)";		
@@ -43,7 +55,7 @@ public class FornecedorDao {
 			try {
 				this.conexao.rollback();
 			} catch (SQLException e1) {
-				System.out.println("Não foi possivel fazer rollback");
+				System.out.println("Nï¿½o foi possivel fazer rollback");
 			}
 			return null;
 		} finally {			
@@ -54,6 +66,10 @@ public class FornecedorDao {
 		}
 	}
 	
+	/**
+	 * @param fornecedor
+	 * @throws SQLException
+	 */
 	public void alterar(Fornecedor fornecedor) throws SQLException{		
 		PreparedStatement ps = null;		
 		String sql = "UPDATE tbl_fornecedor SET nome=?, email=? WHERE id=?";		
@@ -88,6 +104,10 @@ public class FornecedorDao {
 		}
 	}
 	
+	/**
+	 * @param fornecedor
+	 * @throws SQLException
+	 */
 	public void excluir(Fornecedor fornecedor) throws SQLException{		
 		PreparedStatement ps = null;		
 		String sql = "DELETE FROM tbl_fornecedor WHERE id=?";		
@@ -120,6 +140,10 @@ public class FornecedorDao {
 		}
 	}
 	
+	/**
+	 * @return
+	 * @throws SQLException
+	 */
 	public List<Fornecedor> listar() throws SQLException {
 		
 		Statement myStmt = null;
@@ -160,6 +184,11 @@ public class FornecedorDao {
 		}
 	}
 	
+	/**
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
 	public Fornecedor fornecedorPorId(Integer id) throws SQLException {
 		
 		FornecedorDao dao = new FornecedorDao();

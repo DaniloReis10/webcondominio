@@ -1,31 +1,33 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.LancamentoDao;
+import com.google.gson.Gson;
+
+import dao.DespesaDao;
 import model.Despesa;
-import model.Lancamento;
 
 /**
- * Servlet implementation class relatorio_despesas
+ * Servlet implementation class RelatorioDespesaAjaxServlet
  */
-@WebServlet("/RelatorioDespesasServlet")
-public class RelatorioDespesasServlet extends HttpServlet {
+@WebServlet("/RelatorioDespesaAjaxServlet")
+public class RelatorioDespesaAjaxServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RelatorioDespesasServlet() {
+    public RelatorioDespesaAjaxServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,22 +36,31 @@ public class RelatorioDespesasServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		System.out.println("chegou no ajax");
 		
-		LancamentoDao dao = new LancamentoDao();
+		DespesaDao dao = new DespesaDao();
 		
-		List<Lancamento> despesas = null;
+		List<Despesa> despesas = new ArrayList<Despesa>();
 		try {
 			despesas = dao.listar();
 		} catch (SQLException e) {
-			System.out.println("Erro ao tentar acessar lista de despesas");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
-		request.setAttribute("lancamentos", despesas);
+		Gson gson = new Gson();
 		
-		RequestDispatcher rd = request.getRequestDispatcher("views/relatorioDespesas.jsp");
-				
-		rd.forward(request, response);
+		String json = gson.toJson(despesas);
 		
+		System.out.println(json);
+		
+		response.setContentType("application/json");
+		
+		PrintWriter out = response.getWriter();
+		
+		out.print(json);
+		out.flush();
 	}
 
 	/**

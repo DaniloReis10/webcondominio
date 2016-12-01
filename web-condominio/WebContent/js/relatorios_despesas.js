@@ -4,7 +4,7 @@
     // escuta o click no botão exibir e chama a função generateGraph
     $('#btnExibir').on('click', function () {
 //        generateGraph( $('#mesDe').val(), $('#mesAte').val());
-    	 $.get("RelatorioDespesas", function(response) {
+    	 $.get("RelatorioDespesaAjaxServlet", function(response) {
     			 console.log(response)
     		 }
     	 );

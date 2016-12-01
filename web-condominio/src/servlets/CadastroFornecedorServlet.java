@@ -22,7 +22,7 @@ public class CadastroFornecedorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
-     * @see HttpServlet#HttpServlet()
+     * 
      */
     public CadastroFornecedorServlet() {
         super();
@@ -62,7 +62,7 @@ public class CadastroFornecedorServlet extends HttpServlet {
 		try {
 			fornecedorDao.salvar(fornecedor);
 		} catch (SQLException e) {
-			request.setAttribute("mensagem", "Não foi possível gravar o Fornecedor");
+			request.setAttribute("mensagem", "Nï¿½o foi possï¿½vel gravar o Fornecedor");
 			
 			RequestDispatcher rd = request.getRequestDispatcher("views/cadastroFornecedor.jsp");
 			rd.forward(request, response);

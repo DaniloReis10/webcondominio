@@ -47,4 +47,9 @@ public class CadastroCondominosFinanceiro {
 		this.boletoURL = boletoURL;
 	}
 	
+	@Override
+	public String toString() {
+		return "Despesa [pago: " + pagEfetuado;
+	}
+	
 }

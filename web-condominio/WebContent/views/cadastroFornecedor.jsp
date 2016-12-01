@@ -15,11 +15,13 @@
 </head>
 <body>
 
-	<div class="container">
+<jsp:include page="../menu.html"/>
+
+	<div class="container" style="padding-top: 15px;">
 
 		<form class="" data-valid="false" method="POST">
 
-			<div class="panel panel-primary">
+			<div class="panel panel-default">
 
 				<div class="panel-heading">
 					<p class="panel-title">Cadastrar Fornecedor</p>
@@ -98,7 +100,7 @@
 				</div>
 
 				<div class="panel-footer">
-					<a href="../Views/LoginFornecedor.html"><button
+					<a href="ListaFornecedor"><button
 							class="btn btn-danger" type="button">Voltar</button></a>
 					<button id="btnCadastrarFornecedor"
 						class="btn btn-success btn-formvalid centralizar-direita"

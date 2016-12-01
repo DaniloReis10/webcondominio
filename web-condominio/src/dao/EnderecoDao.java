@@ -10,18 +10,30 @@ import java.util.List;
 
 import model.Endereco;
 
+/**
+ * @author alunok9
+ *
+ */
 public class EnderecoDao {
 private Connection conexao;
 	
+	/**
+	 * 
+	 */
 	public EnderecoDao() {
 		this.conexao = ConnectionFactory.getConnection();
 	}
 	
+	/**
+	 * @param endereco
+	 * @return
+	 * @throws SQLException
+	 */
 	public Integer salvar(Endereco endereco) throws SQLException{		
 		PreparedStatement ps = null;		
 		String sql = "INSERT INTO tbl_endereco(logradouro,numero,cep) values (?,?,?)";		
 		try {			
-			this.conexao.setAutoCommit(false); // iniciar transação			
+			this.conexao.setAutoCommit(false); // iniciar transaï¿½ï¿½o			
 			ps = this.conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			
 			ps.setString(1, endereco.getLogradouro());
@@ -50,11 +62,15 @@ private Connection conexao;
 		}
 	}
 	
+	/**
+	 * @param endereco
+	 * @throws SQLException
+	 */
 	public void alterar(Endereco endereco) throws SQLException{		
 		PreparedStatement ps = null;		
 		String sql = "UPDATE tbl_endereco SET logradouro=?,numero=?,bairro=?,complemento=?,cidade=?,estado=?,cep=? WHERE id=?";		
 		try {			
-			this.conexao.setAutoCommit(false); // iniciar transação			
+			this.conexao.setAutoCommit(false); // iniciar transaï¿½ï¿½o			
 			ps = this.conexao.prepareStatement(sql);
 			
 			ps.setString(1, endereco.getLogradouro());
@@ -81,11 +97,15 @@ private Connection conexao;
 		}
 	}
 	
+	/**
+	 * @param endereco
+	 * @throws SQLException
+	 */
 	public void excluir(Endereco endereco) throws SQLException{		
 		PreparedStatement ps = null;		
 		String sql = "DELETE FROM tbl_endereco WHERE id=?";		
 		try {			
-			this.conexao.setAutoCommit(false); // iniciar transação			
+			this.conexao.setAutoCommit(false); // iniciar transaï¿½ï¿½o			
 			ps = this.conexao.prepareStatement(sql);
 			
 			ps.setInt(1, endereco.getId());
@@ -107,6 +127,10 @@ private Connection conexao;
 		}
 	}
 	
+	/**
+	 * @return
+	 * @throws SQLException
+	 */
 	public List<Endereco> listar() throws SQLException {
 		
 		Statement myStmt = null;
@@ -150,6 +174,11 @@ private Connection conexao;
 		}
 	}
 	
+	/**
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
 	public Endereco enderecoPorId(Integer id) throws SQLException {
 		
 		EnderecoDao dao = new EnderecoDao();

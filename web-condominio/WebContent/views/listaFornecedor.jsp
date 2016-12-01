@@ -12,10 +12,12 @@
 </head>
 <body>
 
-	<div class="container">
+	<jsp:include page="../menu.html"/>
+
+	<div class="container"  style="padding-top: 15px;">
 
 		<form>
-			<div class="panel panel-primary">
+			<div class="panel panel-default">
 				<div class="panel-heading">
 					<p class="panel-title">Todos os Fornecedores</p>
 				</div>

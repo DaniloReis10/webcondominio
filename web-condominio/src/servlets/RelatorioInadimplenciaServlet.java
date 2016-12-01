@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -11,21 +12,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.LancamentoDao;
-import model.Despesa;
-import model.Lancamento;
+import dao.Dao_CadastroCondominosFinanceiro;
+import model.CadastroCondominosFinanceiro;
 
 /**
- * Servlet implementation class relatorio_despesas
+ * Servlet implementation class RelatorioInadimplenciaServlet
  */
-@WebServlet("/RelatorioDespesasServlet")
-public class RelatorioDespesasServlet extends HttpServlet {
+@WebServlet("/RelatorioInadimplenciaServlet")
+public class RelatorioInadimplenciaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RelatorioDespesasServlet() {
+    public RelatorioInadimplenciaServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,18 +35,27 @@ public class RelatorioDespesasServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		LancamentoDao dao = new LancamentoDao();
+		Dao_CadastroCondominosFinanceiro dao = new Dao_CadastroCondominosFinanceiro();
 		
-		List<Lancamento> despesas = null;
+		List<CadastroCondominosFinanceiro> condominos = new ArrayList<CadastroCondominosFinanceiro>();
 		try {
-			despesas = dao.listar();
+			condominos = dao.listarDadosMoradores_Financeiro();
 		} catch (SQLException e) {
-			System.out.println("Erro ao tentar acessar lista de despesas");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
-		request.setAttribute("lancamentos", despesas);
+		List<CadastroCondominosFinanceiro> retorno = new ArrayList<CadastroCondominosFinanceiro>();
 		
-		RequestDispatcher rd = request.getRequestDispatcher("views/relatorioDespesas.jsp");
+		for (CadastroCondominosFinanceiro cond : condominos) {
+			if(cond.getPagEfetuado().toLowerCase().equals("sim")){
+				retorno.add(cond);
+			}
+		}
+		
+		request.setAttribute("inadimplentes", retorno);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("views/relatorioInadimplencia.jsp");
 				
 		rd.forward(request, response);
 		
