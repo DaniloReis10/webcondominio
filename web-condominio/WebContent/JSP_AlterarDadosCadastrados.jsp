@@ -24,8 +24,8 @@ text-align: right;
 padding-right: 2%;
 
 }
-#tabela{
-	
+#inputCPF{
+	visibility: hidden;
 }
 </style>
 </head>
@@ -37,7 +37,7 @@ padding-right: 2%;
 		<div class="col-lg-8 col-lg-offset-1">
 			<div class="container">
 	<div id="tabela" class="table-responsive">
-	<form name="cadastroCondominos" method="POST" action="Servlet_AlteraçaoDados_TelaMorador" class="form-horizontal">
+	<form name="cadastroCondominos" method="POST" action="Servlet_AlteraÃ§aoDados_TelaMorador" class="form-horizontal">
 <table id="minhaTabela" class="display table" width="100%" border="1" >
   <thead>
     <tr>
@@ -47,12 +47,12 @@ padding-right: 2%;
   <tbody>
     
     <tr>
-    	<td>
+    	<td id="cpfId">
     		<div class="controls">
-    			CPF
+    			CPF <% out.println(obj); %>
 				<input id="inputCPF" type="text" name="cpfTelaMorador_alerar"
 					value="<% out.println(obj); %>" required autofocus />
-					(OBS: NÃO MUDE OU DEIXE EM BRANCO ESTE CAMPO)
+					
 			</div>
     	</td>
     </tr>
