@@ -23,7 +23,7 @@ var onClickMenu = function(event) {
 		submenuRel.style.display = "none";
 		submenuCad = false;
 
-	} else if(menuName == "Relatórios") {
+	} else if(menuName === "Relatorios") {
 
 		if(flagSubmenuRel){
 			submenuRel.style.display = "none";

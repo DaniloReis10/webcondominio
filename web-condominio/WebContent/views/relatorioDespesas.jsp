@@ -10,7 +10,10 @@
 </head>
 	
 	<body>
-		<div class='container'>
+	
+	<jsp:include page="../menu.html"/>
+	
+		<div class='container' style="padding-top: 15px;">
         <div class="offsetpage-header">
             <h1>Relatório de despesas</h1>
         </div>
