@@ -14,9 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import dao.DespesaDao;
 import dao.LancamentoDao;
-import model.Despesa;
 import model.DespesaViewModel;
 import model.Lancamento;
 
@@ -40,7 +38,7 @@ public class RelatorioDespesaAjaxServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("chegou no ajax");
+		response.setContentType("application/json");
 		
 		LancamentoDao dao = new LancamentoDao();
 		
@@ -59,12 +57,7 @@ public class RelatorioDespesaAjaxServlet extends HttpServlet {
 		
 		
 		Gson gson = new Gson();
-		
-		String json = gson.toJson(_despesas);
-		
-		System.out.println(json);
-		
-		response.setContentType("application/json");
+		String json = gson.toJson(_despesas);		
 		
 		PrintWriter out = response.getWriter();
 		
