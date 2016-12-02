@@ -17,5 +17,25 @@ String Tipo_morador_idTipo_morador = (String) request.getAttribute("Tipo_morador
 	<% out.print(cpf+"\n"+email+"\n"+telefone+"\n"+Tipo_morador_idTipo_morador); %>
 	<jsp:include page="JSP_TelaMorador.jsp" />
 	
+	<table border="1" class="table table-bordered" width="70%">
+  <thead>
+    <tr>
+      <th>CPF</th>
+      <th>EMAIL</th>
+      <th>TELEFONE</th>
+      <th>Tipo Morador</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><% out.print(cpf); %></td>
+      <td><% out.print(email); %></td>
+      <td><% out.print(telefone); %></td>
+      <td><% out.print(Tipo_morador_idTipo_morador); %></td>
+    </tr>
+    
+  </tbody>
+</table>
+	
 </body>
 </html>
