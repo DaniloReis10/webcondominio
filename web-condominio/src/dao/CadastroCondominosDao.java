@@ -201,12 +201,64 @@ public class CadastroCondominosDao {
 	*/
 	public void alterarCPF(String CPF) throws SQLException{		
 		PreparedStatement ps = null;		
-		String sql = "UPDATE tbl_morador set CPF = "+CPF+" = where CPF="+CPF;		
+		String sql = "UPDATE tbl_morador set CPF = ? where CPF="+CPF;		
 		try {			
 			this.conexao.setAutoCommit(false); // iniciar transaÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o			
 			ps = this.conexao.prepareStatement(sql);
 
 			ps.setString(1, CPF);
+			ps.execute();
+
+			this.conexao.commit();			
+		} catch (SQLException e) {			
+			e.printStackTrace();
+			try {
+				this.conexao.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		} finally {			
+			if(ps != null){
+				ps.close();
+			}			
+			this.conexao.setAutoCommit(true);
+		}
+	}
+	
+	public void alterarMorador_Sindico(String Morador_Sindico,String CPF) throws SQLException{		
+		PreparedStatement ps = null;		
+		String sql = "UPDATE tbl_morador set Morador_Sindico = ? where CPF="+CPF;		
+		try {			
+			this.conexao.setAutoCommit(false); // iniciar transaÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o			
+			ps = this.conexao.prepareStatement(sql);
+
+			ps.setString(1, Morador_Sindico);
+			ps.execute();
+
+			this.conexao.commit();			
+		} catch (SQLException e) {			
+			e.printStackTrace();
+			try {
+				this.conexao.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		} finally {			
+			if(ps != null){
+				ps.close();
+			}			
+			this.conexao.setAutoCommit(true);
+		}
+	}
+	
+	public void alterarTipo_morador_idTipo_morador(String Tipo_morador_idTipo_morador, String CPF) throws SQLException{		
+		PreparedStatement ps = null;		
+		String sql = "UPDATE tbl_morador set Tipo_morador_idTipo_morador = ? where CPF="+CPF;		
+		try {			
+			this.conexao.setAutoCommit(false); // iniciar transaÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o			
+			ps = this.conexao.prepareStatement(sql);
+
+			ps.setString(1, Tipo_morador_idTipo_morador);
 			ps.execute();
 
 			this.conexao.commit();			
@@ -233,7 +285,7 @@ public class CadastroCondominosDao {
 	*/
 	public void alterarMorador_Nome(String Morador_Nome, String CPF) throws SQLException{		
 		PreparedStatement ps = null;		
-		String sql = "UPDATE tbl_morador set Morador_Nome = "+Morador_Nome+" = where CPF="+CPF;		
+		String sql = "UPDATE tbl_morador set Morador_Nome = ? where CPF="+CPF;		
 		try {			
 			this.conexao.setAutoCommit(false); // iniciar transaÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o			
 			ps = this.conexao.prepareStatement(sql);
@@ -265,7 +317,7 @@ public class CadastroCondominosDao {
 	*/
 	public void alterarMorador_Email(String Morador_Email, String CPF) throws SQLException{		
 		PreparedStatement ps = null;		
-		String sql = "UPDATE tbl_morador set Morador_Email = '"+Morador_Email+"' = where CPF='"+CPF+"'";		
+		String sql = "UPDATE tbl_morador set Morador_Email = ? WHERE CPF = "+CPF;		
 		try {			
 			this.conexao.setAutoCommit(false); // iniciar transaÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o			
 			ps = this.conexao.prepareStatement(sql);
@@ -297,7 +349,7 @@ public class CadastroCondominosDao {
 	*/
 	public void alterarMorador_Telefone(String Morador_Telefone, String CPF) throws SQLException{		
 		PreparedStatement ps = null;		
-		String sql = "UPDATE tbl_morador set Morador_Telefone = "+Morador_Telefone+" = where CPF="+CPF;		
+		String sql = "UPDATE tbl_morador set Morador_Telefone = ? where CPF="+CPF;		
 		try {			
 			this.conexao.setAutoCommit(false); // iniciar transaÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o			
 			ps = this.conexao.prepareStatement(sql);

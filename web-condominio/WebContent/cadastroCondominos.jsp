@@ -66,7 +66,7 @@
 					</div>
 
 					<div class="control-group">
-						<label class="control-label" for="inputMorador_Sindico">� sindico? (0-NÃÂO/1-SIM)</label>
+						<label class="control-label" for="inputMorador_Sindico">� sindico? (0-NÃO/1-SIM)</label>
 						<div class="controls">
 							<select class="selectpicker" id="inputMorador_Sindico"
 								name="Morador_Sindico">

@@ -45,22 +45,18 @@ padding-right: 2%;
     </tr>
   </thead>
   <tbody>
-    <tr>
-    	<td><div class="control-group">
-				<div class="controls">
-				CPF
-					<input id="inputCPF" type="text" value="<%out.println(obj); %>" name="cpfTelaMorador_alerar" placeholder="Somente números" pattern="[0-9]{11}" required autofocus />
-				</div>
-		</td>
-    </tr>
+    
     <tr>
     	<td>
     		<div class="controls">
-				Nome
-					<input id="inputCPF" type="text" value="<%out.println(obj2); %> name="nomeTelaMorador_alerar" placeholder="Nome Completo" required autofocus />
-				</div>
+    			CPF
+				<input id="inputCPF" type="text" name="cpfTelaMorador_alerar"
+					value="<% out.println(obj); %>" required autofocus />
+					(OBS: NÃO MUDE OU DEIXE EM BRANCO ESTE CAMPO)
+			</div>
     	</td>
     </tr>
+    
     <tr>
     	<td>
     		<div class="controls">
@@ -84,11 +80,19 @@ padding-right: 2%;
     
    	</tr>
    	
-   	<!-- <tr>
+   	<tr>
    		<td>
-   		
+							
+						<div class="controls">
+						Locatario?
+							<select class="selectpicker"
+								id="inputTipo_morador_idTipo_morador" name="Tipo_morador_idTipo_morador">
+								<option selected value="proprietario">proprietario</option>
+								<option value="locatario">locatario</option>
+							</select>
+						</div>
    		</td>
-   	</tr> -->
+   	</tr>
    
   </tbody>
 </table>
