@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link  rel="stylesheet" href="libs/bootstrap-3.3.7-dist/css/bootstrap.css"/>
+	<link  rel="stylesheet" href="../libs/bootstrap-3.3.7-dist/css/bootstrap.css"/>
 
 	<title>Relatorio Despesas</title>
 </head>
@@ -74,9 +74,9 @@
     </div>
 
 
-    <script src="libs/jquery-3.1.1.js"></script>
-    <script src="libs/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
-    <script src="libs/chart.js"></script>
+    <script src="../libs/jquery-3.1.1.js"></script>
+    <script src="../libs/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script src="../libs/chart.js"></script>
     
     
     <script type="text/javascript">
@@ -162,11 +162,58 @@
      		
         // escuta o click no botão exibir e chama a função generateGraph
         $('#btnExibir').on('click', function () {
-		//	 generateGraph( $('#mesDe').val(), $('#mesAte').val());
+        	var objDespesas = {Janeiro : 0, Fevereiro : 0, Marco : 0, Abril : 0, Maio : 0, Junho: 0, Julho : 0, Agosto : 0, Setembro : 0, Outubro : 0, Novembro : 0, Dezembro : 0};
+        	
+        	for(var i = 0 ; i < _despesas.length; i++) {
+        		switch(_despesas[i].mes) {
+        		case 'Janeiro':
+        			objDespesas.Janeiro++;
+        			break;
+        		case 'Fevereiro':
+        			objDespesas.Fevereiro++;
+        			break;
+        		case 'Marco':
+        			objDespesas.Marco++;
+        			break;
+        		case 'Abril':
+        			objDespesas.Abril++;
+        			break;
+        		case 'Maio':
+        			objDespesas.Maio++;
+        			break;
+        		case 'Junho':
+        			objDespesas.Junho++;
+        			break;
+        		case 'Julho':
+        			objDespesas.Julho++;
+        			break;
+        		case 'Agosto':
+        			objDespesas.Agosto++;
+        			break;
+        		case 'Setembro':
+        			objDespesas.Setembro++;
+        			break;
+        		case 'Outubro':
+        			objDespesas.Outubro++;
+        			break;
+        		case 'Novembro':
+        			objDespesas.Novembro++;
+        			break;
+        		case 'Dezembro':
+        			objDespesas.Dezembro++;
+        			break;
+        		}
+        	}
+        	
+        	var arrayDespesas = $.map(objDespesas, function(valor, index) {
+        		return [valor]
+        	})
+        	console.log(arrayDespesas)
+			generateGraph( $('#mesDe').val(), $('#mesAte').val(), arrayDespesas);
         });
 
 
-        function generateGraph(mesDe, mesAte) {
+        function generateGraph(mesDe, mesAte, data) {
 
             mesDe = parseInt(mesDe);
             mesAte = parseInt(mesAte);
@@ -187,7 +234,7 @@
             // numeroDespesas é um vetor com a quantidade de despesas de cada mês
             // o primeiro index correponde a janeiro, e assim em diante.
             // esse vetor será preenchido a partir do local storage
-            var numeroDespesas = [ ];
+            var numeroDespesas = data;
 
             // numeroDespesasFiltrado possui somente o numero dos meses que o usuario selecionou
             var numeroDespesasFiltrado = numeroDespesas.slice(mesDe, mesAte+1);
