@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link  rel="stylesheet" href="libs/bootstrap-3.3.7-dist/css/bootstrap.css"/>
+	<link  rel="stylesheet" href="../libs/bootstrap-3.3.7-dist/css/bootstrap.css"/>
 
 	<title>Relatorio Despesas</title>
 </head>
@@ -73,10 +73,9 @@
     </div>
 
 
-    <script src="libs/jquery-3.1.1.js"></script>
-    <script src="libs/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
-    <script src="libs/chart.js"></script>
-    <script src="js/graphCreator.js"></script>
+    <script src="../libs/jquery-3.1.1.js"></script>
+    <script src="../libs/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script src="../libs/chart.js"></script>
     
     
     <script type="text/javascript">
@@ -91,7 +90,7 @@
                 labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"].slice(range.mesDe, range.mesAte),
                 datasets: [{
                     label: label,
-                    data: [12, 10, 3, 5, 2, 3, 8, 7, 30, 25, 1, 4].splice(range.mesDe, range.mesAte),
+                    data: data.splice(range.mesDe, range.mesAte),
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -150,20 +149,16 @@
     (function () {
         'use strict';
         
-		var _despesas = [
-			<c:forEach items="${lancamentos}" var="lancamento">
-				{ 
-					valor: ${lancamento.getValor()},
-					mes: ${lancamento.getData()}
-				},
-			</c:forEach>
-         ];
+		var _despesas = [];
+		
 		console.log(_despesas);
 		
         // escuta o click no botão exibir e chama a função generateGraph
         $('#btnExibir').on('click', function () {
-      
-			 generateGraph( $('#mesDe').val(), $('#mesAte').val());
+      		$.get("/web-condominio/RelatorioInadimplenciaAjaxServlet", function(response) {
+      			console.log(response)
+      		})
+		//	 generateGraph( $('#mesDe').val(), $('#mesAte').val());
         });
 
 
@@ -188,11 +183,7 @@
             // numeroDespesas é um vetor com a quantidade de despesas de cada mês
             // o primeiro index correponde a janeiro, e assim em diante.
             // esse vetor será preenchido a partir do local storage
-            var numeroDespesas = [
-                 <c:forEach items="${lancamentos}" var="lancamento">
-	                ${lancamento.getValor()}, 
-					</c:forEach>                 
-            ];
+            var numeroDespesas = [ ];
 
             // numeroDespesasFiltrado possui somente o numero dos meses que o usuario selecionou
             var numeroDespesasFiltrado = numeroDespesas.slice(mesDe, mesAte+1);
