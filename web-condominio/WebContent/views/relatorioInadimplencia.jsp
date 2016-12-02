@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link  rel="stylesheet" href="../libs/bootstrap-3.3.7-dist/css/bootstrap.css"/>
+	<link  rel="stylesheet" href="libs/bootstrap-3.3.7-dist/css/bootstrap.css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Relatorio Inadimplencia</title>
 </head>
@@ -35,6 +35,21 @@
                 <option value="11">Dezembro</option>
             </select>
 
+            <span class="input-group-addon">Até:</span>
+            <select class="form-control" id="mesAte">
+                <option value="0">Janeiro</option>
+                <option value="1">Fevereiro</option>
+                <option value="2">Março</option>
+                <option value="3">Abril</option>
+                <option value="4">Maio</option>
+                <option value="5">Junho</option>
+                <option value="6">Julho</option>
+                <option value="7">Agosto</option>
+                <option value="8">Setembro</option>
+                <option value="9">Outubro</option>
+                <option value="10">Novembro</option>
+                <option value="11">Dezembro</option>
+            </select>
         </div>
          <button class="form-control" id="btnExibir">Exibir</button>
         <div id="selectionErrorModal" class="modal fade" tabindex="-1" role="dialog">
@@ -55,7 +70,7 @@
             <!-- /.modal-dialog -->
         </div>
         <!-- /.modal -->
-        <canvas id="graficoDespesas" width="400" height="300"></canvas>
+        <canvas id="graficoInadimplencia" width="400" height="300"></canvas>
     </div>
 	
 	<!-- metodo criador de graficos -->
@@ -127,9 +142,9 @@
     
     
     
-    <script src="../libs/jquery-3.1.1.js"></script>
-    <script src="../libs/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
-    <script src="../libs/chart.js"></script>
+    <script src="libs/jquery-3.1.1.js"></script>
+    <script src="libs/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script src="libs/chart.js"></script>
     <script src="js/graphCreator.js"></script>
     
     <!-- relatorio inadimplencia script -->
@@ -140,7 +155,7 @@
         var _inadimplentes = [];
 		$('#btnExibir').attr("disabled", true);
 		
-     	$.get("/web-condominio/RelatorioInadimplenciaAjax", function(response) {
+     	$.get("/web-condominio/RelatorioInadimplenciaAjaxServlet", function(response) {
      		console.log(response)
      		_inadimplentes = response;
      		$('#btnExibir').attr("disabled", false);
@@ -150,10 +165,57 @@
         // escuta o click nos dois dropdowns e chama a função generateGraph
         $('#btnExibir').on('click', function () {
         	
-        	var nInadimplentes = [_inadimplentes.length];
+        	
+			var objInadimplencias = {Janeiro : 0, Fevereiro : 0, Marco : 0, Abril : 0, Maio : 0, Junho: 0, Julho : 0, Agosto : 0, Setembro : 0, Outubro : 0, Novembro : 0, Dezembro : 0};
+        	
+        	for(var i = 0 ; i < _inadimplentes.length; i++) {
+        		switch(_inadimplentes[i].mes) {
+        		case 'Janeiro':
+        			objInadimplencias.Janeiro++;
+        			break;
+        		case 'Fevereiro':
+        			objInadimplencias.Fevereiro++;
+        			break;
+        		case 'Marco':
+        			objInadimplencias.Marco++;
+        			break;
+        		case 'Abril':
+        			objInadimplencias.Abril++;
+        			break;
+        		case 'Maio':
+        			objInadimplencias.Maio++;
+        			break;
+        		case 'Junho':
+        			objInadimplencias.Junho++;
+        			break;
+        		case 'Julho':
+        			objInadimplencias.Julho++;
+        			break;
+        		case 'Agosto':
+        			objInadimplencias.Agosto++;
+        			break;
+        		case 'Setembro':
+        			objInadimplencias.Setembro++;
+        			break;
+        		case 'Outubro':
+        			objInadimplencias.Outubro++;
+        			break;
+        		case 'Novembro':
+        			objInadimplencias.Novembro++;
+        			break;
+        		case 'Dezembro':
+        			objInadimplencias.Dezembro++;
+        			break;
+        		}
+        	}
+        	
+        	var arrayInadimplencias = $.map(objInadimplencias, function(valor, index) {
+        		return [valor]
+        	})
+        	console.log(arrayInadimplencias)
         	
         	
-            generateGraph( $('#mesDe').val(), $('#mesAte').val(), nInadimplentes);
+            generateGraph( $('#mesDe').val(), $('#mesAte').val(), arrayInadimplencias);
         });
 	
 
