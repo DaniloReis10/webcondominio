@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.LancamentoDao;
-import model.Despesa;
+import model.DespesaViewModel;
 import model.Lancamento;
 
 /**
@@ -43,7 +44,6 @@ public class RelatorioDespesasServlet extends HttpServlet {
 		} catch (SQLException e) {
 			System.out.println("Erro ao tentar acessar lista de despesas");
 		}
-		
 		request.setAttribute("lancamentos", despesas);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("views/relatorioDespesas.jsp");

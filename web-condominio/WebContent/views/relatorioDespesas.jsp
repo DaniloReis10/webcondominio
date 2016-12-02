@@ -15,7 +15,7 @@
 	
 		<div class='container' style="padding-top: 15px;">
         <div class="offsetpage-header">
-            <h1>Relatório de despesas</h1>
+            <h1>Relatório de Despesas</h1>
         </div>
         <div class="input-group">
             <span class="input-group-addon">De:</span>
@@ -146,14 +146,20 @@
     </script>
     
     
-    
-    
-    
-    
     <script type="text/javascript">
     (function () {
         'use strict';
-
+        
+		var _despesas = [
+			<c:forEach items="${lancamentos}" var="lancamento">
+				{ 
+					valor: ${lancamento.getValor()},
+					mes: ${lancamento.getData()}
+				},
+			</c:forEach>
+         ];
+		console.log(_despesas);
+		
         // escuta o click no botão exibir e chama a função generateGraph
         $('#btnExibir').on('click', function () {
       

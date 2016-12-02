@@ -15,7 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import dao.DespesaDao;
+import dao.LancamentoDao;
 import model.Despesa;
+import model.DespesaViewModel;
+import model.Lancamento;
 
 /**
  * Servlet implementation class RelatorioDespesaAjaxServlet
@@ -39,9 +42,10 @@ public class RelatorioDespesaAjaxServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		System.out.println("chegou no ajax");
 		
-		DespesaDao dao = new DespesaDao();
+		LancamentoDao dao = new LancamentoDao();
 		
-		List<Despesa> despesas = new ArrayList<Despesa>();
+		List<DespesaViewModel> _despesas = new ArrayList<DespesaViewModel>();
+		List<Lancamento> despesas = new ArrayList<Lancamento>();
 		try {
 			despesas = dao.listar();
 		} catch (SQLException e) {
@@ -49,9 +53,14 @@ public class RelatorioDespesaAjaxServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		for (Lancamento despesa : despesas) {
+			_despesas.add(new DespesaViewModel(despesa.getValor(), this.getMes(despesa.getData().getMonth())));
+		}
+		
+		
 		Gson gson = new Gson();
 		
-		String json = gson.toJson(despesas);
+		String json = gson.toJson(_despesas);
 		
 		System.out.println(json);
 		
@@ -71,4 +80,9 @@ public class RelatorioDespesaAjaxServlet extends HttpServlet {
 		doGet(request, response);
 	}
 
+	private String getMes(int mes){
+		String[] meses = {"Janeiro", "Fevereiro", "Março", "Maio", "Abril", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"};
+		return meses[mes];
+	}
+	
 }
