@@ -25,7 +25,8 @@ import javax.servlet.http.*;
 import model.CadastroCondominosDados;
 
 /**
- * Servlet implementation class LoginAuthentication
+ * Servlet utilizado na validação de login. Recebe os daados da página "cadastroCondominos.jsp.
+ * Define se quem está logado é um admin ou um morador."
  */
 @WebServlet("/LoginAuthentication")
 public class LoginAuthentication extends HttpServlet {
@@ -41,7 +42,12 @@ public class LoginAuthentication extends HttpServlet {
 		// TODO Auto-generated method stub
 	}
 
-	
+	/**
+	* processamento do metodo doPost 
+	* @request objeto requisicao do http
+	* @responce objeto de retorno do http
+	* @return nenhum
+	*/
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		PrintWriter out = response.getWriter();
@@ -104,9 +110,9 @@ public class LoginAuthentication extends HttpServlet {
 			rs.close ();
 			s.close ();
 			
-			//VerificaÃƒÂ§ÃƒÂ£o dos dados do Banco de dados com os dados digitados pelos usuarios
-			/*O que diz que ele ÃƒÂ© admin ou nÃƒÂ£o ÃƒÂ© o sindico. Se ele for sindico (tiver um valor = zero)
-			 * entÃƒÂ£o nÃƒÂ£o ÃƒÂ© admin. Se for 1 ele ÃƒÂ© admin*/
+			//Verificação dos dados do Banco de dados com os dados digitados pelos usuarios
+			/*O que diz que ele ou é admin ou é o sindico. Se ele for sindico (tiver um valor = zero)
+			 * então nao é admin. Se for 1 ele ÃƒÂ© admin*/
 			if(userName.equals(request.getParameter("login")) && passwrd.equals(senhaDigitada) &&
 					tipoUsuario == 0){
 				

@@ -20,7 +20,9 @@ import model.CadastroCondominosDados;
 import dao.CadastroCondominosDao;
 
 /**
- * Servlet implementation class Servlet_EmitirConsultarBoleto_e_StatusPagamento
+ * Servlet usado para tratar informações vindas da pagina "JSP_AlterarDadosCadastrados.jsp".
+ * Esta classe é usada exclusivamente pelo moradr logado como usuario ao invés de
+ * logado como admin
  */
 @WebServlet("/Servlet_AlteraçaoDados_TelaMorador")
 public class Servlet_AlteraçaoDados_TelaMorador extends HttpServlet {
@@ -47,7 +49,13 @@ public class Servlet_AlteraçaoDados_TelaMorador extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
-
+	
+	/**
+	* processamento do metodo service 
+	* @request objeto requisicao do http
+	* @responce objeto de retorno do http
+	* @return nenhum
+	*/
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		//DADOS DA Pagina "cadastroMoradores.jsp (Dados Pessoais Moradores)"
@@ -83,8 +91,8 @@ public class Servlet_AlteraçaoDados_TelaMorador extends HttpServlet {
 				out.print("<a href=\"JSP_TelaMorador.jsp\">Voltar</a>!!!");
 			}
 
-			//RequestDispatcher rd = request.getRequestDispatcher("JSP_ExibirDadosAlterados.jspTelaMorador.jsp");
-			//rd.forward(request, response);
+			RequestDispatcher rd = request.getRequestDispatcher("JSP_ExibirDadosAlterados.jspTelaMorador.jsp");
+			rd.forward(request, response);
 
 
 		} catch (SQLException e) {

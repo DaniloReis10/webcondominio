@@ -2,6 +2,12 @@ package model;
 
 import java.sql.Date;
 
+/**
+* Esta classe possui atributos e métodos usados para criar um objeto do tipo CadastroCondominosDados.
+* Este objeto armazenará informações pessoais e financeiras sobre os moradores, a fim de serem cadastradas posteriormente no banco de dados
+* A maioria dos métodos são usados pelo administrador, e a servlet que trata estas funções chama-se ServletExibir_e_SalvarDadosCadastrados,
+* mas possui alguns métodos que são tratados na servlet "Servlet_VerificarStatusPagamento".
+*/
 public class CadastroCondominosDados {
 	private String CPF;
 	private String Morador_Nome;
@@ -18,6 +24,9 @@ public class CadastroCondominosDados {
 	private Date dataPagamento;
 	private String boletoURL;
 	
+	/**
+	 * Lista de método gets e sets da classe CadastroCondominosDados
+	 * */
 	public String getTipo_morador_idTipo_morador() {
 		return Tipo_morador_idTipo_morador;
 	}

@@ -23,7 +23,7 @@ import dao.CadastroCondominosDao;
 import dao.Dao_CadastroCondominosFinanceiro;
 
 /**
- * Servlet implementation class Servlet_VerificarStatusPagamento
+ * Servlet utilizado pelo USUÁRIO para receber os dados da página "JSP_AlterarDadosCadastrados.jsp"
  */
 @WebServlet("/Servlet_VerificarStatusPagamento")
 public class Servlet_VerificarStatusPagamento extends HttpServlet {
@@ -51,7 +51,13 @@ public class Servlet_VerificarStatusPagamento extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
-
+	
+	/**
+	* processamento do metodo service 
+	* @request objeto requisicao do http
+	* @responce objeto de retorno do http
+	* @return nenhum
+	*/
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try{
 			PrintWriter out = response.getWriter();

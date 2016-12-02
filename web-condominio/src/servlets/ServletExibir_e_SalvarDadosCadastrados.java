@@ -1,7 +1,3 @@
-/**Este Servlet Ã© responsÃ¡vel por salvar as informaÃ§Ãµes dos moradores 
- * que sÃ£o cadastradas e depois redirecionar estas informaÃ§Ãµes para serem
- * exibidas por uma pÃ¡gina jsp de nome "cadastroCondominosDadosExibidos.jsp"*/
-
 package servlets;
 
 import java.io.IOException;
@@ -27,7 +23,9 @@ import dao.CadastroCondominosDao;
 import dao.Dao_CadastroCondominosFinanceiro;
 
 /**
- * Servlet implementation class SalvarDadosCadastrados
+ * Servlet respons�vel por receber e salvar as informa��es da p�gina "cadastroCondominos", salvar no
+ * banco de dados e redirecionar os dados cadastradados para serem exibidos na p�gina
+ * "cadastroCondominosDadosExibidos"
  */
 @WebServlet("/ServletExibir_e_SalvarDadosCadastrados")
 public class ServletExibir_e_SalvarDadosCadastrados extends HttpServlet {
@@ -55,7 +53,13 @@ public class ServletExibir_e_SalvarDadosCadastrados extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
-
+	
+	/**
+	* processamento do metodo service 
+	* @request objeto requisicao do http
+	* @responce objeto de retorno do http
+	* @return nenhum
+	*/
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try{
 

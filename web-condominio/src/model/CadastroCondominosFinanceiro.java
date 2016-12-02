@@ -2,6 +2,11 @@ package model;
 
 import java.sql.Date;
 
+/**
+* Esta classe possui atributos e métodos usados para criar um objeto do tipo CadastroCondominosFinanceiro.
+* Este objeto armazenará apenas informações financeiras sobre os moradores, a fim de serem cadastradas 
+* posteriormente no banco de dados.
+*/
 public class CadastroCondominosFinanceiro {
 	private String mes;
 	private String fk_CPF;
@@ -10,6 +15,9 @@ public class CadastroCondominosFinanceiro {
 	private Date dataPagamento;
 	private String boletoURL;
 	
+	/**
+	 * Lista de métodos gets e sets
+	 * */
 	public String getMes() {
 		return mes;
 	}

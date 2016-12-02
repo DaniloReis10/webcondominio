@@ -14,56 +14,25 @@ import model.Periodicidade;
 import model.TipoDespesa;
 import model.CadastroCondominosDados;
 
+/**
+* Esta classe possui métodos usados para inserir no banco de dados os dados pessoais dos moradores (CPF, nome, email, data de nascimento
+* Se ele é sindico ou não (se for sindico ele será o administrador), telefone, tipo de morador (proprietário ou locatário)
+* e a senha (que após criptografada - esta criptografia fica presente dentro da Servlet LoginAuthentication -  é armazenada no banco de dados).
+* A maioria dos métodos são usados pelo administrador, e a servlet que trata estas funções chama-se ServletExibir_e_SalvarDadosCadastrados,
+* mas possui alguns métodos que são tratados na servlet "Servlet_VerificarStatusPagamento".
+*/
 public class CadastroCondominosDao {
 	private Connection conexao;
 
 	public CadastroCondominosDao() {
 		this.conexao = ConnectionFactory.getConnection();
-	}
-
-	public void inserirTabelaBD() throws SQLException{
-		PreparedStatement ps = null;
-
-		String sql = "-- -----------------------------------------------------\n"
-				+ "-- Table `db_condominio`.`tbl_statusPagamento`\n"
-				+ "-- -----------------------------------------------------\n"
-				+ "CREATE TABLE IF NOT EXISTS db_condominio.tbl_statusPagamento ("
-				+ "fk_CPF VARCHAR(45) NOT NULL,"
-				+ "dataPagamento DATE NOT NULL,"
-				+ "pagEfetuado CHAR (1) NOT NULL,"
-				+ "urlBoleto VARCHAR (255) NOT NULL,"
-				+ "PRIMARY KEY (idStatusPag)"
-				+ "FOREIGN KEY (fk_CPF)"
-				+ " REFERENCES db_condominio.tbl_morador (CPF)\n"
-				+ ")"
-				+ " ENGINE = InnoDB"
-				+ "DEFAULT CHARACTER SET = utf8;";
-		try {			
-			this.conexao.setAutoCommit(false); // iniciar transaÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â£o			
-			ps = this.conexao.prepareStatement(sql);
-			ps.execute();
-
-			this.conexao.commit();
-			
-			
-
-		} catch (SQLException e) {			
-			e.printStackTrace();
-			try {
-				this.conexao.rollback();
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
-
-		} finally {			
-			if(ps != null){
-				ps.close();
-			}			
-			this.conexao.setAutoCommit(true);
-		}
-	}
-
-	//O Servlet que faz esta operaÃƒÂ§ÃƒÂ£o chama-se "ServletExibir_e_SalvarDadosCadastrados
+	}	
+	
+	/**
+	* processamento do metodo salvar (O Servlet que processa esta operação chama-se "ServletExibir_e_SalvarDadosCadastrados")
+	* @cadastro_condominos objeto do tipo CadastroCondominosDados que armazena os dados do morador
+	* @return nenhum
+	*/
 	public void salvar(CadastroCondominosDados cadastro_condominos) throws SQLException{		
 		PreparedStatement ps = null;		
 		String sql = "INSERT INTO tbl_morador(CPF,"
@@ -106,7 +75,12 @@ public class CadastroCondominosDao {
 			this.conexao.setAutoCommit(true);
 		}
 	}
-
+	
+	/**
+	* processamento do metodo alterar (O Servlet que processa esta operação chama-se "ServletExibir_e_SalvarDadosCadastrados)
+	* @cadastro_condominos objeto do tipo CadastroCondominosDados que armazena os dados do morador
+	* @return nenhum
+	*/
 	public void alterar(CadastroCondominosDados cadastro_condominos) throws SQLException {		
 		PreparedStatement ps = null;		
 		String sql = "UPDATE tbl_morador SET CPF=?,"
@@ -146,7 +120,12 @@ public class CadastroCondominosDao {
 			this.conexao.setAutoCommit(true);
 		}
 	}
-
+	
+	/**
+	* processamento do metodo excluir (O Servlet que processa esta operação chama-se "ServletExibir_e_SalvarDadosCadastrados)
+	* @cadastro_condominos objeto do tipo CadastroCondominosDados que armazena os dados do morador
+	* @return nenhum
+	*/
 	public void excluir(CadastroCondominosDados cadastro_condominos) throws SQLException{		
 		PreparedStatement ps = null;		
 		String sql = "DELETE FROM tbl_morador WHERE CPF=?";		
@@ -172,7 +151,12 @@ public class CadastroCondominosDao {
 			this.conexao.setAutoCommit(true);
 		}
 	}
-
+	
+	/**
+	* processamento do metodo listarDadosMoradores (O Servlet que processa esta operação chama-se "ServletExibir_e_SalvarDadosCadastrados)
+	* @cadastro_condominos objeto do tipo CadastroCondominosDados que armazena os dados do morador
+	* @return List (retorna um List de objetos do tipo CadastroCondominosDados, contendo os dados dos moradores
+	*/
 	public List<CadastroCondominosDados> listarDadosMoradores() throws SQLException {
 
 		Statement myStmt = null;
@@ -209,6 +193,12 @@ public class CadastroCondominosDao {
 
 
 	}
+	
+	/**
+	* processamento do metodo alterarCPF (utilizado para atualizar apenas o CPF do Morador. Processado principalmente pela Servlet_VerificarStatusPagamento)
+	* @CPF objeto do tipo String que armazena o CPF
+	* @return nenhum
+	*/
 	public void alterarCPF(String CPF) throws SQLException{		
 		PreparedStatement ps = null;		
 		String sql = "UPDATE tbl_morador set CPF = "+CPF+" = where CPF="+CPF;		
@@ -235,6 +225,12 @@ public class CadastroCondominosDao {
 		}
 	}
 	
+	/**
+	* processamento do metodo alterarMorador_Nome (atualizado para atualizar apenas o Nome do Morador. Processado principalmente pela Servlet_VerificarStatusPagamento)
+	* @CPF objeto do tipo String que armazena o CPF
+	* @Morador_Nome objeto do tipo String que armazena o nome do Morador
+	* @return nenhum
+	*/
 	public void alterarMorador_Nome(String Morador_Nome, String CPF) throws SQLException{		
 		PreparedStatement ps = null;		
 		String sql = "UPDATE tbl_morador set Morador_Nome = "+Morador_Nome+" = where CPF="+CPF;		
@@ -261,6 +257,12 @@ public class CadastroCondominosDao {
 		}
 	}
 	
+	/**
+	* processamento do metodo alterarMorador_Email (utilizado para atualizar o Email do Morador. Processado principalmente pela Servlet_VerificarStatusPagamento)
+	* @CPF objeto do tipo String que armazena o CPF
+	* @Morador_Email objeto do tipo String que armazena o email do Morador
+	* @return nenhum
+	*/
 	public void alterarMorador_Email(String Morador_Email, String CPF) throws SQLException{		
 		PreparedStatement ps = null;		
 		String sql = "UPDATE tbl_morador set Morador_Email = '"+Morador_Email+"' = where CPF='"+CPF+"'";		
@@ -287,6 +289,12 @@ public class CadastroCondominosDao {
 		}
 	}
 	
+	/**
+	* processamento do metodo alterarMorador_Telefone (utilizado para atualizar o Telefone do Morador. Processado principalmente pela Servlet_VerificarStatusPagamento)
+	* @CPF objeto do tipo String que armazena o CPF
+	* @Morador_Telefone objeto do tipo String que armazena o telefone do Morador
+	* @return nenhum
+	*/
 	public void alterarMorador_Telefone(String Morador_Telefone, String CPF) throws SQLException{		
 		PreparedStatement ps = null;		
 		String sql = "UPDATE tbl_morador set Morador_Telefone = "+Morador_Telefone+" = where CPF="+CPF;		

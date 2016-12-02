@@ -11,6 +11,10 @@ import java.util.List;
 import model.CadastroCondominosDados;
 import model.CadastroCondominosFinanceiro;
 
+/**
+* Esta classe possui métodos usados para inserir no banco de dados os dados financeiros dos moradores (mes de pagament, vencimento da fatura, 
+* pagamento efetuado, data do pagamento e uma URl que direciona o usuário para a impressão do boleto  
+*/
 public class Dao_CadastroCondominosFinanceiro {
 	private Connection conexao;
 
@@ -18,6 +22,11 @@ public class Dao_CadastroCondominosFinanceiro {
 		this.conexao = ConnectionFactory.getConnection();
 	}
 	
+	/**
+	* processamento do metodo salvar (O Servlet que processa esta operação chama-se "Servlet_VerificarStatusPagamento")
+	* cadastro_condominos_financeiro objeto do tipo CadastroCondominosFinanceiro que armazena os dados financeiros do morador
+	* @return nenhum
+	*/
 	public void salvar(CadastroCondominosFinanceiro cadastro_condominos_financeiro) throws SQLException{		
 		PreparedStatement ps = null;		
 		String sql = "INSERT INTO tbl_statusPagamento(mes,"
@@ -57,6 +66,10 @@ public class Dao_CadastroCondominosFinanceiro {
 		}
 	}
 	
+	/**
+	* processamento do metodo listarDadosMoradores_Financeiro (O Servlet que processa esta operação chama-se "Servlet_VerificarStatusPagamento)
+	* @return List (retorna um List de objetos do tipo CadastroCondominosFinanceiro, contendo os dados financeiros dos moradores
+	*/
 	public List<CadastroCondominosFinanceiro> listarDadosMoradores_Financeiro() throws SQLException {
 
 		Statement myStmt = null;
@@ -91,6 +104,13 @@ public class Dao_CadastroCondominosFinanceiro {
 
 
 	}
+	
+	
+	/**
+	* processamento do metodo listarDadosMoradores_FinanceiroTelaMorador
+	* @CPF objeto do tipo String que armazena o CPF que será usado como critério de busca dentro do banco de dados
+	* @return List (retorna um List de objetos do tipo CadastroCondominosFinanceiro, contendo os dados financeiros dos moradores
+	*/
 	public List<CadastroCondominosFinanceiro> listarDadosMoradores_FinanceiroTelaMorador(String CPF) throws SQLException {
 
 		Statement myStmt = null;
