@@ -155,7 +155,7 @@
         var _inadimplentes = [];
 		$('#btnExibir').attr("disabled", true);
 		
-     	$.get("/web-condominio/RelatorioInadimplenciaAjaxServlet", function(response) {
+     	$.get("/web-condominio/RelatorioInadimplenciaAjax", function(response) {
      		console.log(response)
      		_inadimplentes = response;
      		$('#btnExibir').attr("disabled", false);
