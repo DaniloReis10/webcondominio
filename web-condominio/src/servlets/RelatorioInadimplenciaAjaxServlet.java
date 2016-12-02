@@ -53,7 +53,7 @@ public class RelatorioInadimplenciaAjaxServlet extends HttpServlet {
 		List<InadimplenciaViewModel> retorno = new ArrayList<InadimplenciaViewModel>();
 		
 		for (CadastroCondominosFinanceiro cond : condominos) {
-			if(cond.getPagEfetuado().toLowerCase().equals("sim")){
+			if(cond.getPagEfetuado().toLowerCase().equals("nao") || cond.getPagEfetuado().toLowerCase().equals("não")){
 				retorno.add(new InadimplenciaViewModel(cond.getMes()));
 			}
 		}
