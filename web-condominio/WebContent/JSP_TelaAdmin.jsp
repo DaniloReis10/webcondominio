@@ -5,6 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 	Object obj = request.getSession().getAttribute("nomeUsuario");
+	
 %>
 <html>
 	<head>
@@ -27,8 +28,8 @@
 			<div id="menu">
 				<ul>
 					<li><a href="#" class="menu-item">Cadastros</a></li>
-					<li><a href="#" class="menu-item">Relatórios</a></li>
-					<li><a href="lancamento">Lançamentos</a></li>
+					<li><a href="#" class="menu-item">Relatorios</a></li>
+					<li><a href="lancamento">Lan�amentos</a></li>
 					<li><a id="menu-login" href="homepage.jsp">Log out</a></li>
 				</ul>
 			</div>
@@ -39,7 +40,7 @@
 			<ul>
 				<li><a href="cadastroCondominos.jsp">Moradores</a></li>
 				<li><a href="JSP_cadastroCondominosFinanceiro.jsp">Moradores_Financeiro</a></li>
-				<li><a href="#">Funcionários</a></li>
+				<li><a href="#">Funcionarios</a></li>
 				<li><a href="despesa">Despesas</a></li>
 				<li><a href="JSP_ListarNomesMoradores.jsp">Listar os moradores</a></li>
 				
@@ -49,9 +50,9 @@
 		<div class="submenu" id="submenu-rel">
 			<ul>
 				<li><a href="#">Mensal por tipo de despesa</a></li>
-				<li><a href="#">InadiplÃªncia</a></li>
+				<li><a href="#">Inadiplencia</a></li>
 				<li><a href="#">Fundo de Caixa</a></li>
-				<li><a href="#">GrÃ¡fico despesa/receita</a></li>
+				<li><a href="#">Grafico despesa/receita</a></li>
 			</ul>
 		</div>
 	</div>

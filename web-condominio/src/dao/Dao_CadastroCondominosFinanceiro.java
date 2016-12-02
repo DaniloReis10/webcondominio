@@ -91,4 +91,38 @@ public class Dao_CadastroCondominosFinanceiro {
 
 
 	}
+	public List<CadastroCondominosFinanceiro> listarDadosMoradores_FinanceiroTelaMorador(String CPF) throws SQLException {
+
+		Statement myStmt = null;
+
+		try {
+			List<CadastroCondominosFinanceiro> lista = new ArrayList<CadastroCondominosFinanceiro>();
+
+			myStmt = this.conexao.createStatement();
+
+			String sql = "SELECT * FROM tbl_statusPagamento WHERE fk_CPF = "+CPF;
+			ResultSet rs = myStmt.executeQuery(sql);
+
+			while (rs.next()) {
+
+				CadastroCondominosFinanceiro cadastro_condominos_financeiro = new CadastroCondominosFinanceiro();
+
+				cadastro_condominos_financeiro.setMes(rs.getString("mes"));
+				cadastro_condominos_financeiro.setFk_CPF(rs.getString("fk_CPF"));
+				cadastro_condominos_financeiro.setVencimento(rs.getDate("vencimento"));
+				cadastro_condominos_financeiro.setPagEfetuado(rs.getString("pagEfetuado"));
+				cadastro_condominos_financeiro.setDataPagamento(rs.getDate("dataPagamento"));
+				cadastro_condominos_financeiro.setBoletoURL(rs.getString("boletoURL"));
+				lista.add(cadastro_condominos_financeiro);
+			}
+
+			return lista;
+		} finally {
+			if(myStmt != null){
+				myStmt.close();
+			}
+		}
+
+
+	}
 }

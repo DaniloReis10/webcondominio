@@ -114,6 +114,8 @@ public class LoginAuthentication extends HttpServlet {
 				//as paginas que correspondem ao tipo de login
 				request.getSession().setAttribute("nomeUsuario", nome_Usuario);
 				
+				request.getSession().setAttribute("cpf", userName);
+				
 				//request.setAttribute("nomeUsuario", nome_Usuario);
 				
 				RequestDispatcher rd = request.getRequestDispatcher("JSP_TelaMorador.jsp");
@@ -123,6 +125,8 @@ public class LoginAuthentication extends HttpServlet {
 					tipoUsuario == 1){
 				
 				request.getSession().setAttribute("nomeUsuario", nome_Usuario);
+				
+				request.getParameter("login");
 				
 				RequestDispatcher rd = request.getRequestDispatcher("JSP_TelaAdmin.jsp");
 				rd.forward(request, response);

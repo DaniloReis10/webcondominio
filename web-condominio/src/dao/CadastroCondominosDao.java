@@ -151,7 +151,7 @@ public class CadastroCondominosDao {
 		PreparedStatement ps = null;		
 		String sql = "DELETE FROM tbl_morador WHERE CPF=?";		
 		try {			
-			this.conexao.setAutoCommit(false); // iniciar transaÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o			
+			this.conexao.setAutoCommit(false); // iniciar transa��o
 			ps = this.conexao.prepareStatement(sql);
 
 			ps.setString(1, cadastro_condominos.getCPF());
@@ -209,7 +209,109 @@ public class CadastroCondominosDao {
 
 
 	}
+	public void alterarCPF(String CPF) throws SQLException{		
+		PreparedStatement ps = null;		
+		String sql = "UPDATE tbl_morador set CPF = "+CPF+" = where CPF="+CPF;		
+		try {			
+			this.conexao.setAutoCommit(false); // iniciar transaÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o			
+			ps = this.conexao.prepareStatement(sql);
 
+			ps.setString(1, CPF);
+			ps.execute();
+
+			this.conexao.commit();			
+		} catch (SQLException e) {			
+			e.printStackTrace();
+			try {
+				this.conexao.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		} finally {			
+			if(ps != null){
+				ps.close();
+			}			
+			this.conexao.setAutoCommit(true);
+		}
+	}
+	
+	public void alterarMorador_Nome(String Morador_Nome, String CPF) throws SQLException{		
+		PreparedStatement ps = null;		
+		String sql = "UPDATE tbl_morador set Morador_Nome = "+Morador_Nome+" = where CPF="+CPF;		
+		try {			
+			this.conexao.setAutoCommit(false); // iniciar transaÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o			
+			ps = this.conexao.prepareStatement(sql);
+
+			ps.setString(1, Morador_Nome);
+			ps.execute();
+
+			this.conexao.commit();			
+		} catch (SQLException e) {			
+			e.printStackTrace();
+			try {
+				this.conexao.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		} finally {			
+			if(ps != null){
+				ps.close();
+			}			
+			this.conexao.setAutoCommit(true);
+		}
+	}
+	
+	public void alterarMorador_Email(String Morador_Email, String CPF) throws SQLException{		
+		PreparedStatement ps = null;		
+		String sql = "UPDATE tbl_morador set Morador_Email = '"+Morador_Email+"' = where CPF='"+CPF+"'";		
+		try {			
+			this.conexao.setAutoCommit(false); // iniciar transaÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o			
+			ps = this.conexao.prepareStatement(sql);
+
+			ps.setString(1, Morador_Email);
+			ps.execute();
+
+			this.conexao.commit();			
+		} catch (SQLException e) {			
+			e.printStackTrace();
+			try {
+				this.conexao.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		} finally {			
+			if(ps != null){
+				ps.close();
+			}			
+			this.conexao.setAutoCommit(true);
+		}
+	}
+	
+	public void alterarMorador_Telefone(String Morador_Telefone, String CPF) throws SQLException{		
+		PreparedStatement ps = null;		
+		String sql = "UPDATE tbl_morador set Morador_Telefone = "+Morador_Telefone+" = where CPF="+CPF;		
+		try {			
+			this.conexao.setAutoCommit(false); // iniciar transaÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o			
+			ps = this.conexao.prepareStatement(sql);
+
+			ps.setString(1, Morador_Telefone);
+			ps.execute();
+
+			this.conexao.commit();			
+		} catch (SQLException e) {			
+			e.printStackTrace();
+			try {
+				this.conexao.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		} finally {			
+			if(ps != null){
+				ps.close();
+			}			
+			this.conexao.setAutoCommit(true);
+		}
+	}
 
 }
 
