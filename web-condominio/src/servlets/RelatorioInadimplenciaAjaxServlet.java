@@ -21,7 +21,7 @@ import model.InadimplenciaViewModel;
 /**
  * Servlet implementation class RelatorioInadimplenciaAjaxServlet
  */
-@WebServlet("/RelatorioInadimplenciaAjaxServlet")
+@WebServlet("/RelatorioInadimplenciaAjax")
 public class RelatorioInadimplenciaAjaxServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

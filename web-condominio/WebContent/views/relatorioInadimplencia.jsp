@@ -16,6 +16,7 @@
 		<div class='container' style="padding-top: 15px;">
         <div class="offsetpage-header">
             <h1>Relatório de Inadimplencias</h1>
+            <div id="carregando">Carregando inadimplentes</div>
         </div>
         <div class="input-group">
             <span class="input-group-addon">De:</span>
@@ -151,11 +152,21 @@
     (function () {
         'use strict';
 
+        var _inadimplentes = [];
+		$('#btnExibir').attr("disabled", true);
+		
+     	$.get("/web-condominio/RelatorioInadimplenciaAjaxServlet", function(response) {
+     		console.log(response)
+     		_inadimplentes = response;
+     		$('#btnExibir').attr("disabled", false);
+     		$("#carregando").hide()
+    	});
+        
         // escuta o click nos dois dropdowns e chama a função generateGraph
         $('#mesDe, #mesAte').on('click', function () {
             generateGraph( $('#mesDe').val(), $('#mesAte').val());
         });
-
+	
 
         function generateGraph(mesDe, mesAte) {
 

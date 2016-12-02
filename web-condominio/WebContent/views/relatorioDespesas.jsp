@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link  rel="stylesheet" href="../libs/bootstrap-3.3.7-dist/css/bootstrap.css"/>
+	<link  rel="stylesheet" href="libs/bootstrap-3.3.7-dist/css/bootstrap.css"/>
 
 	<title>Relatorio Despesas</title>
 </head>
@@ -16,6 +16,7 @@
 		<div class='container' style="padding-top: 15px;">
         <div class="offsetpage-header">
             <h1>Relatório de Despesas</h1>
+            <div id="carregando-despesa">Carregando as despesas...</div>
         </div>
         <div class="input-group">
             <span class="input-group-addon">De:</span>
@@ -73,9 +74,9 @@
     </div>
 
 
-    <script src="../libs/jquery-3.1.1.js"></script>
-    <script src="../libs/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
-    <script src="../libs/chart.js"></script>
+    <script src="libs/jquery-3.1.1.js"></script>
+    <script src="libs/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script src="libs/chart.js"></script>
     
     
     <script type="text/javascript">
@@ -150,14 +151,17 @@
         'use strict';
         
 		var _despesas = [];
+		$('#btnExibir').attr("disabled", true);
 		
-		console.log(_despesas);
-		
+     	$.get("/web-condominio/RelatorioDespesaAjaxServlet", function(response) {
+     		console.log(response)
+     		_despesas = response;
+     		$('#btnExibir').attr("disabled", false);
+     		$("#carregando-despesa").hide()
+    	});
+     		
         // escuta o click no botão exibir e chama a função generateGraph
         $('#btnExibir').on('click', function () {
-      		$.get("/web-condominio/RelatorioInadimplenciaAjaxServlet", function(response) {
-      			console.log(response)
-      		})
 		//	 generateGraph( $('#mesDe').val(), $('#mesAte').val());
         });
 
