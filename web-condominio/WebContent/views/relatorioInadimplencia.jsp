@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link  rel="stylesheet" href="libs/bootstrap-3.3.7-dist/css/bootstrap.css"/>
+	<link  rel="stylesheet" href="../libs/bootstrap-3.3.7-dist/css/bootstrap.css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Relatorio Inadimplencia</title>
 </head>
@@ -35,21 +35,6 @@
                 <option value="11">Dezembro</option>
             </select>
 
-            <span class="input-group-addon">Até:</span>
-            <select class="form-control" id="mesAte">
-                <option value="0">Janeiro</option>
-                <option value="1">Fevereiro</option>
-                <option value="2">Março</option>
-                <option value="3">Abril</option>
-                <option value="4">Maio</option>
-                <option value="5">Junho</option>
-                <option value="6">Julho</option>
-                <option value="7">Agosto</option>
-                <option value="8">Setembro</option>
-                <option value="9">Outubro</option>
-                <option value="10">Novembro</option>
-                <option value="11">Dezembro</option>
-            </select>
         </div>
          <button class="form-control" id="btnExibir">Exibir</button>
         <div id="selectionErrorModal" class="modal fade" tabindex="-1" role="dialog">
@@ -86,7 +71,7 @@
                 labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"].slice(range.mesDe, range.mesAte),
                 datasets: [{
                     label: label,
-                    data: [12, 10, 3, 5, 2, 3, 8, 7, 30, 25, 1, 4].splice(range.mesDe, range.mesAte),
+                    data: data.splice(range.mesDe, range.mesAte),
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -142,9 +127,9 @@
     
     
     
-    <script src="libs/jquery-3.1.1.js"></script>
-    <script src="libs/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
-    <script src="libs/chart.js"></script>
+    <script src="../libs/jquery-3.1.1.js"></script>
+    <script src="../libs/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script src="../libs/chart.js"></script>
     <script src="js/graphCreator.js"></script>
     
     <!-- relatorio inadimplencia script -->
@@ -155,7 +140,7 @@
         var _inadimplentes = [];
 		$('#btnExibir').attr("disabled", true);
 		
-     	$.get("/web-condominio/RelatorioInadimplenciaAjaxServlet", function(response) {
+     	$.get("/web-condominio/RelatorioInadimplenciaAjax", function(response) {
      		console.log(response)
      		_inadimplentes = response;
      		$('#btnExibir').attr("disabled", false);
@@ -163,12 +148,16 @@
     	});
         
         // escuta o click nos dois dropdowns e chama a função generateGraph
-        $('#mesDe, #mesAte').on('click', function () {
-            generateGraph( $('#mesDe').val(), $('#mesAte').val());
+        $('#btnExibir').on('click', function () {
+        	
+        	var nInadimplentes = [_inadimplentes.length];
+        	
+        	
+            generateGraph( $('#mesDe').val(), $('#mesAte').val(), nInadimplentes);
         });
 	
 
-        function generateGraph(mesDe, mesAte) {
+        function generateGraph(mesDe, mesAte, data) {
 
             mesDe = parseInt(mesDe);
             mesAte = parseInt(mesAte);
@@ -189,11 +178,7 @@
             // numeroInadimplentes é um vetor com a quantidade de inadimplentes de cada mês
             // o primeiro index correponde a janeiro, e assim em diante.
             // esse vetor será preenchido a partir do local storage
-            var numeroInadimplentes = [
-            	 <c:forEach items="${inadimplentes}" var="nInadimplentes">  
-            	 	'nInadimplentes',
-            	 </c:forEach>
-            ];
+            var numeroInadimplentes = data;
 
             // numeroInadimplentesFiltrado possui somente o numero dos meses que o usuario selecionou
             var numeroInadimplentesFiltrado = numeroInadimplentes.slice(mesDe, mesAte+1);
