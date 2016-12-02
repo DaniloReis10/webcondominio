@@ -101,7 +101,7 @@
 				</div>
 
 				<div class="panel-footer">
-					<a href="../Views/LoginFornecedor.html"><button
+					<a href="ListaFornecedor"><button
 							class="btn btn-danger" type="button">Voltar</button></a>
 					<button id="btnCadastrarFornecedor"
 						class="btn btn-success btn-formvalid centralizar-direita"
