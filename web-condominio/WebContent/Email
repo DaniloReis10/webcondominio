@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt_BR">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
+<script th:src="@{/js/func.js}"></script>
+<script th:src="@{/webjars/jquery/2.2.4/jquery.min.js}"></script>
+<link th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+	rel="stylesheet" media="screen" />
+<script th:src="@{/js/jquery.easy-autocomplete.js}"></script>
+<link th:href="@{/css/easy-autocomplete.css}" rel="stylesheet"
+	media="screen" />
+<link th:href="@{/css/easy-autocomplete.themes.css}" rel="stylesheet"
+	media="screen" />
+
+<title>Email</title>
+</head>
+<body>
+
+	<form th:action="@{/send}" method="post" th:object="${mensagem}" style="width: 500px; padding: 30px;">
+		<div class="form-group">
+			<label for="exampleInputEmail1">Email</label> <input type="email"
+				class="form-control" id="email"  th:field="*{to}" aria-describedby="emailHelp"></input>
+		</div>
+		<div class="form-group">
+			<label for="exampleTextarea">Mensagem</label>
+			<textarea  class="form-control" th:field="*{msg}" id="exampleTextarea" rows="3"></textarea>
+		</div>
+
+		<button type="submit" class="btn btn-primary">Enviar</button>
+	</form>
+
+
+</body>
+</html>
